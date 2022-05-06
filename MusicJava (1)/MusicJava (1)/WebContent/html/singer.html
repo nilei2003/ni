@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="shortcut icon" href="../images/favicon.ico"/>
+		<link type="text/css" rel="stylesheet"href="../css/singer.css" />
+		<link href="../css/header.css" type="text/css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="main" id="app">
+			<div class="mod_header">
+					<div class="section_inner">
+						<h1 class="qqmusic_title">
+							<a href="#">
+								<img alt="QQ音乐" src="../images/logo.png"class="qqmusic_logo"/>
+							</a>
+						</h1>
+						<ul class="mod_top_nav">
+							<li class="top_nav__item">
+								<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+								</a>
+							</li>
+							<li class="top_nav__item">
+								<a class="top_nav__link" title="我的音乐" href="../userindex.html">我的音乐</a>
+							</li>
+						</ul>
+						<ul class="mod_top_subnav">
+							<li class="top_subnav__item">
+								<a aria-current="page" class="top_subnav__link " title="首页" href="../index.html">首页</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link top_subnav__link--current" title="歌手" href="index.html">歌手</a>
+							</li>
+							</li>
+							<li class="top_subnav__item"><a class="top_subnav__link " title="排行榜" href="toplist.html">排行榜</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link" title="专辑" href="../specli.html">专辑</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link" title="分类歌单" href="playlist.html">歌单</a>
+							</li>
+							<li class="top_subnav__item"><a class="top_subnav__link" href="">MV</a>
+							</li>
+						</ul>
+						<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt"  v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+					</div>
+				</div>
+			
+			<div class="mod_data" v-for="sin in singer">
+				<a class="data__cover">
+					<img class="data__photo" :src="'../../' + sin.sphoto" :alt="sin.sname"/>
+				</a>
+				<div class="data__cont">
+					<div class="data__name">
+						<h1 class="data__name_txt">{{sin.sname}}</h1>
+					</div>
+				</div>
+				<div class="data__desc">
+					<div class="data_desc_txt">{{sin.sbrief}}</div>
+				</div>
+				
+				<ul>
+					<li class="data_statistic__item">
+						<a title="单曲 519" href="" href="">
+							<span class="data_statistic__tit"><font style="vertical-align: inherit;">单曲</span>
+							<strong class="data_statistic__number"><font style="vertical-align: inherit;">{{sin.c_song}}</strong>
+						</a>
+					</li>
+					
+				</ul>
+				<div class="data__actions" role="toolbar">
+					<a class="mod_btn_green">
+						<i class="mod_btn_green__icon_play"></i>播放歌手热门歌曲
+					</a>
+					<a v-if="paysinger == null" class="mod_btn" @click="addfans">
+						<i class="mod_btn__icon_more" ></i>关注 <span></span>
+					</a>
+					<a v-else class="mod_btn_green" @click="descfans">
+						<i class="mod_btn__icon_desc"></i>取消关注 <span></span>
+					</a>
+					
+				</div>
+			</div>
+			<div class="mod_part">
+				<div class="part__hd">
+					<h2 class="part__tit">单曲{{count}}</h2>
+				</div>
+				<div class="mod_songlist_toolbar">
+					<a class="mod_btn_green">
+						<i class="mod_btn_green__icon_play"></i>播放全部
+					</a>
+				</div>
+				<div class="mod_songlist">
+					<ul class="songlist__header">
+						<li class="songlist__header_name">歌曲</li>
+						<li class="songlist__header_album">专辑</li>
+						<li class="songlist__header_time">时长</li>
+					</ul>
+					<ul class="songlist__list" v-for ="(music,index) in musics" @mouseenter="enter(index)" @mouseleave="leave(index)">
+						<li>
+							<div class="songlist__item songlist__item--even">
+								<div class="songlist__number songlist__number--top">{{music.num}}</div>
+								<div class="songlist__songname">
+									<span class="songlist__songname_txt">
+										<a :title='music.mname' href="javascript:void(0)" @click="musicshow(music.mid, index, music.yesnopay, music.sname, music.eid)">{{music.mname}}</a>
+									</span>
+									<div class="mod_list_menu">
+										<a href="javascript:void(0)" class="list_menu__item list_menu__play"  @click="musicshow(music.mid, index, music.yesnopay, music.sname, music.eid)">
+											<i class="list_menu__icon_play"></i>
+											
+										</a>
+										<a href="javascript:void(0)" class="list_menu__item list_menu__add" @click="findcollect(music.mid)">
+											<i class="list_menu__icon_add"></i>
+											
+										</a>
+										<!-- '../' + music.musics -->
+										<a href="javascript:void(0)" @click="download(music.mid, index, music.yesnopay, music.sname, music.eid, music.musics)" download class="list_menu__item list_menu__down">
+											<i class="list_menu__icon_down"></i>
+											
+										</a>
+									</div>
+								</div>
+								<div class="songlist__time">{{music.mdate}}</div>
+								<div class="songlist__album">
+									<a v-if="music.eid == null" href="#">暂无专辑</a>
+									<a v-else href="#">{{music.ename}}</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mod_part">
+				<div class="part__hd">
+					<h2 class="part__tit">专辑</h2>
+					<a class="part__more">全部<i class="icon_part_arrow sprite"></i>
+					</a>
+				</div>
+				<ul class="playlist mod_playlist">
+					<li class="playlist__item" v-for="(se, index) in sepcial">
+						<div class="playlist__item_box">
+							<div class="playlist__cover mod_cover">
+								<a class="js_blum" v-if="se.ephoto == null">
+									<img class="playlist__pic" alt="图片" src="../images/男明星.jpg"/>
+									<i class="mod_cover__icon_play js_play"></i>
+								</a>
+								<a class="js_blum" v-else  @click="speclishow(se.sid, se.eid, index)" >
+									<img class="playlist__pic" alt="图片" :src="'../../' + se.ephoto "/>
+									<i class="mod_cover__icon_play js_play"></i>
+								</a>
+							</div>
+							<h4 class="playlist__title">
+								<span class="playlist__title_txt">
+									<a :title="se.ename" class="js_album" @click="speclishow(se.sid, se.eid, index)" >{{se.ename}}</a>
+								</span>
+							</h4>
+							<div class="playlist__other">专辑价格:{{se.emoney}}
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div> 
+			<div >
+			<div class="mod_part" >
+				<div class="part__hd">
+					<h2 class="part__tit">MV</h2>
+					<a class="part__more">全部<i class="icon_part_arrow sprite"></i></a>
+				</div>
+				<ul class="playlist mod_playlist">
+					<li class="playlist__item" v-for = "(mv, index) in mvs">
+						<div class="playlist__item_box">
+							<div class="mv_list__cover mod_cover" >
+								<a class="js_blum" href="javascript:void(0)" @click="bfmv(mv.mvid, index)">
+									<img class="playlist__pic mv_list__pic" alt="图片" :src="'../../' + mv.mvphoto"/>
+									<i class="mod_cover__icon_play j_play"></i>
+								</a>
+							</div>
+							<h4 class="playlist__title">
+								<span class="playlist__title_txt">
+									<a :title="mv.mvbj" href="javascript:void(0)" class="js_album" @click="bfmv(mv.mvid, index)">{{mv.mvname}}</a>
+								</span>
+							</h4>
+							<div class="playlist__other">
+								<i class="mv_list_icon sprite"></i>{{mv.playvolume}}
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/qs.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script type="text/javascript" src="../js/singer.js"></script>
+	
+		<script type="text/javascript">
+		let x = null;
+			let vm = new Vue({
+				el:"#app",
+				data:{
+					musics:{},
+					singer:{},
+					sid: "",
+					uid: "",
+					paysinger:{},
+					mvs:{},
+					hot:{},
+					totals:{},
+					total:{},
+					singers:{},//歌手
+					sepcials:{},// 专辑
+					musics:{},//单曲
+					MVs:{},//mv
+					uid:"",
+					history:{},
+					x_search:"",
+					count: 0,
+					//头部
+					head_show:false,
+					head_result:false,
+					hots:{},
+					sepcial:{},//主页专辑渲染
+					
+
+				},
+				mounted(){
+					var sids = decodeURI(location.search);
+					this.sid = sids.replace("?","");
+					//查询用户信息
+					axios.post("../user/info").then(result=>{
+						if(result.data.code == 500 || result.data.data == null){
+							alert("请先登录");
+							location.href= "login.html";
+							return;
+						}
+						this.uid = result.data.data.uid;
+						
+					})
+					//第一次查询 歌曲
+					axios.post("../singer/findFirsts",qs.stringify({sid:this.sid})).then(result=>{
+						this.totals = result.data.data;
+						this.hots = this.totals[0];
+						this.musics = this.totals[1];
+						this.singer = this.totals[2];
+						this.count = this.singer.c_song;
+						this.mvs = this.totals[3];
+						this.sepcial = this.totals[4];
+						console.log(this.sepcial)
+					})
+					this.historyData()
+				},
+				watch:{
+					uid:function(){
+						this.FistFind();
+					},
+					search:function(){
+						this.changeback()
+					},
+					//头部
+					x_search:function(){
+						this.change_back()
+					},
+				},
+				methods:{
+					
+					speclishow(sid, eid, index){
+						localStorage.removeItem("sid");
+						localStorage.removeItem("eid");//先从本地存储中移除这个属性
+						localStorage.setItem("eid", eid);//
+						localStorage.setItem("sid", sid);//
+						location.href = '../speclishow.html';
+						console.log(eid);
+						
+					},
+					
+					enter(index){
+						$(".list_menu__icon_play").eq(index).css('display', 'block');//设置属性
+						$(".list_menu__icon_add").eq(index).css('display', 'block');//设置属性
+						$(".list_menu__icon_down").eq(index).css('display', 'block');//设置属性
+					},
+					leave(index){
+						$(".list_menu__icon_play").eq(index).css('display', 'none');//设置属性
+						$(".list_menu__icon_add").eq(index).css('display', 'none');//设置属性
+						$(".list_menu__icon_down").eq(index).css('display', 'none');//设置属性
+					},
+					 bfmv(mvid, index){
+						   localStorage.removeItem("mvid");//先从本地存储中移除这个属性
+						   localStorage.setItem("mvid", mvid);//
+						   location.href = 'mvplay.html';
+					  },
+					// 这里判断用户有没有播放列表      TODO  那要是临时用户呢？ 临时用户可以播放普通音乐， 付费音乐需要登录购买才可以听
+					musicshow(mid, index, yesnopay, sname, eid){
+						if(this.uid == null || this.uid == ""){// 说明当前用户为临时用户
+							return;
+						}
+						if(yesnopay == 1){
+							axios.post("../MoneySepcialSelvlet/show", qs.stringify({eid})).then(result=>{
+								if(result.data.code == 500){ // 说明用户还没有购买
+									alert("请购买本专辑");
+									return;
+								}else if(result.data.code == 200){
+									axios.post("../TemporarysdetalsServlet/finds").then(result1=>{
+										if(result1.data.code == 500){
+											this.musicadd01(mid);
+											return;
+										}	
+										this.tid = result1.data.data.tid;
+										//判断播放列表有没有这首歌
+										this.musicshow01(this.tid, mid);
+
+									})
+								}
+							})	
+						}else{
+							axios.post("../TemporarysdetalsServlet/finds").then(result=>{
+								if(result.data.code == 500){
+									this.musicadd01(mid);
+									return;
+
+								}
+								this.tid = result.data.data.tid;
+								//判断播放列表有没有这首歌
+								this.musicshow01(this.tid, mid);
+
+							})
+						}
+					},
+					download(mid, index, yesnopay, sname, eid, musics){
+                        console.log(eid);
+                        
+                        let music = '../' + musics;
+                        
+                        console.log(music);
+                        
+						// downloadadd
+						if(this.uid == ""){// 说明当前用户为临时用户
+							alert("请先登录");
+							location.href = 'login.html';
+							return;
+						}
+						
+						if(yesnopay == 1){
+
+							axios.post("../MoneySepcialSelvlet/show", qs.stringify({eid})).then(result=>{
+								console.log(result);
+								if(result.data.code == 500){ // 说明用户还没有购买
+									alert("该音乐为付费音乐，您需要购买才可下载哟！！！");
+									
+								 
+								}else if(result.data.code == 200){
+									$(".list_menu__down").eq(index).attr("href", music);
+								}
+							})
+						}else{
+							$(".list_menu__down").eq(index).attr("href", music);
+						}
+					},
+					// 收藏
+					findcollect(mid){
+						
+						axios.post("../CollectServlet/find", qs.stringify({mid})).then(result=>{
+
+							if(result.data == 500){// 说明没有被收藏过
+								this.addcollect(mid);
+								return;
+							}
+							alert("您已经收藏了喔");
+						})
+					},
+					// 无播放表
+					musicadd01(mid){
+						axios.post("../TemporarysdetalsServlet/add", qs.stringify({mid})).then(result=>{
+							localStorage.removeItem("mid");//先从本地存储中移除这个属性
+							localStorage.setItem("mid", mid);//
+							  if(x == null){
+				                	x =  window.open('../musicbf.html');
+				                }else{
+				                	x.close();
+				                	x =  window.open('../musicbf.html');
+				                }
+						})
+
+					},
+					// 判断有没有这首歌
+					musicshow01(tid, mid){
+
+						axios.post("../TemporarysdetalsServlet/find", qs.stringify({mid})).then(result=>{
+
+							if(result.data.code == 500){
+								// 没有这首歌
+
+								this.musicadd02(tid, mid);
+								return;
+							}
+							localStorage.removeItem("mid");//先从本地存储中移除这个属性
+							localStorage.setItem("mid", mid);//						
+							  if(x == null){
+				                	x =  window.open('../musicbf.html');
+				                }else{
+				                	x.close();
+				                	x =  window.open('../musicbf.html');
+				                }
+							return;
+
+						})
+
+
+					},
+					//没有这首歌 添加到临时播放详情表
+					musicadd02(tid, mid){
+						axios.post("../TemporarysdetalsServlet/add02", qs.stringify({tid, mid})).then(result=>{
+
+							localStorage.removeItem("mid");//先从本地存储中移除这个属性
+							localStorage.setItem("mid", mid);//
+			                if(x == null){
+			                	x =  window.open('../musicbf.html');
+			                }else{
+			                	x.close();
+			                	x =  window.open('../musicbf.html');
+			                }
+						})
+					},
+					addfans(){
+						axios.post("../singer/addFans",qs.stringify({sid:this.sid,uid:this.uid})).then(result=>{
+							if(result == 500){
+								alert("关注失败，请确认是否登录");
+								location.href= "login.html";
+								return;
+							}
+							if(result == 200){
+								alert("关注成功");
+							}
+							this.FistFind();
+						})
+					},
+					FistFind(){
+						axios.post("../singer/findFans",qs.stringify({uid:this.uid,sid:this.sid})).then(result=>{
+							this.paysinger = result.data.data;
+						})
+					},
+					descfans(){
+						axios.post("../singer/descfans",qs.stringify({uid:this.uid,sid:this.sid})).then(result=>{
+							if(result.data == 200){
+								this.FistFind();
+							}
+						})
+					},
+					//头部
+					change_back(){//是否显示
+						//改变搜索结果是否显示
+						if(this.x_search != ""){
+							this.head_result = true;
+							this.head_show = false;
+							this.find_Input();
+						}else{
+							this.head_result = false;
+							this.head_show = true;
+						}
+						this.changer_headerhis()
+					},
+					clearStore(){//清楚历史记录
+						localStorage.removeItem('data');
+						$('#lists').html('');
+					},
+					changer_headerhis(){
+						if(this.x_search != ""){
+							$('#mod_search').css('max-height',0);
+						}else{
+							$('#mod_search').css('max-height',580);
+							changeList();
+						}
+						changeHot();
+					},
+					find_Input(){
+						axios.post("../search/findData",qs.stringify({sname:this.x_search})).then(result=>{
+							this.total = result.data.data;
+							this.musics = this.total[0];
+							this.singers = this.total[1];
+							this.sepcials = this.total[2];
+							this.MVs = this.total[3];
+						})
+					},
+					con(historys){
+						this.x_search = historys;
+					},
+					historyData(){
+						this.history = JSON.parse(localStorage.getItem('data'));
+					},
+				}
+			})
+			function changeList(){
+				var list_on = document.getElementsByClassName("on");
+				for (var j = 0; j < list_on.length; j++) {
+					list_on[j].setAttribute('index',j);
+					list_on[j].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"#31C27C");
+						$('.active').eq(index).css('color',"white");
+					}
+					list_on[j].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"white");
+						$('.active').eq(index).css('color',"#333");
+					}
+				}
+			}
+			function changeHot(){
+				var search = document.getElementsByClassName("search_hot__link");
+				var number = document.getElementsByClassName("search_hot__number");
+				var name =  document.getElementsByClassName("search_hot__name");
+				var listen = document.getElementsByClassName("search_hot__listen");
+				for (var i = 0; i < search.length; i++) {
+					search[i].setAttribute('index',i);
+					search[i].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"#31C27C");
+						$('.search_hot__number').eq(index).css('color',"white");
+						$('.search_hot__name').eq(index).css('color',"white");
+						$('.search_hot__listen').eq(index).css('color',"white");
+					}
+					search[i].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"white");
+						$('.search_hot__number').eq(index).css('color',"#ff4222");
+						$('.search_hot__name').eq(index).css('color',"#333");
+						$('.search_hot__listen').eq(index).css('color',"#999");
+					}
+				}
+			}
+		
+		</script>
+		
+	</body>
+</html>

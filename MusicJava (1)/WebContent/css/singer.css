@@ -1,0 +1,533 @@
+*{
+	padding: 0;
+    margin: 0 auto;
+}
+a{
+	text-decoration: none;/*取消下划线*/
+	color: #000;
+}
+a:hover{
+	color: #F30;
+}
+.list_menu__icon_down{
+	background-position: 0 -120px;
+}
+ul,li{
+	list-style: none;/*取消小圆点*/
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+body{
+    font-family: 微软雅黑;
+	font-size: 12px;
+	background-color: #FAFAFA;
+	/* 设置元素的最小宽度 */
+}
+	/* 清楚浮动后的影响 */
+.clearfix:after {
+	content: "";
+	height: 0;
+	
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+			
+.clearfix {
+	zoom: 1;
+}
+.main{
+	max-width: 1200px;
+	position: relative;
+}
+.main {
+    z-index: 2;
+}
+.mod_data{
+    position: relative;
+    height: 250px;
+    padding-left: 305px;
+    margin-top: 40px;
+    margin-bottom: 35px;
+}
+.data__cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+}
+.data__photo {
+    border-radius: 999px;
+}
+.data__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.data__cont {
+    padding-top: 31px;
+}
+.data__name {
+    overflow: hidden;
+    line-height: 50px;
+}
+.data__name_txt {
+    float: left;
+    font-size: 38px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    margin-right: 10px;
+}
+.data__desc {
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 4px;
+}
+.data_desc_txt {
+    float: left;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 2px;
+	white-space: nowrap;
+	/*超出本分隐藏*/
+	overflow: hidden;
+	/*显示省略号来表示修剪的文本*/
+	text-overflow: ellipsis;
+}
+.data__desc {
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 4px;
+}
+a:hover{
+	cursor: pointer;
+	color: #31c27c;
+}
+/* 已入驻小图标 */
+.icon_enter{
+	float: left;
+	font-size: 12px;
+	color: #fff;
+	background-color: #31c27c;
+	font-style: normal;
+	border-radius: 2px;
+	line-height: 20px;
+	padding: 0 5px;
+	margin-top: 13px;
+}
+.data_statistic__item{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    border-right: 1px solid #c9c9c9;
+    text-align: center;
+    padding-right: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+}
+.data_statistic__number {
+    font-size: 25px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+.data__actions {
+    position: absolute;
+    bottom: 23px;
+    font-size: 0;
+}
+.data__actions {
+    bottom: 30px;
+}
+.data__actions .mod_btn, .data__actions .mod_btn_green {
+    min-width: 122px;
+    text-align: center;
+    padding: 0 18px;
+    font-family: \5FAE\8F6F\96C5\9ED1;
+}
+.mod_btn_green {
+    border: 1px solid #31c27c;
+    background-color: #31c27c;
+    color: #fff;
+}
+.mod_btn, .mod_btn_green {
+    border-radius: 2px;
+    font-size: 14px;
+    margin-right: 6px;
+    padding: 0 23px;
+    height: 38px;
+    line-height: 38px;
+    display: inline-block;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.mod_btn {
+    border: 1px solid #c9c9c9;
+    color: #000;
+}
+.mod_btn_green__icon_play, .mod_btn__icon_more,.mod_btn__icon_add,.mod_btn__icon_down,.mod_btn__icon_batch,.mod_btn__icon_desc{
+	display: inline-block;
+	margin-right: 6px;
+	background: url(../images/icon_sprite.png);
+}
+.mod_btn_green__icon_play {
+    width: 13px;
+    height: 16px;
+    background-position: -80px -220px;
+    vertical-align: -3px;
+}
+.mod_btn__icon_more {
+    width: 14px;
+    height: 14px;
+    background-position: -40px -80px;
+    vertical-align: -2px;
+}
+.mod_btn__icon_desc{
+	width: 14px;
+	height: 14px;
+	background-position: -80px -260px;
+	vertical-align: -2px;
+}
+.mod_btn_green:hover{
+	color: white;
+	background-color: #2CAF6F;
+}
+.mod_btn:hover{
+	color: #000;
+	background-color: #EDEDED;
+}
+/* 歌曲列表 */
+.mod_part{
+    position: relative;
+    margin-bottom: 30px;
+}
+.part__hd{
+    overflow: hidden;
+    height: 60px;
+}
+.part__tit{
+    float: left;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 58px;
+    font-family: \5FAE\8F6F\96C5\9ED1;
+}
+.mod_songlist_toolbar {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 0;
+}
+/* 小logo位置 */
+.mod_btn__icon_add {
+    width: 16px;
+    height: 16px;
+    background-position: -20px 0;
+	vertical-align: -3px;
+}
+.mod_btn__icon_down {
+    width: 16px;
+    height: 16px;
+    background-position: -40px -220px;
+	vertical-align: -3px;
+}
+.mod_btn__icon_batch {
+    width: 16px;
+    height: 16px;
+    background-position: -120px 0;
+	vertical-align: -3px;/*垂直对齐*/
+}
+.mod_songlist {
+    margin: 11px -30px 10px 0;
+	font-size: 14px;
+	overflow: hidden;
+}
+.songlist__header {
+    background-color: #fbfbfd;
+}
+.songlist__header {
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(0,0,0,.01);
+    color: #999;
+}
+.songlist__header, .songlist__item{
+    position: relative;
+    padding-left: 46px;
+    padding-right: 95px;
+}
+.songlist__header_name, .songlist__songname {
+    float: left;
+    width: 47.685185%;
+    position: relative;
+    white-space: normal;
+}
+
+.songlist__header_album{
+    float: left;
+    padding-left: 15px;
+    width: 25.5%;
+    box-sizing: border-box;
+}
+.songlist__list{
+	overflow: hidden;
+}
+.songlist__item--even {
+    background-color: rgba(0,0,0,.01);
+}
+.songlist__item {
+    clear: both;
+    font-size: 0;
+    overflow: hidden;
+}
+.songlist__number {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: #999;
+    width: 36px;
+}
+.songlist__album, .songlist__artist, .songlist__number, .songlist__other, .songlist__songname, .songlist__time {
+    line-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.songlist__album, .songlist__artist, .songlist__header_album, .songlist__header_author {
+    float: left;
+    padding-left: 15px;
+    width: 25.5%;
+    box-sizing: border-box;
+}
+.songlist__album, .songlist__artist, .songlist__number, .songlist__other, .songlist__time {
+    font-size: 14px;
+}
+.songlist__item .songlist__songname_txt:first-child {
+    max-width: 85%;
+    box-sizing: border-box;
+}
+
+.songlist__songname_txt {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 56%;
+    margin-right: 8px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.songlist__item .mod_list_menu {
+    position: absolute;
+    right: 25px;
+    top: 10%;
+    overflow: hidden;
+}
+
+.mod_list_menu  {
+    font-size: 0;
+    height: 36px;
+}
+
+.list_menu__item {
+    margin-right: 5px;
+}
+.list_menu__item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.songlist__song_txt, .songlist__time {
+    color: #999;
+}
+.songlist__header_time, .songlist__time {
+    position: absolute;
+    top: 0;
+    right: 38px;
+    width: 50px;
+}
+.list_menu__icon_add, .list_menu__icon_delete, .list_menu__icon_down, .list_menu__icon_down_vip, .list_menu__icon_edit, .list_menu__icon_pause, .list_menu__icon_play, .list_menu__icon_share {
+    display: none;
+    width: 36px;
+    height: 36px;
+	background-image: url(../images/icon_list_menu.png);
+    background-repeat: no-repeat;
+}
+.list_menu__icon_play {
+    background-position: 0 0;
+}
+
+.list_menu__icon_add {
+    background-position: 0 -80px;
+}
+
+.list_menu__icon_down{
+	background-position: 0 -120px;
+}
+
+.list_menu__icon_down:hover{
+	background-position: -40px -120px;
+}
+
+
+.list_menu__icon_add:hover{
+    background-position: -40px -80px;
+}
+
+.list_menu__icon_play:hover{
+   background-position: -40px 0;
+}
+
+.list_menu__icon_share {
+    background-position: 0 -40px;
+}
+.part__hd {
+    overflow: hidden;
+    height: 60px;
+}
+.part__tit {
+    float: left;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 58px;
+    font-family: \5FAE\8F6F\96C5\9ED1;
+}
+.part__more {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    font-size: 14px;
+}
+.icon_part_arrow {
+    display: inline-block;
+    width: 7px;
+    height: 12px;
+    background-position: -120px -40px;
+    margin-left: 6px;
+    vertical-align: -1px;
+}
+.sprite, .sprite_before:before {
+    background-image: url(../images/icon_sprite.png);
+}
+.sprite:hover{
+	background-position: -120px -60px;
+}
+.mod_playlist {
+    margin-right: -20px;
+}
+.mod_playlist {
+    overflow: hidden;
+    font-size: 0;
+}
+.mod_playlist .playlist__item {
+    display: inline-block;
+    width: 20%;
+    padding-bottom: 44px;
+    overflow: hidden;
+    font-size: 14px;
+    vertical-align: top;
+}
+.mod_playlist .playlist__item_box {
+    position: relative;
+    margin-right: 20px;
+}
+.mod_playlist .playlist__cover {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-top: 100%;
+    margin-bottom: 15px;
+}
+.mod_cover {
+    zoom: 1;
+}
+.mod_playlist .playlist__pic {
+    height: 100%;
+    object-fit: cover;
+}
+.mod_playlist .playlist__pic {
+    transform: scale(1) translateZ(0);
+    transition: transform .75s;
+}
+.mod_playlist .playlist__pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-transform: scale(1) translateZ(0);
+	z-index: 1;
+}
+.mod_cover:hover .mod_cover__icon_play, .mod_cover__icon_play {
+    background-image: url(../images/cover_play.png);
+}
+.mod_cover__icon_play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -35px;
+    width: 70px;
+    height: 70px;
+	/* 透明度 */
+	opacity: 0;
+    transform: scale(.8) translateZ(0);
+    transition-property: opacity,transform;
+    transition-duration: .5s;
+    zoom: 1;
+	z-index: 2;
+}
+.playlist__pic:hover{
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  opacity: 1.0;
+}
+/* 图片放大 */
+.mod_cover__icon_play:hover{
+	 transform: scale(0.9) translateZ(0);
+}
+
+.mod_playlist .playlist__title a {
+    font-size: 14px;
+}
+.mod_playlist .playlist__other {
+    color: #999;
+	/* 文本不换行 */
+    white-space: nowrap;
+    overflow: hidden;
+	/* 文本省略 */
+    text-overflow: ellipsis;
+    height: 22px;
+    font-size: 14px;
+}
+.mv_list__cover {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-top: 56.5476%;
+    margin-bottom: 15px;
+}
+.mv_list_icon{
+    display: inline-block;
+    width: 19px;
+    height: 12px;
+    background-position: -180px -20px;
+    margin-right: 5px;
+    vertical-align: -1px;
+}
+.mv_list_icon:hover{
+	background-position: -180px -20px;
+}

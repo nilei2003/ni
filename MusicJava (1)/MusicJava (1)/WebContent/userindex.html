@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人中心</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="less/base.css">
+<link rel="stylesheet" href="less/header.css">
+<style>
+article {
+	width: 100%;
+	background-color: #F4F5F7;
+}
+
+#article_div001 {
+	width: 100%;
+	height: 380px;
+	display: inline-block;
+	background-image: url(images/bg_profile.bd497b5a.webp);
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* background-attachment: f; */
+}
+
+.article_div002 {
+	width: 20%;
+	height: 330px;
+	line-height: 330px;
+}
+
+.article_div003 {
+	width: 120px;
+	padding-top: 100px;
+	height: 120px;
+	line-height: 120px;
+}
+
+.article_div003 img {
+	width: 120px;
+	height: 120px;
+	border-radius: 60px;
+}
+
+.article_div004 {
+	width: 150px;
+	text-align: center;
+	font-size: 25px;
+	color: #FFF;
+	height: 50px;
+	line-height: 50px;
+}
+
+.article_div005 {
+	float: left;
+	margin-left: 150px;
+	width: 50%;
+	height: 50px;
+	line-height: 50px;
+}
+
+li {
+	list-style: none;
+	display: inline-block;
+}
+
+.article_div005 li {
+	width: 100px;
+	text-align: center;
+	color: #fff;
+}
+
+a:hover {
+	color: #31C27C;
+}
+
+.article_div006 {
+	float: left;
+	margin-left: 150px;
+	width: 35%;
+	height: 50px;
+	line-height: 50px;
+}
+
+.article_div006 li {
+	width: 100px;
+	text-align: center;
+	color: #fff;
+}
+
+.article_div03 {
+	margin-top: 5px;
+	width: 1200px;
+	overflow: hidden;
+	word-spacing: nowrap;
+}
+
+.article_div04 {
+	width: 280px;
+	height: 162px;
+	overflow: hidden;
+}
+
+.article_div03 img {
+	width: 280px;
+	height: 162px;
+}
+
+.ul1 {
+	width: 100%;
+	display: inline-block;
+}
+
+.li1 {
+	width: 24%;
+	height: 220px;
+	margin-left: 8px;
+	/* margin-right: 1px; */
+	margin-top: 10px;
+	display: inline-block;
+}
+
+#lis {
+	margin-right: 0;
+}
+
+.article_div05 {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.article_div05 li {
+	margin-top: 5px;
+}
+
+.li2 {
+	color: #999999;
+}
+
+.article_div04 {
+	position: relative;
+	transition: all 0.25S ease-in;
+	margin: 0 auto;
+}
+
+.article_div04:hover {
+	transform: translateY(-8px);
+}
+
+#i1 {
+	display: none;
+	position: absolute;
+	/* pointer-events: none; */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+#divs02 {
+	position: absolute;
+	transition: all 0.25S ease-in;
+	text-align: center;
+	/* pointer-events: auto; */
+	width: 280px;
+	height: 162px;
+	line-height: 220px;
+	opacity: 0;
+}
+
+#divs02:hover {
+	transition: opacity .5s;
+	opacity: 1;
+}
+
+#divs02 img {
+	width: 70px;
+	height: 70px;
+	margin-top: 50px;
+}
+
+.animate01 {
+	position: absolute;
+}
+
+.article_div01 {
+	width: 1180px;
+	margin-top: 10px;
+	height: 100px;
+	line-height: 100px;
+}
+
+.article_div02 {
+	float: left;
+	margin-left: 5px;
+	font-size: 30px;
+	font-weight: 500;
+}
+
+.article_div020 {
+	float: right;
+}
+
+.as1, .as2 {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border: 1px solid #C9C9C9;
+	color: #C9C9C9;
+	font-size: 15px;
+}
+
+#zhezhao {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}
+
+.divss_01, .divss_03 {
+	display: none;
+	width: 470px;
+	height: 350px;
+	position: fixed;
+	left: 330px;
+	top: 200px;
+	border: #909090 solid 1px;
+	background-color: #FFF;
+	z-index: 11;
+}
+
+#articles_div1 {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background-color: #FAF7F8;
+	border-bottom: #EDE9EA solid 1px;
+}
+
+#articles_div1_1 {
+	width: 130px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+	color: red;
+	float: left;
+}
+
+#articles_div1_2 {
+	float: right;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+#articles_div1_2 a {
+	text-decoration: none;
+}
+
+.div_05 {
+	width: 80%;
+	margin-top: 20px;
+}
+
+.div_06 {
+	width: 100%;
+	height: 38px;
+}
+
+.div_06 div {
+	display: inline-block;
+	float: left;
+	opacity: 0.8;
+	text-align: center;
+	line-height: 38px;
+	width: 126px;
+	margin-top: 15px;
+	height: 38px;
+	margin-right: 7px;
+	border: 1px solid #000;
+	border-radius: 2px;
+}
+
+.div_06 a {
+	margin-top: 20px;
+	padding-left: 40px;
+	padding-top: 10px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	height: 38px;
+	border: 1px solid #FFF;
+	margin-right: 7px;
+	filter: none;
+	font-weight: 500;
+	color: #000;
+	border-color: #000;
+}
+
+.div_06 a:hover {
+	opacity: 1;
+	color: #31C27C;
+	border: 1px solid #31C27C;
+}
+
+.sb_overview .div_07 {
+	width: 100%;
+}
+
+.ul01 {
+	width: 100%;
+	height: 50px;
+}
+
+.li01 {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.li02s {
+	width: 500px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.li02 {
+	width: 500px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.li03 {
+	width: 270px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.li05 {
+	width: 270px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.i1 {
+	background-position: -40px 0;
+}
+
+.i1:hover {
+	background-position: -40px 0;
+}
+
+.i3 {
+	background-position: -40px -120px;
+}
+
+.i3:hover {
+	background-position: -40px -120px;
+}
+
+.i1, .i3 {
+	margin-top: 6px;
+	display: none;
+	margin-right: 20px;
+	float: right;
+	width: 36px;
+	height: 36px;
+	background-image: url(images/icon_list_menu.png);
+	background-repeat: no-repeat;
+}
+
+.divss_03 {
+	display: none;
+	width: 470px;
+	height: 150px;
+	position: fixed;
+	left: 550px;
+	top: 300px;
+	border: #909090 solid 1px;
+	background-color: #FFF;
+	z-index: 11;
+}
+
+#articles_div1 {
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	background-color: #FAF7F8;
+	border-bottom: #EDE9EA solid 1px;
+	background-color: #FAF7F8;
+}
+
+#articles_div1_1 {
+	width: 130px;
+	margin-left: 160px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	color: red;
+	float: left;
+	height: 20px;
+}
+
+#articles_div1_2 {
+	float: right;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+#articles_div1_2 a {
+	text-decoration: none;
+}
+
+.goumai_02_02 {
+	width: 150px;
+	height: 30px;
+	margin-top: 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 30px;
+	text-align: center;
+	background-color: #E1E6F6;
+	color: #FFF;
+}
+
+.divss_01 {
+	display: none;
+	width: 700px;
+	height: 450px;
+	position: fixed;
+	left: 400px;
+	top: 150px;
+	border: #909090 solid 1px;
+	background-color: #F9F9F9;;
+	z-index: 11;
+}
+
+#articles_div1s {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background-color: #FAF7F8;
+	border-bottom: #EDE9EA solid 1px;
+}
+
+#articles_div1s_1 {
+	width: 130px;
+	height: 50px;
+	position: absolute;
+	left: 40%;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+	color: red;
+	float: left;
+}
+
+#articles_div1s_2 {
+	margin-top: 15px;
+	margin-right: 15px;
+	float: right;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+#articles_div1s_2 a {
+	text-decoration: none;
+}
+
+.goumai_01 {
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	height: 170px;
+	background-color: #F9F9F9;
+}
+
+.goumai_01_01 {
+	font-size: 14px;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+
+.goumai_01_02 {
+	width: 100%;
+	height: 110px;
+}
+
+.goumai_01_02_01, .goumai_01_02_01 img {
+	height: 110px;
+	width: 110px;
+}
+
+.goumai_01_02_02 {
+	position: absolute;
+	top: 60px;
+	width: 300px;
+	height: 14px;
+	margin-left: 10px;
+	line-height: 14px;
+	font-size: 14px;
+}
+
+.goumai_01_02_03 {
+	font-size: 20px;
+	font-weight: 600;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.goumai_02 {
+	position: absolute;
+	top: 240px;
+	width: 100%;
+	height: 200px;
+}
+
+.goumai_02_01 {
+	width: 80%;
+	height: 200px;
+	position: absolute;
+	left: 10%;
+	font-size: 15px;
+}
+
+.goumai_02_02s {
+	width: 170px;
+	height: 50px;
+	margin-top: 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 50px;
+	text-align: center;
+	background-color: #3387ef;
+	color: #FFF;
+}
+
+.divss_02 {
+	display: none;
+	width: 470px;
+	height: 250px;
+	position: fixed;
+	left: 530px;
+	top: 300px;
+	border: #909090 solid 1px;
+	background-color: #FFF;
+	z-index: 11;
+}
+
+.divss_03_gd {
+	display: none;
+	width: 470px;
+	height: 250px;
+	position: fixed;
+	left: 530px;
+	top: 300px;
+	border: #909090 solid 1px;
+	background-color: #FFF;
+	z-index: 11;
+}
+
+.divss_03_txsc {
+	display: none;
+	width: 470px;
+	height: 200px;
+	position: fixed;
+	left: 530px;
+	top: 300px;
+	border: #909090 solid 1px;
+	background-color: #FFF;
+	z-index: 11;
+}
+
+.formdiv {
+	width: 100%;
+	margin-top: 10px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.formsname {
+	width: 100px;
+	line-height: 40px;
+	float: left;
+	font-size: 17px;
+	display: inline-block;
+	text-align: left;
+	margin-left: 15px;
+}
+
+.sname, .sbrief, .pname, .mids {
+	width: 200px;
+	height: 25px;
+	margin-left: 10px;
+	margin-top: 7px;
+	float: left;
+}
+
+.formsumit {
+	width: 100px;
+	height: 30px;
+	font-size: 17px;
+	margin-right: 10px;
+	color: #FFF;
+	background-color: #31C27C;
+	margin-top: 20px;
+	background-color: #31C27C;
+	color: #FFF;
+	background-color: #31C27C;
+}
+.formsname1{
+    width: 100px;
+	line-height: 40px;
+	float: left;
+	font-size: 17px;
+	display: inline-block;
+	text-align: right;
+	margin-left: 45px;
+
+}
+.filetx{
+    width: 100px;
+	height: 30px;
+	font-size: 17px;
+	
+
+}
+</style>
+</head>
+<body>
+
+	<header style="height: 100px" id="header">
+		<div class="header_body">
+			<h1 class="logo">
+				<img class="header_logo" src="images/logo.png" alt="QQ音乐">
+			</h1>
+			<ul class="header_nav">
+				<li><a href="index.html">音乐馆</a></li>
+				<li><a href="javascript:void(0)" style="color: #31C27C;">我的音乐</a></li>
+
+			</ul>
+		</div>
+
+		<div class="header_search">
+			<div class="hearder_search_border">
+				<input class="hearder_search_input" type="text"
+					placeholder="搜索音乐、MV、歌单、用户">
+				<!-- <button type="button" class="hearder_search_btn"></button> -->
+			</div>
+
+		</div>
+
+		<div class="header_login">
+			<span class="hearder_span"> <a v-if="username == ''"
+				href="login.html" class="hearder_dl">登录</a> <a v-else
+				href="javascript:void(0)" class="hearder_dl"> <img
+					style="width: 30px; height: 30px; border-radius: 30px; position: absolute; top: 30px; left: -10px"
+					v-if="goodstwo.uphoto == null" src="images/upload.png"
+					@click="showimgupdate()" /> <img
+					style="width: 30px; height: 30px; border-radius: 30px; position: absolute; top: 30px; left: -10px"
+					v-else :src="'../' + goodstwo.uphoto" />
+			</a>
+				<div class="header_select">
+					<a class="header_select_a"> 开通VIP </a>
+				</div>
+
+			</span>
+		</div>
+	</header>
+
+	<article id="app">
+		<div id="article_div001">
+			<div class="article_div002">
+				<div class="article_div003">
+					<img v-if="user.uphoto == null" src="images/upload.png"
+						@click="showimgupdate()" /> <img v-else
+						:src="'../' + user.uphoto" />
+				</div>
+				<div class="article_div004">{{user.uname}}</div>
+			</div>
+			<div class="article_div005">
+				<ul>
+					<li><a href="javascript:void(0)" style="color: #31C27C;">我喜欢</a></li>
+					<li><a href="javascript:void(0)" @click="gotoPay()">上传歌单</a></li>
+					<li><a href="javascript:void(0)" id="article_div005_a3">歌手添加</a></li>
+					<li><a href="javascript:void(0)" id="article_div005_a4">上传音乐</a></li>
+					<li><a href="javascript:void(0)" id="article_div005_a5">上传MV</a></li>
+					<li><a href="javascript:void(0)" id="article_div005_a6">上传专辑</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div
+			style="width: 100%; height: 50px; border-bottom: 5px solid #F7F7F7;">
+			<div class="article_div006">
+				<ul>
+					<li><a href="javascript:void(0)" id="a1" @click="show01()" style="color: #31C27C;">音乐 12</a></li>
+					<li><a href="javascript:void(0)" id="a2" @click="show02()">专辑</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="div_05 clearfix">
+			<div class="div_06 clearfix">
+				<a href="#"><i class="mod_btn_green__icon_delete"></i>播放全部</a> <a
+					href="#"><i class="mod_btn_green__icon_clear"></i>删除</a>
+			</div>
+			<div class="sb_overview">
+				<div class="div_07">
+					<ul class="ul01">
+						<li class="li01"><input type="checkbox" /></li>
+						<li class="li02s">歌曲</li>
+						<li class="li03">歌手</li>
+						<li class="li05">专辑</li>
+						<li class="li04">时长</li>
+					</ul>
+
+					<ul class="ul01" v-for="(item, index) in music"
+						@mouseenter="enter(index)" @mouseleave="leave(index)">
+
+						<li class="li01"><input type="checkbox"
+							:checked="item.mno == 1 ? true : false"
+							@change="changeChecked($event, item)" /></li>
+						<li class="li02"><a href="javascript:void(0)"
+							@click="musicshow01(item.mid, index, item.yesnopay, item.sname, item.eid)">{{item.mname}}
+								<a href="javascript:void(0)"><i class="i3"></i></a> <a
+								href="javascript:void(0)"
+								@click="musicshow01(item.mid, index, item.yesnopay, item.sname, item.eid)"><i
+									class="i1"></i></a>
+						</a></li>
+						<li class="li03"><a href="javascript:void(0)"
+							@click="geshoufind(item.sid, index)">{{item.sname}}</a></li>
+						<li class="li05"><a v-if="item.ename == null"
+							href="javascript:void(0)">暂无</a> <a v-else
+							href="javascript:void(0)" @click="speclifind(item.eid, index)">{{item.ename}}</a>
+						</li>
+						<li class="li04"><a href="javascript:void(0)">{{item.mdate}}</a></li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div class="article_div03 clearfix" style="display: none">
+
+			<ul class="ul1">
+				<li class="li1" v-for="(item, index) in specli">
+					<div class="article_div04" id="divs01">
+						<a href="javascript:void(0)" @click="speclishow(item.sid, item.eid, index)"><img class="animate01"
+							:src="'../' + item.ephoto"></a>
+						<div id="i1" class="zz"></div>
+						
+					</div>
+					<div class="article_div05">
+						<ul class="clearfix">
+							<li><a href="javascript:void(0)" @click="speclishow(item.sid, item.eid, index)">{{item.ename}}</a></li>
+							<li class="li2" style="float: right;" >购买价格：{{item.emoney}}￥   </li>
+						</ul>
+					</div>
+
+				</li>
+				
+			</ul>
+		</div>
+
+		<div id="zhezhao"></div>
+		</div>
+
+		<div class="divss_03" id="divss_01_3_1">
+			<div id="articles_div1">
+				<div id="articles_div1_1">温馨提示</div>
+				<div id="articles_div1_2" @click="block7()">
+					<a href="javascript:void(0)">×</a>
+				</div>
+			</div>
+			<h4 style="margin-top: 20px">您点击的音乐为付费音乐哦，您需要购买专辑或会员才可享用哦！！！</h4>
+			<div class="goumai_02_02">
+				<a href="javascript:void(0)" @click="immediatepurchase()">立即购买</a>
+			</div>
+		</div>
+
+
+		<div class="divss_01" id="divss_01_1_1">
+			<div id="articles_div1s">
+				<div id="articles_div1s_1">购买数字专辑</div>
+				<div id="articles_div1s_2" @click="block8()">
+					<a href="javascript:void(0)">×</a>
+				</div>
+			</div>
+			<div class="goumai_01">
+				<div class="goumai_01_01">
+					用户昵称: <span>夏文龙</span>
+				</div>
+				<div class="goumai_01_02">
+					<div class="goumai_01_02_01" style="display: inline-block;">
+						<img :src="'../' + sepcial.ephoto">
+					</div>
+					<div class="goumai_01_02_02" style="display: inline-block;">
+						{{sname}} 《{{sepcial.ename}}》</div>
+					<div class="goumai_01_02_03" style="display: inline-block;">
+						{{sepcial.emoney}}元</div>
+				</div>
+			</div>
+			<div class="goumai_02">
+				<br>
+				<hr>
+				<div class="goumai_02_01">
+					<h3 style="margin-top: 20px;">
+						<span>支付方式</span>
+					</h3>
+					<div class="goumai_02_02s">
+						<a href="javascript:void(0)"
+							@click="moneySepcial(sepcial.eid, sepcial.emoney)">支付宝支付</a>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+		<div class="divss_03_gd" id="divss_02_6"
+			style="background-color: #FAF9FF;">
+			<div id="articles_div1">
+				<div id="articles_div1_1">上传歌单</div>
+				<div id="articles_div1_2" @click="block6()">
+					<a href="javascript:void(0)">×</a>
+				</div>
+			</div>
+			<!-- 上传音乐表单 -->
+			<div style="width: 80%; margin: 0 auto; text-align: center;">
+				<form action="playlistdetalsServlet?op=add" method="post"
+					enctype="multipart/form-data">
+					<div class="formdiv">
+						<div class="formsname">歌单名:</div>
+
+						<input type="text" name="pname" class="pname" />
+
+					</div>
+					<div class="formdiv">
+						<div class="formsname">歌单封面:</div>
+						<input type="file" name="pphoto"
+							accept="image/jpeg,image/png,image/gif" multiple />
+
+					</div>
+					<div class="formdiv">
+						<div class="formsname">音乐编号:</div>
+						<input type="text" name="mids" v-model="midss" class="mids" />
+					</div>
+					<input type="submit" value="提交" class="formsumit" /> <input
+						type="reset" value="重置" class="formsumit" />
+
+
+				</form>
+			</div>
+		</div>
+
+		<div class="divss_03_txsc" id="divss_01_7">
+			<div id="articles_div1">
+				<div id="articles_div1_1">头像上传</div>
+				<div id="articles_div1_2" @click="block9()">
+					<a href="javascript:void(0)">×</a>
+				</div>
+			</div>
+			<!-- 上传专辑表单 -->
+			<div
+				style="width: 80%; margin: 0 auto; margin-top: 10px; text-align: center;">
+				<form action="UserImgServlet" method="post"
+					enctype="multipart/form-data">
+					<div class="formdiv">
+
+						<div class="formsname1">本地上传:</div>
+
+						<input type="file" name="file" value="上传"
+							accept="image/jpeg,image/png,image/gif" multiple class="filetx" />
+
+					</div>
+
+					<input type="submit" value="提交" class="formsumit" /> <input
+						type="reset" value="重置" class="formsumit" />
+
+				</form>
+
+				<div style="width: 100%; height: 30px; margin-top: 40px;">
+					<a href="imgshangcuan.html">拍照上传</a>
+				</div>
+
+
+			</div>
+		</div>
+
+
+	</article>
+	<footer style="width: 100%;">
+		<div style="width: 100%;">
+			<img style="width: 100%;" src="images/2022-03-21_160301.png">
+		</div>
+	</footer>
+
+	<!-- 音乐上传 -->
+	<div class="divss_01" id="divss_01_1">
+		<div id="articles_div1">
+			<div id="articles_div1_1">上传音乐</div>
+			<div id="articles_div1_2" onclick="block1()">
+				<a href="javascript:void(0)">×</a>
+			</div>
+		</div>
+		<!-- 上传音乐表单 -->
+		<div style="width: 80%; margin: 0 auto; text-align: center;">
+			<form action="MusicServlet?op=add" method="post"
+				enctype="multipart/form-data">
+				歌名: <input type="text" name="mname" /><br /> 歌手: <input
+					type="text" name="sname" /><br /> 标签: <input type="text"
+					name="mbj" /><br /> 时长: <input type="text" name="mdate" /><br />
+				是否付费:<input type="radio" name="yesnopay" value="0">免费 <input
+					type="radio" name="yesnopay" value="1">收费 <br /> 专辑名字:<input
+					type="text" name="ename" /><br /> 封面: <input type="file"
+					name="mphoto" accept="image/jpeg,image/png,image/gif" multiple /><br />
+				音乐文件: <input type="file" name="musics" accept="audio/*" /><br />
+				音乐歌词: <input type="file" name="lyrlce" accept="*" /><br /> <input
+					type="submit" />
+			</form>
+		</div>
+	</div>
+
+
+	<!-- 添加歌手 -->
+	<div class="divss_02" id="divss_02_2"
+		style="background-color: #FAF9FF;">
+		<div id="articles_div1">
+			<div id="articles_div1_1">添加歌手</div>
+			<div id="articles_div1_2" onclick="block()">
+				<a href="javascript:void(0)">×</a>
+			</div>
+		</div>
+
+		<div
+			style="width: 80%; margin: 0 auto; text-align: center; background-color: #FAF9FF;">
+			<form action="siger?op=add" method="post"
+				enctype="multipart/form-data">
+
+				<div class="formdiv">
+
+					<div class="formsname">歌手名:</div>
+
+					<input type="text" name="sname" class="sname" />
+
+				</div>
+
+				<div class="formdiv">
+					<div class="formsname">头像:</div>
+					<input type="file" name="sphoto"
+						accept="image/jpeg,image/png,image/gif" multiple /><br />
+				</div>
+
+				<div class="formdiv">
+
+					<div class="formsname">歌手简介:</div>
+
+					<input type="text" name="sbrief" class="sbrief" /><br />
+				</div>
+
+
+				<input type="submit" value="提交" class="formsumit" /> <input
+					type="reset" value="重置" class="formsumit" />
+			</form>
+		</div>
+	</div>
+
+	<!-- MV上传 -->
+	<div class="divss_03" id="divss_01_3">
+		<div id="articles_div1">
+			<div id="articles_div1_1">MV上传</div>
+			<div id="articles_div1_2" onclick="block2()">
+				<a href="javascript:void(0)">×</a>
+			</div>
+		</div>
+		<!-- 上传音乐表单 -->
+		<div style="width: 80%; margin: 0 auto; text-align: center;">
+			<form action="MusicMVServlet?op=add" method="post"
+				enctype="multipart/form-data">
+				MV名: <input type="text" name="mvname" /><br /> 歌名: <input
+					type="text" name="mname" /><br /> 标签: <input type="text"
+					name="mvbj" /><br /> 封面: <input type="file" name="mvphoto"
+					accept="image/jpeg,image/png,image/gif" multiple /><br /> MV文件: <input
+					type="file" name="mvs" accept="video/*" multiple /><br /> <input
+					type="submit" />
+			</form>
+		</div>
+	</div>
+
+
+	<div class="divss_03" id="divss_01_4">
+		<div id="articles_div1">
+			<div id="articles_div1_1">专辑上传</div>
+			<div id="articles_div1_2" onclick="block3()">
+				<a href="javascript:void(0)">×</a>
+			</div>
+		</div>
+		<!-- 上传专辑表单 -->
+		<div style="width: 80%; margin: 0 auto; text-align: center;">
+			<form action="SepcialServlet?op=add" method="post"
+				enctype="multipart/form-data">
+				专辑名: <input type="text" name="ename" /><br /> 专辑价格: <input
+					type="text" name="emoney" /><br /> 专辑简介: <input type="text"
+					name="ebrief" /><br /> 专辑封面: <input type="file" name="ephoto"
+					accept="image/jpeg,image/png,image/gif" multiple /><br /> <input
+					type="submit" />
+			</form>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+	<script type="text/javascript" src="js/qs.js"></script>
+	<script src="js/header.js"></script>
+	<script src="js/uservue.js"></script>
+	<script src="js/user01.js"></script>
+</body>
+
+</html>

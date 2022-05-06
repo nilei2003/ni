@@ -1,0 +1,41 @@
+			* {
+				padding: 0;
+				margin: 0 auto;
+			}
+
+			a {
+				text-decoration: none;
+				/* 取消下划线 */
+				color: #999;
+			}
+
+			a:hover {
+				color: #F30;
+			}
+
+			ul li {
+				list-style: none;
+				/* 取消小圆点 */
+			}
+
+			/* 浮动 */
+			.fl {
+				float: left;
+			}
+
+			.fr {
+				float: right;
+			}
+
+			/* 清楚浮动的自定义的伪对象选择器 */
+			.clearfix::after {
+				content: "";
+				height: 0;
+				display: block;
+				visibility: hidden;
+				clear: both;
+			}
+
+			.clearfix {
+				zoom: 1;
+			}

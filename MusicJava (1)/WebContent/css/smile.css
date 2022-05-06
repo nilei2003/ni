@@ -1,0 +1,101 @@
+@charset "UTF-8";
+*{
+	padding: 0;
+    margin: 0 auto;
+}
+.cke_dialog_close_button{
+	text-decoration: none;/*取消下划线*/
+	color: #000;
+}
+.cke_dialog_close_button:hover{
+	color: #000;
+}
+.cke_dialog_title {
+    font-weight: bold;
+    font-size: 12px;
+    cursor: move;
+    position: relative;
+    color: #484848;
+    border-bottom: 1px solid #d1d1d1;
+    padding: 12px 19px 12px 12px;
+    background: #f8f8f8;
+    letter-spacing: .3px;
+}
+ .cke_dialog_close_button {
+    right: 12px;
+}
+a.cke_dialog_close_button {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    height: 16px;
+    width: 16px;
+    top: 11px;
+    z-index: 5;
+    opacity: .7;
+    filter: alpha(opacity = 70);
+}
+.cke_dialog_content{
+	padding-top: 5px;
+	margin-top: 0;
+	border-top: 0;
+	background-color:white;
+}
+.cke_dialog_content_body {
+    overflow: auto;
+    padding: 9px 10px 5px 10px;
+    margin-top: 22px;
+    
+}
+.cke_smile{
+	border: 2px solid transparent;
+	overflow: hidden;
+	display: block;
+	text-align: center;
+	padding: 0.3em 0;
+}
+.cke_smile:hover{
+	border: 2px solid #999;
+}
+.cke_dialog_footer{
+	text-align: right;
+	position: relative;
+	border-top: 1px solid #d1d1d1;
+	background: #f8f8f8;
+}
+.cke_dialog_ui_button{
+	text-decoration: none;/*取消下划线*/
+	color: #000;
+}
+.cke_dialog_footer_btn{
+	display: inline-table;
+	margin: 5px;
+	width: auto;
+	position: relative;
+	vertical-align: middle;
+}
+ .cke_dialog_ui_button_cancel {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 4px 1px;
+    margin: 0;
+    text-align: center;
+    color: #484848;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #bcbcbc;
+    border-radius: 2px;
+    background: #f8f8f8;
+    letter-spacing: .3px;
+    line-height: 18px;
+    box-sizing: border-box;
+}
+#cke_150_label{
+	color: inherit;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0 12px;
+}

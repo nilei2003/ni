@@ -1,0 +1,333 @@
+ <!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>专辑</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="shortcut icon" href="images/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="less/css.css">
+<link rel="stylesheet" type="text/css" href="less/slider.css">
+<link rel="stylesheet" href="less/base.css">
+<link href="css/header.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="less/zhuanji.css">
+</head>
+<body>
+<div>
+		<div class="mod_header" id="ass">
+			<div class="section_inner">
+				<h1 class="qqmusic_title">
+					<a href="#">
+						<img alt="QQ音乐" src="images/logo.png"class="qqmusic_logo"/>
+					</a>
+				</h1>
+				<ul class="mod_top_nav">
+					<li class="top_nav__item">
+						<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+						</a>
+					</li>
+					<li class="top_nav__item">
+						<a class="top_nav__link" title="我的音乐" href="userindex.html">我的音乐</a>
+					</li>
+				</ul>
+				<ul class="mod_top_subnav">
+					<li class="top_subnav__item">
+						<a aria-current="page" style="color: #000" class="top_subnav__link top_subnav__link--current" title="首页" href="index.html">首页</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link " style="color: #000" title="歌手" href="html/index.html">歌手</a>
+					</li>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" style="color: #000" title="排行榜" href="html/toplist.html">排行榜</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" style="color: #31c27c;" title="专辑" href="specli.html">专辑</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="分类歌单" style="color: #000" href="playlist.html">歌单</a>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" style="color: #000" href="mvindexheade.html">MV</a>
+					</li>
+				</ul>
+				<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+											<div class="header__opt">
+							<span class="mod_top_login">
+								<a class="top_login__link" @mouseover="change_quit" @mouseout="changes_quit" v-if="user.uphoto == null">
+									<img src="images/300.png" class="top_login__cover" >
+									<img src="images/login_qq.png" class="top_login__icon">
+								</a>
+								<a v-else class="top_login__link" @mouseover="change_quit" @mouseout="changes_quit">
+									<img :src="'../' + user.uphoto" class="top_login__cover" >
+									<img src="images/login_qq.png" class="top_login__icon">
+								</a>
+							</span>
+							<div class="popup_user" :class="{'drop':quit}">
+								<div class="popup_user_data">
+									<a class="popup_user_data__cover_link">
+										<img class="popup_user_data__cover" :src="'../' + user.uphoto">
+										<img src="images/login_qq.png" class="popup_user_data__icon">
+									</a>
+									<div class="popup_user_data__cont">
+										<div class="popup_user_data__name">
+											<a>{{user.uname}}</a>
+										</div>
+									</div>
+									
+								</div>
+								<div class="popup_user_toolbar">
+										<div class="popup_user_toolbar__item">
+											<div class="popup_user_toolbar__tit">
+												<a class="toolbar__tit" href="javascript:void(0)" @click="quite_login">退出登录</a>
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<div id="app">
+
+<div id="slider">
+  <div class="slider_box" id="slider_name">
+    <div class="silder_tip" id="movie_tip">专辑</div>
+    <ul class="silder_con" style="width: 9720px;">
+      <li class="silder_panel clearfix"  v-for="(item, index) in specli1"> <a href="javascript:void(0)" class="f_l" @click="speclishow(item.sid, item.eid, index)"><img :src="'../' + item.ephoto" @click="speclishow(item.sid, item.eid, index)" /></a>
+        <div class="silder_intro f_r">
+          <h3> <strong><a href="#">标题信息1</a></strong> <span>最新：TS版</span> </h3>
+          <ul>
+            <li>
+              <label>专辑名：</label>
+              <span><a href="javascript:void(0)" @click="speclishow(item.sid, item.eid, index)">{{item.ename}}</a></span></li>
+            <li>
+              <label>歌手：</label>
+              <span><a href="javascript:void(0)">{{item.sname}}</a></span></li>
+          </ul>
+          <p>[<strong>专辑简介</strong>]{{item.ebrief}}</p>
+          <a class="silder_play" href="javascript:void(0)" @click="immediatepurchase(item.eid, item.sname)">立即购买</a></div>
+      </li>
+     
+    </ul>
+    <ul class="silder_nav clearfix">
+      <li v-for="(items, index) in specli1"><a href="javascript:void(0)" @click="speclishow(items.sid, items.eid, index)"><img :src="'../' + items.ephoto"/></a></li>
+      
+    </ul>
+  </div>
+  <div class="silderBox"></div>
+</div>
+
+<div id="div_01">
+	<div class="div_02 clearfix">
+		<div class="div_03">最新上架</div>
+		<div class="div_04"><a href="#">更多</a></div>
+	</div>
+	<ul class="ul01">
+		<li class="li01" v-for="(item, index) in specli">
+			<div class="div_05">
+				<img class="animate" @click="speclishow(item.sid, item.eid, index)" @mouseenter="enter(index)" @mouseleave="leave(index)" :src="'../' + item.ephoto">
+			    <div class="zhezhao01">
+					
+				</div>
+			</div>
+			<div class="div_06">
+				<ul>
+					<li><a href="javascript:void(0)" @click="speclishow(item.sid,item.eid, index)" class="a4">{{item.ebrief}}</a></li>
+					<li><a href="javascript:void(0)" @click="sigershow(item.sid, index)" class="a3">{{item.sname}}</a></li>
+				</ul>
+			</div>
+			<div class="div_07">
+				<div class="div_07_01">￥ {{item.emoney}}</div>
+				
+				
+				
+					<a href="javascript:void(0)" @click="immediatepurchase(item.eid, item.sname)" class="a5">
+						立即购买
+					</a>
+			
+			</div>
+		</li>
+		
+	</ul>
+</div>
+<footer style="width: 100%; margin-top: 40px;">
+			<div style="width: 100%; ">
+				<img style="width: 100%; " src="images/2022-03-21_160301.png">
+			</div>
+</footer>
+<div id="zhezhao">
+			
+</div>
+
+		<div class="divss_01" id="divss_01_1">
+				<div id="articles_div1s">
+					<div id="articles_div1s_1">购买数字专辑</div>
+					<div id="articles_div1s_2" onclick="block1()">
+						<a href="javascript:void(0)">×</a>
+					</div>
+				</div>
+				<div class="goumai_01">
+					<div class="goumai_01_01">
+						用户昵称: <span>夏文龙</span>
+					</div>
+					<div class="goumai_01_02">
+						<div class="goumai_01_02_01" style="display: inline-block;">
+							<img :src="'../' + sepcial.ephoto">
+						</div>
+						<div class="goumai_01_02_02" style="display: inline-block;">
+							{{sname}} 《{{sepcial.ename}}》</div>
+						<div class="goumai_01_02_03" style="display: inline-block;">
+							{{sepcial.emoney}}元</div>
+					</div>
+				</div>
+				<div class="goumai_02">
+					<br>
+					<hr>
+					<div class="goumai_02_01">
+						<h3 style="margin-top: 20px;">
+							<span>支付方式</span>
+						</h3>
+						<div class="goumai_02_02s">
+							<a href="javascript:void(0)"
+								@click="moneySepcial(sepcial.eid, sepcial.emoney)">支付宝支付</a>
+						</div>
+					</div>
+
+
+
+				</div>
+
+			</div>
+</div>
+</div>
+<script src="js/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script src="js/jQuery.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/axios.js"></script>
+<script type="text/javascript" src="js/qs.js"></script>
+<script type="text/javascript" src="js/header_vue.js"></script>
+<script src="js/specli.js"></script>
+<script src="js/jquery.slides.js" type="text/javascript"></script> 
+<script>
+	let lists1 = document.getElementsByClassName("div_05");
+	let lists2 = document.getElementsByClassName("zhezhao01");
+	
+	
+	for(let i = 0; i < lists1.length; i ++){
+		lists1[i].setAttribute('index', i);
+		lists2[i].setAttribute('index', i);
+		
+		
+		lists1[i].onmouseover=function(){
+			let x = this.getAttribute('index');
+			$(".zhezhao01").eq(x).css('display', 'block');//设置属性
+			
+		}
+		lists1[i].onmouseout=function(){
+			 let x = this.getAttribute('index');
+		  $(".zhezhao01").eq(x).css('display', 'none');//设置属性
+		 
+		}
+	}
+	
+
+	//mv
+	function block1() {
+		$("#divss_01_1").css("display", 'none');//重新设置背景颜色
+		$("#zhezhao").css("display", 'none');
+	}
+	
+	
+	
+
+	
+	
+</script>
+
+</body>
+</html>

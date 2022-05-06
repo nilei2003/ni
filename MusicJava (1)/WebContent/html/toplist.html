@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>排行榜</title>
+		<link rel="shortcut icon" href="../images/favicon.ico"/>
+		<link href="../css/toplist.css" type="text/css" rel="stylesheet"/>
+		<link href="../css/header.css" type="text/css" rel="stylesheet"/>
+		<link href="../css/smile.css" type="text/css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="wrap toplist_exclusive" id="app" >
+			<div class="mod_header" id="ass">
+					<div class="section_inner">
+						<h1 class="qqmusic_title">
+							<a href="#">
+								<img alt="QQ音乐" src="../images/logo.png"class="qqmusic_logo"/>
+							</a>
+						</h1>
+						<ul class="mod_top_nav">
+							<li class="top_nav__item">
+								<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+								</a>
+							</li>
+							<li class="top_nav__item">
+								<a class="top_nav__link" title="我的音乐" href="../userindex.html">我的音乐</a>
+							</li>
+						</ul>
+						<ul class="mod_top_subnav">
+							<li class="top_subnav__item">
+								<a aria-current="page" class="top_subnav__link " style="color: #000" title="首页" href="../index.html">首页</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link top_subnav__link--current" style="color: #000" title="歌手" href="index.html">歌手</a>
+							</li>
+							</li>
+							<li class="top_subnav__item"><a class="top_subnav__link " style="color: #31c27c;" title="排行榜" href="toplist.html">排行榜</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link" title="专辑" style="color: #000" href="../specli.html">专辑</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link" title="分类歌单" style="color: #000" href="../playlist.html">歌单</a>
+							</li>
+							<li class="top_subnav__item"><a class="top_subnav__link" style="color: #000" href="">MV</a>
+							</li>
+						</ul>
+						<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="musics in musicss">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{musics.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				</div>
+			</div>
+		<div class="main" >
+			<div class="toplist_nav">
+				<dl class="toplist_nav_list">
+					<dt class="toplist_nav_tit">分类榜单</dt>
+					<dd class="toplist_nav__item">
+						<a class="toplist_nav__link ">流行指数</a>
+					</dd>
+
+					
+				</dl>
+				
+			</div>
+			<div class="mod_toplist" >
+				<div class="toplist__hd">
+					<h1 class="toplist__tit">流行指数榜</h1>
+					<span class="toplist_switch">
+						<span class="toplist_switch__data">{{data}}</span>
+					</span>
+						<a class="toplist__rule">排行榜</a>
+				</div>
+				<div class="mod_songlist_toolbar">
+					<a class="mod_btn_green">
+						<i class="mod_btn_green__icon_play"></i>
+						全部播放
+					</a>
+
+				</div>
+				<div class="topList_mod_songlist">
+					<ul class="songlist__header" >
+						<li class="songlist__header_name">歌曲</li>	
+						<li class="songlist__header_author">歌手</li>
+						<li class="songlist__header_time">时长</li>
+					</ul>
+					<ul class="songlist__list" v-for="(music , index) in musics" @mouseenter="enter(index)" @mouseleave="leave(index)">
+						
+						<li >
+							<div class="songlist__item songlist__item--even">
+								<div class="songlist__number songlist__number--top">{{music.num}}</div>
+								<div class="songlist__songname" >
+									<a class="songlist__icon songlist__icon_mv sprite" @click="bfmv(music.mvid, index)" title="MV" v-if="music.statusmv == 1">
+									
+									</a>
+									<span class="songlist__songname_txt">
+
+										<a class="songlist__cover" href="javascript:void(0)" :title='music.mname' @click="musicshow(music.mid, index, music.yesnopay, music.sname, music.eid)">
+											<img class="songlist__pic" loading="lazy" :salt='music.mname' :src="'../'+music.mphoto" >
+										</a>
+										<a :title='music.mname' href="javascript:void(0)" @click="musicshow(music.mid, index, music.yesnopay, music.sname, music.eid)">{{music.mname}}
+												
+										</a>
+									</span>
+									<div class="mod_list_menu">
+										<a href="javascript:void(0)" class="list_menu__item list_menu__play"  @click="musicshow(music.mid, index, music.yesnopay, music.sname, music.eid)">
+											<i class="list_menu__icon_play"></i>
+											
+										</a>
+										<a href="javascript:void(0)" class="list_menu__item list_menu__add" @click="findcollect(music.mid)">
+											<i class="list_menu__icon_add"></i>
+											
+										</a>
+										<!-- '../' + music.musics -->
+										<a href="javascript:void(0)" @click="download(music.mid, index, music.yesnopay, music.sname, music.eid, music.musics)" download class="list_menu__item list_menu__down">
+											<i class="list_menu__icon_down"></i>
+											
+										</a>
+									</div>
+								
+								</div>
+								<div class="songlist__artist">
+									<a class="playlist__author" :title='music.sname' :href="'singer.html?' + music.sid">{{music.sname}}</a>
+								</div>
+								<div class="songlist__time">{{music.mdate}}</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="mod_comment">
+					<div class="part__hd">
+						<h2 class="part__tit" v-for="coment in Ccoment">
+							评论<span class="c_tx_thin part__tit_desc">共{{coment.count}}条评论</span>
+						</h2>
+					</div>
+					<div class="comment__input">
+						<div class="comment__textarea c_bg_normal" >
+							<div class="comment__textarea_inner" @click="inner">
+								<div class="comment__textarea_default c_tx_normal" contenteditable="true" style="display: block;">你的看法吧
+								</div>
+								<div class="comment__textarea_input c_tx_normal" contenteditable="true" ref="edit"  @input="handleinput()" style="display: none;">
+								</div>
+							</div>
+							<div class="comment__tips c_tx_thin">
+								剩余
+								<span class="c_tx_highlight" >300</span>字
+							</div>
+						</div>
+						<a class="comment__face" id="comment__face" href="javascript:void(0)" @click="smile(1)">
+							<i class="icon_comment icon_comment_face"></i>
+						</a>
+						<div class="comment__tool">
+							<a class="mod_btn_green comment__tool_btn" @click="inputC">发表评论</a>
+							<a class="mod_btn comment__tool_btn" @click="quxiaoP()">取消</a>
+						</div>
+					</div>
+					<div class="mod_hot_comment">
+						<div class="comment_type__title c_b_normal"><h2>精彩评论</h2>
+						</div>
+						<ul class="comment__list" v-for="(comLists,index) in comList" >
+							<li class="comment__list_item c_b_normal" v-for="good in goodComment" v-if="good.did == comLists.did">
+								<div>
+									<a class="comment__avatar" v-if="comLists.uphoto == null">
+										<img class="comment_list__avatar_img" src="../image/smile/logo.jpg">
+									</a>
+									<a class="comment__avatar" v-else>
+										<img class="comment_list__avatar_img" :src="'../../' + comLists.uphoto">
+									</a>
+									<h4 class="comment__title">
+										<a class="c_tx_thin">{{comLists.uname}}</a>
+									</h4>
+									<div class="comment__date c_tx_thin" >{{comLists.date}}
+									</div>
+									<p class="comment__text " v-html="comLists.dtext"><span></span>
+									</p>
+									<div class="comment__opt" >
+										<a class="comment__zan " @click="addZan(comLists.did)">
+											<i class="icon_comment icon_comment_like"></i>{{good.count}}
+										</a>
+										<a class="comment__feedback c_tx_thin" @click="huifu(index)">回复</a>
+									</div>
+								</div>
+								<div class="comment_repeat">
+									<div class="comment__input">
+										<div class="comment__textarea c_bg_normal">
+											<div class="comment__textarea_inner"  @click="inner1">
+												<div class="comment__textarea_default1 c_tx_normal" contenteditable="true" style="display: block;">你的看法吧
+												</div>
+												<div class="comment__textarea_input1 c_tx_normal" contenteditable="true" ref="rcomment" @input="handleinput1($event,index)" style="display: none;">
+												</div>
+											</div>
+											<div class="comment__tips c_tx_thin">剩余
+												<span class="c_tx_highlight">300</span>字
+											</div>
+										</div>
+										<a class="comment__face" @click="smile(2)"><i class="icon_comment icon_comment_face"></i>
+										</a>
+										<div class="comment__tool">
+											<a class="mod_btn_green comment__tool_btn" @click="tianjhui(index,comLists.did)">回复</a>
+											<a class="mod_btn comment__tool_btn" @click="quxiao(index)">取消</a>
+										</div>
+									</div>
+								</div>
+								<div class="comment__reply" >
+									<div class="comment__reply_hd show_text" >
+										<a class="comment__show_all_reply c_tx_thin" @click="reback(comLists.did,index)">查看回复
+										<i class="comment__icon_arrow_down sprite"></i>
+										</a>
+									</div>
+									<div class="comment__reply_hd close">
+										<a class="comment__close_all_reply c_tx_thin" @click="close_reback(comLists.did,index)">查看回复
+											<i class="comment__icon_arrow_up sprite"></i>
+										</a>
+									</div>
+									<div class="comment__reply_bd c_bg_normal_re" >
+										<template  v-for="rcom in rcoms">
+										<ul class="comment__list" v-if="show(rcom.did,comLists.did,index)">
+											<li class="comment__sub_list_item" >
+												<div class="comment__text item">
+													<span class="c_tx_current">
+														<a class="c_tx_current">{{rcom.uname}}</a>：</span>
+													<span class="" v-html="rcom.dtext"><span>{{rcom.dtext}}</span>
+													</span>
+												</div>
+												<div class="comment__sub_opt">
+													<a class="comment__zan " @click="addCZan(rcom.rid,rcom.did)">
+														<i class="icon_comment icon_comment_like"></i>{{rcom.count}}
+													</a>
+												</div>
+											</li>
+										</ul>
+										</template>
+									</div>
+									<div class="comment__reply_bd c_bg_normal_node"  >
+										
+										<ul class="comment__list"  v-for="(recomment,item) in Recomments">
+											
+											<li class="comment__list_item">
+												<div>
+													<a class="comment__avatar" v-if="recomment.uphoto == null">
+														<img class="comment_list__avatar_img" src="../image/smile/logo.jpg">
+													</a>
+													<a class="comment__avatar" v-else>
+														<img class="comment_list__avatar_img" :src="'../../' + recomment.uphoto">
+													</a>
+													<h4 class="comment__title"><a class="c_tx_thin">{{recomment.uname}}</a></h4>
+													<div class="comment__date c_tx_thin">{{recomment.date}}</div>
+													<p class="comment__text " v-html="recomment.dtext"><span></span></p>
+													<div class="comment__opt">
+														<a class="comment__zan" @click="addCZan(recomment.rid,recomment.did)">
+															<i class="icon_comment icon_comment_like"></i>{{recomment.count}}
+														</a>
+													</div>
+												</div>
+											</li>
+											
+										</ul>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+		<div id="zhezhao" ></div>
+		<!-- 添加表情 -->
+		<div class="dialog_body" id="dialog_body" style="display: none;">
+		<div class="cke_dialog" id="cke_dialog" style="position: fixed;top: 155px;left: 701px;z-index: 10010;visibility: hidden; ">
+			<div class="cke_dialog_body">
+				<div id="cke_dialog_title" class="cke_dialog_title">插入表情</div>
+				<a id="cke_dialog_close_button_141" class="cke_dialog_close_button" href="javascript:void(0)" title="关闭" role="button" style="user-select: none;" @click="close">
+					<span class="cke_label">X</span>
+				</a>
+				<table class="cke_dialog_content">
+					<tbody>
+						<tr>
+							<td class="cke_dialog_content_body"  >
+								<table>
+									<tbody style="border-collapse: separate;">
+										<tr>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1">
+													<img class="cke_hand i1" title="smiley" alt="smiley" src="../image/smile/angry_smile.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand i2" title="smiley" alt="smiley" src="../image/smile/broken_heart.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand i3" title="smiley" alt="smiley" src="../image/smile/confused_smile.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand i4" title="smiley" alt="smiley" src="../image/smile/cry_smile.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand i5" title="smiley" alt="smiley" src="../image/smile/cry_smile.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/embarrassed_smile.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1">
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/devil_smile.png" ref="imgInfo">
+													</a>
+											</td>
+										</tr>
+										<tr>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/envelope.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/heart.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/kiss.png" ref="imgInfo">
+													</a>
+											</td>
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/regular_smile.png" ref="imgInfo">
+													</a>
+											</td>
+
+											<td class="cke_dark_background">
+												<a href="javascript:void(0)" @click="getSmile($event,5)"  role="option" aria-posinset="1" aria-setsize="21" aria-labelledby="cke_smile_label_0_120" class="cke_smile cke_hand" tabindex="-1" >
+													<img class="cke_hand" title="smiley" alt="smiley" src="../image/smile/shades_smile.png" ref="imgInfo">
+													</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="cke_dialog_footer" >
+								<table class="cke_dialog_footer_btn">
+									<tr class="cke_dialog_ui_hbox">
+										<td class="cke_dialog_ui_hbox_last">
+											<a style="user-select: none;" href="javascript:void(0)" title="取消" hidefocus="true" class="cke_dialog_ui_button cke_dialog_ui_button_cancel" id="cke_151_uiElement" @click="close">
+												<span id="cke_150_label" class="cke_dialog_ui_button">取消</span>
+											</a>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="../js/history.js"></script>
+			
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/qs.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+	 
+		<script type="text/javascript">
+		
+		let x = null;
+		
+			let app = new Vue({
+				el:"#app",
+				data:{
+					musics:[],
+					data:"",
+					comment:"",
+					src:"",
+					uid:"",
+					comList:{},
+					Recomments:{},
+					Ccoment:{},
+					RebcakCs:{},
+					goodComment:{},
+					face:"",
+					rcomment:"",
+					rcoms:{},//单条评论
+					hots:{},
+					mvs:{},
+					face_posi:"", //评论表情位置
+					index:"",//评论标签位置
+					total:{},
+					totals:{},
+					singers:{},//歌手
+					sepcials:{},// 专辑
+					musicss:{},//单曲
+					MVs:{},//mv
+					history:{},
+					x_search:"",
+					//头部
+					head_show:false,
+					head_result:false,
+					hots:{},
+					user:{},
+					quit:false,
+				},
+				mounted(){
+					//查询用户信息
+					axios.post("../user/info").then(result=>{
+						if(result.data.code == 500 || result.data.data == null){
+							return;
+						}
+						this.uid = result.data.data.uid;
+						this.user = result.data.data;
+						console.log(this.user);
+
+					})
+			       	this.gettime();
+					axios.post("../top/inits").then(result=>{
+						this.totals = result.data.data;
+						this.musics = this.totals[0];
+						
+						this.Ccoment = this.totals[1];
+						this.goodComment = this.totals[2];
+						this.rcoms = this.totals[3];
+						this.hots = this.totals[4];
+					})
+					this.historyData()
+				},
+				watch:{
+					uid:function(){
+						this.FindComment();
+					},
+					//头部
+					x_search:function(){
+						this.change_back()
+					}
+				},
+				methods:{
+					
+					
+					// 收藏
+					findcollect(mid){
+						axios.post("../CollectServlet/find", qs.stringify({mid})).then(result=>{
+
+							if(result.data == 500){// 说明没有被收藏过
+								this.addcollect(mid);
+								return;
+							}
+							alert("您已经收藏了喔");
+						})
+					},
+					// 收藏
+					addcollect(mid){
+						axios.post("../CollectServlet/add", qs.stringify({mid})).then(result=>{
+							alert("收藏成功！！！");
+						})
+					},
+					
+					quite_login(){
+						axios.post("../user/quit",qs.stringify({uid:this.uid})).then(result=>{
+							if(result.data == 200){
+								location.href = "login.html";
+							}
+						})
+					},
+					changes_quit(){
+						let timer = setTimeout(() => {
+						   //需要定时执行的代码
+						   this.quit = false;	
+						}, 3000)
+					},
+					change_quit(){
+						console.log("=======");
+						this.quit = true;	
+					},
+					download(mid, index, yesnopay, sname, eid, musics){
+                        console.log(eid);
+                        
+                        let music = '../' + musics;
+                        
+                        console.log(music);
+                        
+						// downloadadd
+						if(vm.$data.uid == "" || vm.$data.uid == null){// 说明当前用户为临时用户
+							alert("请先登录");
+							location.href = 'login.html';
+							return;
+						}
+						
+						if(yesnopay == 1){
+
+							axios.post("MoneySepcialSelvlet/show", qs.stringify({eid})).then(result=>{
+								console.log(result);
+								if(result.data.code == 500){ // 说明用户还没有购买
+									$(".list_menu__down").eq(index).attr("href", "javascript:void(0)");
+									alert("该音乐为付费音乐，您需要购买才可下载哟！！！");
+									
+								 
+								}else if(result.data.code == 200){
+									$(".list_menu__down").eq(index).attr("href", music);
+								}
+							})
+							
+							
+							
+						}else{
+							
+							$(".list_menu__down").eq(index).attr("href", music);
+						}
+						
+						
+						
+						
+					},
+					
+					enter(index){
+						$(".list_menu__icon_play").eq(index).css('display', 'block');//设置属性
+						$(".list_menu__icon_add").eq(index).css('display', 'block');//设置属性
+						$(".list_menu__icon_down").eq(index).css('display', 'block');//设置属性
+					},
+					leave(index){
+						$(".list_menu__icon_play").eq(index).css('display', 'none');//设置属性
+						$(".list_menu__icon_add").eq(index).css('display', 'none');//设置属性
+						$(".list_menu__icon_down").eq(index).css('display', 'none');//设置属性
+					},
+					
+					bfmv(mvid, index){
+						localStorage.removeItem("mvid");//先从本地存储中移除这个属性
+						localStorage.setItem("mvid", mvid);//
+						location.href = 'mvplay.html';
+					},
+					// 这里判断用户有没有播放列表      TODO  那要是临时用户呢？ 临时用户可以播放普通音乐， 付费音乐需要登录购买才可以听
+					musicshow(mid, index, yesnopay, sname, eid){
+						if(this.uid == null || this.uid == ""){// 说明当前用户为临时用户
+							alert("请先登录");
+							location.href = 'login.html';
+							return;
+						}
+						if(yesnopay == 1){
+							axios.post("../MoneySepcialSelvlet/show", qs.stringify({eid})).then(result=>{
+								if(result.data.code == 500){ // 说明用户还没有购买
+									alert("请购买本专辑");
+									return;
+								}else if(result.data.code == 200){
+									axios.post("../TemporarysdetalsServlet/finds").then(result1=>{
+										if(result1.data.code == 500){
+											this.musicadd01(mid);
+											return;
+										}	
+										this.tid = result1.data.data.tid;
+										//判断播放列表有没有这首歌
+										this.musicshow01(this.tid, mid);
+
+									})
+								}
+							})	
+						}else{
+							axios.post("../TemporarysdetalsServlet/finds").then(result=>{
+								if(result.data.code == 500){
+									this.musicadd01(mid);
+									return;
+
+								}
+								this.tid = result.data.data.tid;
+								//判断播放列表有没有这首歌
+								this.musicshow01(this.tid, mid);
+
+							})
+						}
+					},
+					// 无播放表
+					musicadd01(mid){
+						axios.post("../TemporarysdetalsServlet/add", qs.stringify({mid})).then(result=>{
+							localStorage.removeItem("mid");//先从本地存储中移除这个属性
+							localStorage.setItem("mid", mid);//
+							  if(x == null){
+				                	x =  window.open('../musicbf.html');
+				                }else{
+				                	x.close();
+				                	x =  window.open('../musicbf.html');
+				                }
+						})
+
+					},
+					// 判断有没有这首歌
+					musicshow01(tid, mid){
+
+						axios.post("../TemporarysdetalsServlet/find", qs.stringify({mid})).then(result=>{
+
+							if(result.data.code == 500){
+								// 没有这首歌
+
+								this.musicadd02(tid, mid);
+								return;
+							}
+							localStorage.removeItem("mid");//先从本地存储中移除这个属性
+							localStorage.setItem("mid", mid);//						
+							  if(x == null){
+				                	x =  window.open('../musicbf.html');
+				                }else{
+				                	x.close();
+				                	x =  window.open('../musicbf.html');
+				                }
+							return;
+
+						})
+
+
+					},
+					//没有这首歌 添加到临时播放详情表
+					musicadd02(tid, mid){
+						axios.post("../TemporarysdetalsServlet/add02", qs.stringify({tid, mid})).then(result=>{
+
+							localStorage.removeItem("mid");//先从本地存储中移除这个属性
+							localStorage.setItem("mid", mid);//
+			                if(x == null){
+			                	x =  window.open('../musicbf.html');
+			                }else{
+			                	x.close();
+			                	x =  window.open('../musicbf.html');
+			                }
+						})
+					},
+					gettime(){
+						 //获取当前时间并打印
+				       	var _this = this;
+				    　　	let yy = new Date().getFullYear();
+				    　　	let mm = new Date().getMonth()+1;
+				    　　	let dd = new Date().getDate();
+				    　　	let hh = new Date().getHours();
+				    　　	let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+				    　　	let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
+				    　　	let ds = dd + 10;
+				    　　	_this.gettime = yy+'-'+mm+'-'+dd + '-' + ds;
+					    this.data = _this.gettime;
+					},
+					show(rid,cid,index){
+						if(rid == cid){
+							return true;
+						}else {
+							return false
+						}
+					},
+					reback(did,index){
+						console.log(index);
+						$('.c_bg_normal_re').eq(index).css('display','none');
+						$('.c_bg_normal_node').eq(index).css('display','block');
+						$('.show_text').eq(index).css('display','none');
+						$('.close').eq(index).css('display','block');
+						this.findReback(did);
+					},
+					close_reback(did,index){
+						$('.c_bg_normal_re').eq(index).css('display','block');
+						$('.c_bg_normal_node').eq(index).css('display','none');
+						$('.show_text').eq(index).css('display','block');
+						$('.close').eq(index).css('display','none');
+					},
+					huifu(index){
+						if(this.uid == null || this.uid == ""){
+							location.href = "login.html";
+							return;
+						}
+						$(".comment_repeat").eq(index).css('display','block');						
+					},
+					findReback(did){
+						axios.post("../top/findReComment",qs.stringify({did:did})).then(result=>{
+							this.Recomments = result.data.data;
+							console.log(result);
+						})
+					},
+					smile(index){
+						$("#dialog_body").css("display", 'block');//重新设置背景颜色
+					    $("#zhezhao").css("display", 'block');
+						$("#cke_dialog").css("visibility",'visible');
+						this.face_posi = index;//设置表情打开位置
+					},
+					addZan(did){
+						axios.post("../top/addZan",qs.stringify({uid:this.uid,did:did})).then(result=>{
+							if(result.data == 502){
+								alert("您已经点赞过了");
+								return;
+							}
+							this.FindComment();
+							this.findgood();
+						})
+					},
+					
+					addCZan(rid,did){
+						axios.post("../top/addCZan",qs.stringify({uid:this.uid,rid:rid})).then(result=>{
+							if(result.data == 502){
+								alert("您已经点赞过了");
+								return;
+							}
+							this.RPinfin();
+							this.findReback(did);
+						})
+					},
+					FindComment(){
+						axios.post("../top/findComment").then(result=>{
+							this.comList = result.data.data;
+						})
+					},
+					close(){
+						$("#dialog_body").css("display", 'none');//重新设置背景颜色
+						$("#zhezhao").css("display", 'none');
+						$("#cke_dialog").css("visibility",'hidden');
+					},
+					inner(){
+						$(".comment__textarea_default").css("display", 'none');
+						$(".comment__textarea_input").css("display", 'block');
+					},
+					inner1(){
+						$(".comment__textarea_default1").css("display", 'none');
+						$(".comment__textarea_input1").css("display", 'block');
+					},
+					quxiao(index){
+						$(".comment__textarea_default1").css("display", 'block');
+						$(".comment__textarea_input1").css("display", 'none');
+						$(".comment_repeat").eq(index).css('display','none');
+						this.rcomment = "";
+						this.$refs.rcomment[this.index].innerHTML = "";//清楚已存在的评论
+					},
+					quxiaoP(){
+						$(".comment__textarea_default").css("display", 'block');
+						$(".comment__textarea_input").css("display", 'none');
+						this.comment = "";
+						this.$refs.edit.innerHTML = "";//清楚已存在的评论
+					},
+					tianjhui(index,did){
+						axios.post("../top/addRPin",qs.stringify({uid:this.uid,rcomment:this.rcomment,did:did})).then(result=>{
+							if(result.data == 200){
+								this.quxiao(index);
+							}
+							this.findReback(did);
+						})
+					},
+					inputC(){
+						if(this.uid == null || this.uid == ""){
+							location.href = "login.html";
+							return;
+						}
+						$(".comment__textarea_default").css("display", 'block');
+						$(".comment__textarea_input").css("display", 'none');
+						axios.post("../user/addComment",qs.stringify({uid:this.uid,comment:this.comment})).then(result=>{
+							this.FindComment();
+						})
+						this.FindComment();//查询评论
+						this.$refs.edit.innerHTML = "";//清楚已存在的评论
+						this.comment = "";
+					},
+					getSmile(e,index){
+						let src = e.target.src;
+						let Img = `<img src="${src}" style='height:20px;'>`;
+						
+						if(this.face_posi == 1){
+							this.comment += Img;
+							let obj = this.$refs.edit;
+							let range, node;
+							if (!obj.hasfocus) {
+						        obj.focus();
+						     }
+							this.$refs.edit.innerHTML = this.comment;//将表情加到文本上
+						}else{
+							this.rcomment += Img;
+							let obj = this.$refs.rcomment[this.index];
+							if (!obj.hasfocus) {
+						        obj.focus();
+						     }
+							this.$refs.rcomment[this.index].innerHTML = this.rcomment;//将表情加到文本上
+						}
+						this.close();
+					},
+					handleinput($event){
+						this.comment="";
+						this.comment = this.$refs.edit.innerHTML;
+					},
+					handleinput1(e,index){
+						this.index = index;
+						this.rcomment = "";
+						this.rcomment = this.$refs.rcomment[index].innerHTML;
+					},
+					//头部
+					change_back(){//是否显示
+						//改变搜索结果是否显示
+						if(this.x_search != ""){
+							this.head_result = true;
+							this.head_show = false;
+							this.find_Input();
+						}else{
+							this.head_result = false;
+							this.head_show = true;
+						}
+						this.changer_headerhis()
+					},
+					clearStore(){//清楚历史记录
+						localStorage.removeItem('data');
+						$('#lists').html('');
+					},
+					changer_headerhis(){
+						if(this.x_search != ""){
+							$('#mod_search').css('max-height',0);
+						}else{
+							$('#mod_search').css('max-height',580);
+							changeList();
+						}
+						changeHot();
+					},
+					find_Input(){
+						axios.post("../search/findData",qs.stringify({sname:this.x_search})).then(result=>{
+							this.total = result.data.data;
+							this.musicss = this.total[0];
+							this.singers = this.total[1];
+							this.sepcials = this.total[2];
+							this.MVs = this.total[3];
+						})
+					},
+					con(historys){
+						this.x_search = historys;
+					},
+					historyData(){
+						this.history = JSON.parse(localStorage.getItem('data'));
+					},
+				}
+				
+			})
+			function changeList(){
+				var list_on = document.getElementsByClassName("on");
+				for (var j = 0; j < list_on.length; j++) {
+					list_on[j].setAttribute('index',j);
+					list_on[j].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"#31C27C");
+						$('.active').eq(index).css('color',"white");
+					}
+					list_on[j].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"white");
+						$('.active').eq(index).css('color',"#333");
+					}
+				}
+			}
+			function changeHot(){
+				var search = document.getElementsByClassName("search_hot__link");
+				var number = document.getElementsByClassName("search_hot__number");
+				var name =  document.getElementsByClassName("search_hot__name");
+				var listen = document.getElementsByClassName("search_hot__listen");
+				for (var i = 0; i < search.length; i++) {
+					search[i].setAttribute('index',i);
+					search[i].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"#31C27C");
+						$('.search_hot__number').eq(index).css('color',"white");
+						$('.search_hot__name').eq(index).css('color',"white");
+						$('.search_hot__listen').eq(index).css('color',"white");
+					}
+					search[i].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"white");
+						$('.search_hot__number').eq(index).css('color',"#ff4222");
+						$('.search_hot__name').eq(index).css('color',"#333");
+						$('.search_hot__listen').eq(index).css('color',"#999");
+					}
+				}
+			}
+		</script>
+		   <script type="text/javascript" src="../js/header_vue2.js"></script>
+	</body>
+</html>

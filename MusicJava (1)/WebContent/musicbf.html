@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>播放</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+
+<style>
+* {
+	margin: 0 auto;
+}
+
+a {
+	text-decoration: none
+}
+
+a:hover {
+	pacity: 1;
+	color: #31C27C;
+}
+
+.clearfix:after {
+	content: "";
+	height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.div1 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	pointer-events: none;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, .35);
+	z-index: 2
+}
+
+.bg_player {
+	background-image: none;
+	background-color: rgb(255, 255, 255);
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-position: 50%;
+	filter: blur(61.5px);
+	opacity: .6;
+	transform: translateZ(0);
+}
+
+.div_01 {
+	position: absolute;
+	width: 100%;
+	height: 55px;
+}
+
+.div_02 {
+	width: 80px;
+	height: 25px;
+	margin-top: 15px;
+	margin-left: 15px;
+	float: left;
+}
+
+.div_03 {
+	width: 114px;
+	height: 30px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 30px;
+	color: #FFF;
+}
+
+.div_03 a {
+	color: #FFF;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.div_04 {
+	position: absolute;
+	top: 70px;
+	left: 7%;
+	width: 80%;
+	height: 540px;
+}
+
+.div_05 {
+	width: 864px;
+	height: 540px;
+	float: left;
+}
+
+.div_06 {
+	width: 100%;
+	height: 38px;
+}
+
+.div_06 div {
+	display: inline-block;
+	float: left;
+	opacity: 0.8;
+	text-align: center;
+	line-height: 38px;
+	width: 126px;
+	margin-top: 15px;
+	height: 38px;
+	margin-right: 7px;
+	border: 1px solid #FFF;
+	border-radius: 2px;
+}
+
+.div_06 a {
+	margin-top: 20px;
+	padding-left: 40px;
+	padding-top: 10px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	height: 38px;
+	border: 1px solid #FFF;
+	margin-right: 7px;
+	filter: none;
+	font-weight: 500;
+	color: #FFF;
+	border-color: #fff;
+}
+
+.div_06 a:hover {
+	opacity: 1;
+	color: #31C27C;
+	border: 1px solid #31C27C;
+}
+
+.sb_overview {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	float: left;
+	margin-top: 20px;
+	width: 100%;;
+}
+
+.sb_overview::-webkit-scrollbar-thumb {
+	background-color: #FFF;
+}
+
+.sb_overview::-webkit-scrollbar-track {
+	background-color: #FFF;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+.div_07 {
+	width: 100%;
+	position: relative;
+}
+
+.ul01 {
+	width: 100%;
+	height: 50px;
+}
+
+.ul01 li {
+	display: inline-block;
+	margin-right: 10px;
+	position: relative;
+	white-space: normal;
+	position: absolute;
+	margin: 0;
+	color: #FFF;
+	font-size: 14px;
+	padding: 0;
+}
+
+.ul01 li a {
+	color: #FFF;
+}
+
+.ul01 li a:hover {
+	color: #31C27C;
+}
+
+.li01 {
+	width: 50px;
+	height: 50px;
+}
+
+.li01 input {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	margin-top: 17.5px;
+	float: left;
+	opacity: 0.3;
+}
+
+.li02 {
+	width: 467px;
+	height: 50px;
+	left: 60px;
+	line-height: 50px;
+}
+
+.li02s {
+	width: 467px;
+	height: 50px;
+	left: 60px;
+	line-height: 50px;
+}
+
+.li03 {
+	width: 178px;
+	height: 50px;
+	left: 537px;
+	line-height: 50px;
+}
+
+.li04 {
+	width: 50px;
+	height: 50px;
+	left: 725px;
+	line-height: 50px;
+}
+
+#div08 {
+	float: right;
+	width: 200px;
+	height: 500px;
+}
+
+#div09 {
+	width: 200px;
+	height: 200px;
+	position: relative;
+}
+
+#div09_a1 {
+	background-image: url(images/album_cover_player.8dfd80d6.png);
+	position: absolute;
+	width: 200px;
+	height: 180px;
+}
+
+#div09_a2 {
+	position: absolute;
+	top: 5px;
+	background-size: 100% 100%;
+	width: 180px;
+	height: 180px;
+}
+
+#div10, #div10 a {
+	color: #FFF;
+	text-align: center;
+	font-size: 14px;
+}
+
+#div10 p {
+	margin-top: 5px;
+}
+
+#div10 a:hover {
+	color: #31C27C;
+}
+
+#div11 {
+	width: 350px;
+	height: 150px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	margin-top: 30px;
+	position: relative;
+	left: -75px;
+	overflow: hidden;
+}
+
+#div_audio {
+	position: fixed;
+	left: 7%;
+	bottom: 0;
+	width: 85%;
+	height: 75px;
+	z-index: 10;
+	/* background-color: #31C27C; */
+}
+
+#div_audio_a01 {
+	width: 40px;
+	position: absolute;
+	height: 40px;
+	top: 1px;
+}
+
+#div_audio_a02 {
+	width: 40px;
+	position: absolute;
+	left: 60px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+#div_audio_a03 {
+	width: 40px;
+	position: absolute;
+	top: 1px;
+	left: 120px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+#div_audio_01 {
+	width: 685px;
+	height: 50%;
+	position: absolute;
+	left: 180px;
+}
+
+#div_audio_a04 {
+	width: 40px;
+	position: absolute;
+	top: 6px;
+	background-image: url(images/player.a628799e.png);
+	background-position: 0 -205px;
+	left: 900px;
+	height: 22px;
+	margin-right: 30px;
+}
+
+#div_audio_a05 {
+	width: 25px;
+	position: absolute;
+	top: 6px;
+	background-image: url(images/player.a628799e.png);
+	background-position: 0 -96px;
+	left: 960px;
+	height: 24px;
+	margin-right: 30px;
+}
+
+#div_audio_a06 {
+	width: 40px;
+	position: absolute;
+	top: 6px;
+	background-image: url(images/player.a628799e.png);
+	background-position: 0 -120px;
+	left: 1020px;
+	height: 24px;
+	margin-right: 30px;
+}
+
+#div_audio_a07 {
+	width: 25px;
+	position: absolute;
+	top: 5px;
+	background-image: url(images/player.a628799e.png);
+	background-position: 0 -400px;
+	left: 1080px;
+	height: 25px;
+	margin-right: 30px;
+}
+
+#div_audio_a09 {
+	width: 80px;
+	position: absolute;
+	top: 4px;
+	left: 1150px;
+	height: 27px;
+	background-image: url(images/player.a628799e.png);
+	background-position: 0 -282px;
+	margin-right: 30px;
+}
+
+.audio_div001 {
+	width: 100px;
+	height: 50%;
+	position: absolute;
+	left: 1190px;
+}
+
+#audio_div02 {
+	float: right;
+	color: #FFF;
+	width: 50px;
+	height: 15px;
+}
+
+.audio_div01 {
+	display: inline-block;
+	font-size: 14px;
+	color: #FFF;
+}
+
+.audio_div03 {
+	width: 100%;
+	height: 15px;
+}
+
+#audio_jdt01 {
+	margin-top: 5px;
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	border-radius: 5px;
+	background-color: hsla(0, 0%, 88.2%, .8);
+}
+
+#audio_jdt02 {
+	margin-top: 5px;
+	position: absolute;
+	/* width: 0px; */
+	height: 2px;
+	animation: none;
+	-webkit-animation: none;
+	border-radius: 5px;
+	background-color: #31C27C;
+}
+
+@
+keyframes myfirst { 0%{
+	width: 0%;
+}
+
+100%{
+width
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+100%;
+}
+}
+.mod_btn_green__icon_like {
+	width: 16px;
+	height: 16px;
+	background-position: -60px -20px;
+	vertical-align: -4px;
+}
+
+.mod_btn_green__icon_add {
+	width: 16px;
+	height: 16px;
+	background-position: -20px -20px;
+	vertical-align: -4px;
+}
+
+.mod_btn_green__icon_down {
+	width: 16px;
+	height: 16px;
+	background-position: -40px -240px;
+	vertical-align: -4px;
+}
+
+.mod_btn_green__icon_delete {
+	width: 16px;
+	height: 16px;
+	background-position: -100px -20px;
+	vertical-align: -4px;
+}
+
+.mod_btn_green__icon_clear {
+	width: 16px;
+	height: 16px;
+	background-position: -40px -300px;
+	vertical-align: -4px;
+}
+
+.mod_btn_green__icon_like, .mod_btn_green__icon_add,
+	.mod_btn_green__icon_down, .mod_btn_green__icon_delete,
+	.mod_btn_green__icon_clear {
+	display: inline-block;
+	margin-right: 6px;
+	background-image: url(images/icon_sprite.png);
+	background-repeat: no-repeat;
+	vertical-align: -3px;
+}
+
+.i1 {
+	background-position: -80px 0;
+}
+
+.i1:hover {
+	background-position: -40px 0;
+}
+
+.i2 {
+	background-position: -80px -80px;;
+}
+
+.i2:hover {
+	background-position: -40px -80px;
+}
+
+.i3 {
+	background-position: -80px -120px;
+}
+
+.i3:hover {
+	background-position: -40px -120px;
+}
+
+.i1, .i2, .i3 {
+	margin-top: 6px;
+	display: none;
+	margin-right: 20px;
+	float: right;
+	width: 36px;
+	height: 36px;
+	background-image: url(images/icon_list_menu.png);
+	background-repeat: no-repeat;
+}
+
+.i4 {
+	background-position: -120px -160px;
+	display: none;
+	width: 36px;
+	height: 36px;
+	margin-top: 6px;
+	background-image: url(images/icon_list_menu.png);
+	background-repeat: no-repeat;
+}
+
+.m-progressBar {
+	float: left;
+	width: 685px;
+	height: 5px;
+	background-color: rgb(36, 41, 44);
+	margin-top: 5px;
+	position: relative;
+}
+
+.m-left {
+	float: left;
+	background-color: rgb(16, 157, 89);
+	width: 0px;
+	height: 5px;
+}
+
+.m-right {
+	float: left;
+	width: 100%;
+	height: 5px;
+	background-color: rgb(36, 41, 44);
+}
+
+.bar {
+	width: 7px;
+	height: 7px;
+	background-color: rgb(16, 157, 89);
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	transform: translate(-50%, -50%);
+}
+
+.bar:hover {
+	transform-origin: 100% 100%;
+	transform: scale(1.5);
+	cursor: pointer;
+}
+
+.musiclistul {
+	width: 100%
+}
+
+.musiclistul:nth-child(-n + 3) {
+	margin: 5px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* 可以显示的行数，超出部分用...表示*/
+	-webkit-box-orient: vertical;
+}
+
+.musiclistli {
+	margin: 5px;
+	height: 30px;
+	color: #FFF;
+	text-align: center;
+	line-height: 20px;
+	font-size: 13px;
+	display: flex;
+	justify-content: center;
+}
+
+#cunjing {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: fixed;
+	z-index: 1;
+}
+
+#div_11 {
+	width: 80%;
+	height: 550px;
+	text-align: center;
+	font-size: 20px;
+	color: #fff;
+	margin-top: 30px;
+	position: relative;
+	overflow: hidden;
+}
+
+.musiclistul_1 {
+	width: 100%
+}
+
+.musiclistul_1:nth-child(-n + 3) {
+	margin: 5px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* 可以显示的行数，超出部分用...表示*/
+	-webkit-box-orient: vertical;
+}
+
+.musiclistli_1 {
+	margin: 5px;
+	
+	height: 60px;
+	color: #FFF;
+	text-align: center;
+	line-height: 60px;
+	font-size: 25px;
+	display: flex;
+	justify-content: center;
+}
+.songlist__icon_mv{
+  background-image: url(images/icon_sprite.png);
+}
+.songlist__icon_mv {
+  display: inline-block;
+  width: 33px;
+  height: 16px;
+  background-position: -40px -280px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+</style>
+</head>
+<body
+	style="background-color: rgb(224, 224, 224); font-family: poppin, Tahoma, Arial, 微软雅黑, sans-serif;">
+	<div id="app">
+		<div class="div1"></div>
+		<div class="bg_player" style="display: block;"></div>
+		<div class="div_01 clearfix">
+			<a href="#">
+				<div class="div_02">
+					<img src="images/player_logo.png" />
+				</div>
+			</a>
+			<div class="div_03">
+				 <a v-if="user.uname == ''" href="login.html" class="hearder_dl">登录</a>
+				   <a v-else href="javascript:void(0)" class="hearder_dl">
+				      <img style="width: 30px; height: 30px; border-radius: 30px; position: absolute; top:18px; right: 160px " v-if="user.uphoto == null" src="images/upload.png"/>
+					  <img style="width: 30px; height: 30px; border-radius: 30px; position: absolute; top:18px; right: 160px " v-else :src="'../' + user.uphoto" />
+				   </a>
+				
+				<a href="#"><span>设置</span></a>
+			</div>
+		</div>
+		<div class="div_04 clearfix">
+			<div class="div_05 clearfix">
+			<form action="">
+				<div class="div_06 clearfix">
+					<a href="#"><i class="mod_btn_green__icon_down"></i>下载</a> <a
+						href="javascript:void(0)" @click="gotoPay()"><i class="mod_btn_green__icon_delete"></i>删除</a> <a
+						href="javascript:void(0)" @click="deleteshowmusic()"><i class="mod_btn_green__icon_clear"></i>清空列表</a>
+				</div>
+				<div class="sb_overview" style="height: 450px;">
+					<div class="div_07">
+						<ul class="ul01">
+							<li class="li01"><input type="checkbox" /></li>
+							<li class="li02s">歌曲</li>
+							<li class="li03">歌手</li>
+							<li class="li04">时长</li>
+						</ul>
+
+						<ul class="ul01" v-for="(item, indexs) in music"
+							@mouseenter="enter(indexs)" @mouseleave="leave(indexs)">
+
+							<li class="li01"><input type="checkbox" :checked="item.mno == 1 ? true : false" @change="changeChecked($event, item)"/></li>
+							<li class="li02">
+								<div v-if="isarrays"
+									style="display: inline-block; width: 10px; height: 10px;"></div>
+								<div v-else-if="indexs == index"
+									style="display: inline-block; width: 10px; height: 10px; background: url(images/wave.gif);"></div>
+								<div v-else
+									style="display: inline-block; width: 10px; height: 10px;"></div>
+								<a href="#">{{item.mname}} </a>
+								
+								<a href="javascript:void(0)" @click="bfmv(item.mvid, index)"  v-if="item.statusmv == 1" class="songlist__icon songlist__icon_mv sprite" title="MV" >
+										
+								</a>
+								<!-- '../' + item.musics -->
+								<a :href="'../' + item.musics" download><i class="i3"></i></a>
+									<a href="javascript:void(0)" @click="findcollect(item.mid)"><i class="i2"></i></a> <a href="#"> <i
+										v-if="isarrays" class="i1" @click="zjbf(indexs)"></i> <i
+										v-else-if="indexs == index" @click="zzbf()"
+										style="background-position: -80px -200px;" class="i1"></i> <i
+										v-else class="i1" @click="zjbf(indexs)"></i>
+								</a>
+							
+							</li>
+							<li class="li03"><a href="#">{{item.sname}}</a></li>
+							<li class="li04"><a class="i6"
+								@click="deletemid(item.tddid, indexs)" href="javascript:void(0)"
+								style="position: absolute;"> <i class="i4"></i>
+
+							</a> <a class="i5" href="javascript:void(0)"
+								style="position: absolute;">{{item.mdate}}</a></li>
+						</ul>
+
+
+
+
+
+					</div>
+
+				</div>
+				</form>
+			</div>
+			<div id="div08">
+				<div id="div09">
+					<a id="div09_a1" href="javascript:void(0)"></a> <a id="div09_a2"
+						href="javascript:void(0)"></a>
+				</div>
+				<div id="div10">
+					<p>
+						歌曲名: &nbsp;<a href="#">{{list1.mname}}</a>
+					</p>
+					<p>
+						歌手: &nbsp;<a href="#">{{list1.sname}}</a>
+					</p>
+					<p>
+						专辑: &nbsp;<a href="#">{{list1.mname}}</a>
+					</p>
+				</div>
+				<div id="div11" ref="lyric" class="lyricdiv">
+					<div  class="lyricdiv_01"  style="cursor:pointer;">
+						<ul class="musiclistul">
+							<li class="musiclistli"
+								:style="{color: currenIndex === index ? 'green' : 'white',
+                                     fontSize: currenIndex === index ? '18px' : '13px',
+                                    }"
+								v-for="(item, index) in musiclist" :key="index" @dblclick="dblclickmusic(item.time)"><p>{{item.str}}</p></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="div_audio">
+			<audio id="audios"></audio>
+			<a class="audio_a" id="div_audio_a01" href="javascript:void(0)"><img
+				id="shangyishou" @click="shangyishou()"
+				style="width: 34px; height: 34px;" src="images/上一首.png"></img></a> <a
+				class="audio_a" id="div_audio_a02" href="javascript:void(0)"><img
+				id="bofang" @click="bofang()" style="width: 35px; height: 35px;"
+				src="images/播放2.png"></img></a> <a class="audio_a" id="div_audio_a03"
+				href="javascript:void(0)"><img id="xiayishou"
+				@click="xiayishou()" style="width: 34px; height: 34px;"
+				src="images/下一首.png"></img></a>
+
+			<div id="div_audio_01">
+				<div class="audio_div clearfix">
+					<div class="audio_div01">{{list1.mname}}</div>
+					<div id="audio_div02">
+						<span>{{list1.mdate}}</span>
+					</div>
+				</div>
+
+				<div class="m-progressBar">
+					<div class="bar" @mousedown="mousedownbar()"></div>
+					<div class="m-left"></div>
+					<div class="m-right"></div>
+				</div>
+
+			</div>
+
+			<a class="audio_a" id="div_audio_a04" href="javascript:void(0)"
+				@click="audio_a()"></a> <a class="audio_a" id="div_audio_a05" @click="addlikes()"
+				href="javascript:void(0)"></a> <a class="audio_a" id="div_audio_a06"
+				href="javascript:void(0)"></a> <a class="audio_a" id="div_audio_a07"
+				href="javascript:void(0)"></a> <a class="audio_a" id="div_audio_a09"
+				href="javascript:void(0)" @click="chunjingmoshi()"></a>
+
+			<div class="audio_div001">
+				<div class="audio_div04"></div>
+				<div class="audio_div05"></div>
+			</div>
+
+		</div>
+
+
+		<div id="cunjing" style="background-color: rgb(224, 224, 224);">
+			<div class="div1"></div>
+			<div class="bg_player" style="display: block;"></div>
+			<div class="div_01 clearfix">
+				<a href="#">
+					<div class="div_02">
+						<img src="images/player_logo.png" />
+					</div>
+				</a>
+				<div class="div_03">
+				   <a v-if="user.uname == ''" href="login.html" class="hearder_dl">登录</a>
+				   <a v-else href="javascript:void(0)" class="hearder_dl">
+				      <img style="width: 30px; height: 30px; border-radius: 30px; position: absolute; top:18px; right: 160px " v-if="user.uphoto == null" src="images/upload.png"/>
+					  <img style="width: 30px; height: 30px; border-radius: 30px; position: absolute; top:18px; right: 160px " v-else :src="'../' + user.uphoto" />
+				   </a>
+					
+					<a href="javascript:void(0)"><span>设置</span></a>
+				</div>
+			</div>
+			<div id="div_11" ref="lyric_1" class="lyricdiv" v-drag>
+				<div class="lyricdiv_01" style="cursor:pointer;">
+					<ul class="musiclistul_1">
+						<li class="musiclistli_1"
+							:style="{color: currenIndex === index ? 'green' : 'white',
+                                     fontSize: currenIndex === index ? '30px' : '25px',
+                                    }"
+							v-for="(item, index) in musiclist" :key="index" @dblclick="dblclickmusic(item.time)"><p>{{item.str}}</p></li>
+					</ul>
+				</div>
+			</div>
+
+           
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+	<script type="text/javascript" src="js/qs.js"></script>
+	<script type="text/javascript" src="js/sudiovue.js"></script>
+
+
+
+
+
+</body>
+</html>

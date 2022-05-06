@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>搜索</title>
+		<link rel="shortcut icon" href="../images/favicon.ico"/>
+		<link href="../css/header.css" type="text/css" rel="stylesheet"/>
+		<link href="../css/search.css" type="text/css" rel="stylesheet"/>
+	</head>
+	
+	<body>
+		<div id="app">
+			<div class="search_exclusive">
+				<div class="mod_header">
+					<div class="section_inner">
+						<h1 class="qqmusic_title">
+							<a href="#">
+								<img alt="QQ音乐" src="../images/logo.png"class="qqmusic_logo"/>
+							</a>
+						</h1>
+						<ul class="mod_top_nav">
+							<li class="top_nav__item">
+								<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+								</a>
+							</li>
+							<li class="top_nav__item">
+								<a class="top_nav__link" title="我的音乐" href="/n/ryqq/profile">我的音乐</a>
+							</li>
+						</ul>
+						<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+					</div>
+				</div>
+				<div class="mod_search">
+					<div class="mod_search_input" id="mod_search_input">
+						<input type="text" class="search_input__input" id="inpts" placeholder="搜索音乐、MV、歌单、用户" v-model="search">
+						<button class="search_input__btn" id="btns" @click="Search_details()">
+							<i class="icon_search sprite"></i>
+						</button>
+					</div>
+					<div class="mod_search_other" id="mod_search_other" :class="{'crop':hasError}">
+						<div class="search_history" id="search_historys" tabindex="100">
+							<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear"></i>
+									</a>
+							</dt>
+							<ul class="search_history__list" v-for="(historys,item) in history">
+								<li class='on'>
+									<a class='active' @click="con(historys)">{{historys}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="mod_search_result" id="result_max" :class="{'crop':isActive}">
+						<div class="search_result__sort" >
+						<div v-for="music in musics">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul class="search_result__list">
+								<li>
+									<a class="search_result__link">{{music.mname}} - {{music.sname}}</a>
+								</li>
+							</ul>
+							</div>
+						</div>
+						<div class="search_result__sort" >
+						<div v-for="singer in singers">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>歌手
+							</h4>
+							<ul class="search_result__list">
+								<li>
+									<a class="search_result__link"  :href="'singer.html?'+singer.sid">{{singer.sname}}</a>
+								</li>
+							</ul>
+							</div>
+						</div>
+						<div class="search_result__sort">
+							<div  v-for="sepcial in sepcials">
+								<h4 class="search_result__tit">
+									<i class="search_result__icon_mv"></i>专辑
+								</h4>
+								<ul class="search_result__list">
+									<li>
+										<a class="search_result__link">{{sepcial.ename}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="search_result__sort" >
+							<div v-for="mv in MVs">
+								<h4 class="search_result__tit">
+									<i class="search_result__icon_mv"></i>MV
+								</h4>
+								<ul class="search_result__list">
+									<li>
+										<a class="search_result__link" >{{mv.mvname}} - {{mv.mname}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="mod_search_tips" >热门搜索:
+						<a class="search_tips__item" v-for="hot1 in hots">{{hot1.mname}}</a>
+					</div>
+				</div>
+				<div class="main" >
+					<div class="main__inner">
+						<div class="result">
+							<div class="mod_tab">
+								<a class="mod_tab__item " @click="change_check(0,$event)" :class="{'mod_tab__current' : show == '单曲'}" >单曲</a>
+								<a class="mod_tab__item" @click="change_check(1,$event)" :class="{'mod_tab__current' : show == '专辑'}">专辑</a>
+								<a class="mod_tab__item" @click="change_check(2,$event)" :class="{'mod_tab__current' : show == 'MV'}">MV</a>
+								<a class="mod_tab__item" @click="change_check(3,$event)" :class="{'mod_tab__current' : show == '歌单'}">歌单</a>
+								<a class="mod_tab__item" @click="change_check(4,$event)" :class="{'mod_tab__current' : show == '歌手'}">歌手</a>
+							</div>
+							<div v-if="search_detail[0]"><!-- 如果状态为false 则隐藏-->
+								<div class="mod_songlist_toolbar">
+									<a class="mod_btn_green">
+										<i class="mod_btn_green__icon_play"></i>播放全部
+									</a>
+									<a class="mod_btn">
+										<i class="mod_btn__icon_add"></i>添加到
+									</a>
+									<a class="mod_btn">
+										<i class="mod_btn__icon_down"></i>下载
+									</a>
+								</div>
+								<div class="mod_songlist">
+									<ul class="songlist__header">
+										<li class="songlist__header_name">歌曲</li>
+										<li class="songlist__header_author">歌手</li>
+										<li class="songlist__header_album">专辑</li>
+										<li class="songlist__header_time">时长</li>
+									</ul>
+									<ul class="songlist__list" v-for="(detail,index) in details">
+										<li>
+											<div class="songlist__item">
+												<div class="songlist__number songlist__number--top">{{index}}</div>
+												<div class="songlist__songname">
+													<a class="songlist__icon songlist__icon_mv sprite" title="MV" >MV</a>
+													<i class="songlist__icon songlist__icon_vip sprite" title="VIP"></i>
+													<span class="songlist__songname_txt">
+														<a title="我们的歌" href="/n/ryqq/songDetail/000NqZLy2lfXjT">
+															<div class="keyrender_default" :title="detail.mname">
+																<span class="c_tx_highlight">{{detail.mname}}</span>
+															</div>
+														</a>
+													</span>
+													<div class="mod_list_menu">
+														<a class="list_menu__item list_menu__play" title="播放">
+															<i class="list_menu__icon_play"></i>播放
+														</a>
+														<a class="list_menu__item list_menu__add" title="添加到歌单">
+															<i class="list_menu__icon_add"></i>添加到歌单
+														</a>
+													</div>
+												</div>
+												<div class="songlist__artist">
+													<a class="playlist__author" title="王力宏" >{{detail.sname}}</a>
+												</div>
+												<div class="songlist__time">{{detail.mdate}}</div>
+												<div class="songlist__album" v-if="detail.ename == null">
+													<a>暂无</a>
+												</div>
+												<div class="songlist__album" v-else>
+													<a>{{detail.ename}}</a>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="mod_playlist_text" v-if="search_detail[1]">
+								<ul class="playlist__header">
+									<li class="playlist__header_name">专辑</li>
+									<li class="playlist__header_author">歌手</li>
+									<li class="playlist__header_other">专辑价格</li>
+								</ul>
+								<ul class="playlist__list" v-for="(detail,index) in details">
+									<li class="playlist__item">
+										<div class="playlist__cover ">
+											<a v-if="detail.ephoto == null">
+												<img class="playlist__pic" src="../images/user_image.png">
+											</a>
+											<a v-else>
+												<img class="playlist__pic" :src="'../'+detail.ephoto">
+											</a>
+										</div>
+										<h4 class="playlist__title">
+											<span class="playlist__title_txt">
+												<a >
+													<div class="keyrender_default" >{{detail.ename}}</span></div>
+												</a>
+											</span>
+										</h4>
+										<div class="mod_list_menu">
+											<a class="list_menu__item list_menu__play" title="播放">
+												<i class="list_menu__icon_play"></i>
+											</a>
+											<a class="list_menu__item list_menu__add" title="添加到歌单">
+												<i class="list_menu__icon_add"></i>
+											</a>
+											<a class="list_menu__item list_menu__down" title="VIP下载">
+												<i class="list_menu__icon_down"></i>
+											</a>
+											<a class="list_menu__item list_menu__share" title="分享">
+												<i class="list_menu__icon_share"></i>
+											</a>
+										</div>
+										<div class="playlist__author">
+											<a class=" " :title="detail.sname">{{detail.sname}}</a>
+										</div>
+										<div class="playlist__other">{{detail.emoney}}</div>
+									</li>
+								</ul>
+							</div>
+							<div class="mov_mv_list" v-if="search_detail[2]">
+								<ul class="mv_list__list" v-for="(detail,index) in details">
+									<li class="mv_list__item mv_list_slider__item" style="width: 20%;">
+										<div class="mv_list__item_box">
+											<a class="mv_list__cover mod_cover" :title="detail.mvname">
+												<img class="mv_list__pic" :src="'../'+detail.mvphoto">
+												<i class="mod_cover__mask"></i>
+												<i class="mod_cover__icon_play"></i>
+											</a>
+											<h3 class="mv_list__title">
+												<a>{{detail.mvname}}</a>
+											</h3>
+											<p class="mv_list__singer">
+												<a class="playlist__author" title="那英">{{detail.sname}}</a>
+											</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="mod_playlist__text playlist" v-if="search_detail[3]">
+									<ul class="playlist__header header" >
+										<li class="playlist__header_name name">歌单</li>
+										<li class="playlist__header_author author">创建人</li>
+										<li class="playlist__header_other other">收听</li>
+									</ul>
+									<ul class="playlist__list" v-for="(detail,index) in details">
+										<li class="playlist__item item">
+											<div class="playlist__cover cover">
+												<a href="/n/ryqq/playlist/7406127262">
+													<img class="playlist__pic play_pic" >
+												</a>
+											</div>
+											<h4 class="playlist__title title ">
+												<span class="playlist__title_txt title_txt">
+													<a >
+														<div class="keyrender_default default" :title="detail.pname">{{detail.pname}}</div>
+													</a>
+												</span>
+											</h4>
+											<div class="mod_list_menu list_menu">
+												<a class="list_menu__item list_menu__play" title="播放">
+													<i class="list_menu__icon_play"></i>
+												</a>
+												<a class="list_menu__item list_menu__add" title="添加到歌单">
+													<i class="list_menu__icon_add"></i>
+												</a>
+												<a class="list_menu__item list_menu__down" title="VIP下载">
+													<i class="list_menu__icon_down"></i>
+												</a>
+												<a class="list_menu__item list_menu__share" title="分享">
+													<i class="list_menu__icon_share"></i>
+												</a>
+											</div>
+											<div class="playlist__author play_author">
+												<a class=" " title="中国梦之声·我们的歌">{{detail.uname}}</a>
+											</div>
+											<div class="playlist__other play_other">{{detail.display}}</div>
+										</li>
+									</ul>
+								</div>
+							
+							<div class="mod_singer_list_text"  v-if="search_detail[4]">
+								<ul class="singer_list__list" v-for="(detail,index) in details">
+									<li class="singer_list__item">
+										<h4 class="singer_list__title">
+											<div class="singer_list__cover">
+											<a class="js_user" v-if="detail.sphoto == null">
+												<img class="singer_list__pic" src="../images/300.png">
+												<img class="singer_list__cover_icon" src="../images/user_image.png">
+											</a>	
+											<a class="js_user" v-else>
+												<img class="singer_list__pic" :src="'../'+detail.sphoto">
+												<img class="singer_list__cover_icon" src="../images/user_image.png">
+											</a>
+											</div>
+											<span class="singer_list__title_txt">
+												<a class="js_user" :title="detail.sname">{{detail.sname}}
+												</a>
+											</span>
+										</h4>
+										<div class="singer_list_count js_num_follow">粉丝：{{detail.count}}</div>
+										<div class="singer_list_other">
+											<a class="mod_btn singer_list__btn_focus js_focus_user" @click="addCheck(detail.sid)">
+												<i class="mod_btn__icon_new"></i>关注</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						</div>
+						
+					</div>
+				</div>
+	</div>
+	</div>
+		<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>		
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/qs.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script type="text/javascript" src="../js/history.js"></script>
+		
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:"#app",
+				data:{
+					uid:"",
+					search:"",
+					isActive:false,
+					hasError:false,
+					total:{},
+					singers:{},//歌手
+					sepcials:{},// 专辑
+					musics:{},//单曲
+					MVs:{},//mv
+					search_detail:[true,false,false,false,false],
+					show:"单曲",
+					details:{},
+					history:{},
+					his:[],
+					x_search:"",
+					//头部
+					head_show:false,
+					head_result:false,
+					hots:{},
+					user:{},
+
+				},
+				mounted(){
+					
+					var x_searchs = decodeURI(location.search);
+					
+					this.search = x_searchs.replace("?","");
+					//头部
+					axios.post("../singer/findHot").then(result=>{
+						this.hots = result.data;
+					})
+					//查询用户信息
+					axios.post("../user/info").then(result=>{
+						if(result.data.code == 500 || result.data.data == null){
+							return;
+						}
+						this.uid = result.data.data.uid;
+						this.user = result.data.data;
+					})
+					this.historyData()
+				},
+				watch:{
+					search:function(){
+						this.changeback()
+					},
+					//头部
+					x_search:function(){
+						this.change_back()
+					}
+				},
+				methods:{
+					//头部
+					change_back(){//是否显示
+						//改变搜索结果是否显示
+						if(this.x_search != ""){
+							this.head_result = true;
+							this.head_show = false;
+							this.find_Input();
+						}else{
+							this.head_result = false;
+							this.head_show = true;
+						}
+						this.changer_headerhis()
+					},
+					clearStore(){//清楚历史记录
+						localStorage.removeItem('data');
+						$('#lists').html('');
+					},
+					changer_headerhis(){
+						if(this.x_search != ""){
+							$('#mod_search').css('max-height',0);
+						}else{
+							$('#mod_search').css('max-height',580);
+							changeList();
+						}
+						changeHot();
+					},
+					find_Input(){
+						axios.post("../search/findData",qs.stringify({sname:this.x_search})).then(result=>{
+							this.total = result.data.data;
+							this.musics = this.total[0];
+							this.singers = this.total[1];
+							this.sepcials = this.total[2];
+							this.MVs = this.total[3];
+						})
+					},
+					
+					con(historys){
+						this.search = historys;
+						this.x_search = historys;
+						this.Search_details();
+					},
+					historyData(){
+						this.history = JSON.parse(localStorage.getItem('data'));
+					},
+					
+					changeback(){//是否显示
+						//改变搜索结果是否显示
+						if(this.search != ""){
+							this.isActive = true;
+							this.findInput();
+						}else{
+							this.isActive = false;
+						}
+						this.changehistory();
+					},
+					
+					changehistory(){//改变历史搜索下拉状态
+						if(this.search != ""){
+							$('#mod_search_other').css('visibility','hidden');
+							$('#mod_search_other').css('max-height',0);
+						}else{
+							$('#mod_search_other').css('visibility','visible');
+							$('#mod_search_other').css('max-height',800);
+							changeList();
+						}
+					},
+					
+					findInput(){
+						axios.post("../search/findData",qs.stringify({sname:this.search})).then(result=>{
+							this.total = result.data.data;
+							this.musics = this.total[0];
+							this.singers = this.total[1];
+							this.sepcials = this.total[2];
+							this.MVs = this.total[3];
+						})
+					},
+					change_check(index,e){
+						this.search_detail=[false,false,false,false,false];
+						this.search_detail[index] = true;
+						this.show = e.target.innerText;
+						this.details = this.total[index];
+					},
+					Search_details(){
+						axios.post("../search/findDetail",qs.stringify({sname:this.search})).then(result=>{
+							this.total = result.data.data;
+							this.details = this.total[0];
+						})
+						this.historyData();
+					},
+					addfans(sid){
+						axios.post("../singer/addFans",qs.stringify({sid:sid,uid:this.uid})).then(result=>{
+							if(result == 500){
+								alert("关注失败，请确认是否登录");
+								location.href= "login.html";
+								return;
+							}
+							if(result == 200){
+								alert("关注成功");
+							}
+							this.findInput();
+						})
+					},
+				}
+			})
+			function changeList(){
+				var list_on = document.getElementsByClassName("on");
+				for (var j = 0; j < list_on.length; j++) {
+					list_on[j].setAttribute('index',j);
+					list_on[j].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"#31C27C");
+						$('.active').eq(index).css('color',"white");
+					}
+					list_on[j].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"white");
+						$('.active').eq(index).css('color',"#333");
+					}
+				}
+			}
+			function changeHot(){
+				var search = document.getElementsByClassName("search_hot__link");
+				var number = document.getElementsByClassName("search_hot__number");
+				var name =  document.getElementsByClassName("search_hot__name");
+				var listen = document.getElementsByClassName("search_hot__listen");
+				for (var i = 0; i < search.length; i++) {
+					search[i].setAttribute('index',i);
+					search[i].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"#31C27C");
+						$('.search_hot__number').eq(index).css('color',"white");
+						$('.search_hot__name').eq(index).css('color',"white");
+						$('.search_hot__listen').eq(index).css('color',"white");
+					}
+					search[i].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"white");
+						$('.search_hot__number').eq(index).css('color',"#ff4222");
+						$('.search_hot__name').eq(index).css('color',"#333");
+						$('.search_hot__listen').eq(index).css('color',"#999");
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

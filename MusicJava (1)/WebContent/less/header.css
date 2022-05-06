@@ -1,0 +1,178 @@
+body {
+	width: 100%;
+	font-family: "微软雅黑";
+	
+}
+
+header {
+	height: 550px;
+	background-color: #FAFAFA;
+	color: black;
+}
+
+.logo {
+	float: left;
+	position: relative;
+	left: 200px;
+	line-height: 95px;
+}
+
+.header_logo {
+	position: relative;
+	left: -15px;
+	top: 10px;
+
+}
+
+header ul li {
+	display: inline-block;
+	position: relative;
+	left: 200px;
+	padding: 0 20px;
+	line-height: 95px;
+	font-size: 18px;
+}
+
+.header_footer {
+	border-top: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.header_search {
+	position: absolute;
+	top: 0;
+	right: 365px;
+	line-height: 95px;
+}
+
+.hearder_search_border {
+	border: 1px solid #c9c9c9;
+	padding: 0 33px 0 11px;
+	line-height: 36px;
+	height: 36px;
+	margin-top: 26px;
+}
+
+.hearder_search_input {
+	width: 174px;
+	height: 36px;
+	outline: none;
+	border: 0px solid #FFF;
+	font-size: 14px;
+	background: transparent;
+}
+
+/* .hearder_search_btn{
+	position: absolute;
+	background-image: url(sousuo.png);
+	top: 32px;
+	right: -32px;
+	border: 0;
+	width: 32px;
+	height: 32px;
+} */
+.header_login {
+	position: absolute;
+	
+	height: 90px;
+	line-height: 95px;
+	top: 0;
+	right: 150px;
+}
+
+.hearder_dl {
+	position: relative;
+	font-size: 16px;
+	float: left;
+}
+
+.header_select {
+	position: relative;
+	width: 122px;
+	height: 38px;
+	float: left;
+	margin-top: 32px;
+}
+
+.header_select_a {
+	display: block;
+	line-height: 37px;
+	text-align: center;
+	margin-top: -3px;
+	border: lpx solid #999999;
+	border-radius: 3px;
+}
+
+.header_deposit {
+	position: relative;
+	width: 122px;
+	height: 38px;
+	float: left;
+	margin-top: 32px;
+}
+
+.header_deposit_a {
+	display: block;
+	line-height: 38px;
+	text-align: center;
+	margin-top: -3px;
+	border: lpx solid #999999;
+	border-radius: 3px;
+}
+
+.header_footer li {
+	display: inline-block;
+	position: relative;
+	left: 380px;
+	padding: 0 20px;
+	line-height: 70px;
+	font-size: 16px;
+	margin-top: -10px;
+}
+
+
+/* footer */
+footer {
+	width: 100%;
+	height: 300px;
+	border-top: 2px solid #BDBDBD;
+	text-align: center;
+	color: #999;
+	line-height: 28px;
+}
+
+/* .footer_body {
+	height: 500px;
+	background-color: aquamarine;
+} */
+
+.footer_link {
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+.footer_link span {
+	padding: 0 2px;
+
+}
+
+footer p {
+	margin-top: 0;
+	font-size: 13px;
+}
+
+
+
+footer h3{
+	color: #000000;
+	font-size: 15px;
+	text-align: left;
+	font-weight: 400px;
+	padding: 80px 0 30px;
+}
+
+.article_tit_pc {
+    float: left;
+    text-align: center;
+    position: absolute;
+}

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="shortcut icon" href="../images/favicon.ico"/>
+		<link href="../css/index.css" type="text/css" rel="stylesheet"/>
+		<link href="../css/header.css" type="text/css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div id="app">
+		<div class="mod_header">
+					<div class="section_inner">
+						<h1 class="qqmusic_title">
+							<a href="#">
+								<img alt="QQ音乐" src="../images/logo.png"class="qqmusic_logo"/>
+							</a>
+						</h1>
+						<ul class="mod_top_nav">
+							<li class="top_nav__item">
+								<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+								</a>
+							</li>
+							<li class="top_nav__item">
+								<a class="top_nav__link" title="我的音乐" href="/n/ryqq/profile">我的音乐</a>
+							</li>
+						</ul>
+						<ul class="mod_top_subnav">
+							<li class="top_subnav__item">
+								<a aria-current="page" class="top_subnav__link " title="首页" href="../index.html">首页</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link top_subnav__link--current" title="歌手" href="index.html">歌手</a>
+							</li>
+							</li>
+							<li class="top_subnav__item"><a class="top_subnav__link " title="排行榜" href="toplist.html">排行榜</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link" title="专辑" href="../specli.html">专辑</a>
+							</li>
+							<li class="top_subnav__item">
+								<a class="top_subnav__link" title="分类歌单" href="playlist.html">歌单</a>
+							</li>
+							<li class="top_subnav__item"><a class="top_subnav__link" href="">MV</a>
+							</li>
+						</ul>
+						<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+						<div class="header__opt" >
+							<span class="mod_top_login">
+								<a class="top_login__link" @mouseover="change_quit" @mouseout="changes_quit" v-if="user.uphoto == null">
+									<img src="../images/300.png" class="top_login__cover" >
+									<img src="../images/login_qq.png" class="top_login__icon">
+								</a>
+								<a v-else class="top_login__link" @mouseover="change_quit" @mouseout="changes_quit">
+									<img :src="'../../' + user.uphoto" class="top_login__cover" >
+									<img src="../images/login_qq.png" class="top_login__icon">
+								</a>
+							</span>
+							<div class="popup_user" :class="{'drop':quit}">
+								<div class="popup_user_data">
+									<a class="popup_user_data__cover_link">
+										<img class="popup_user_data__cover" src="../images/300.png">
+										<img src="../images/login_qq.png" class="popup_user_data__icon">
+									</a>
+									<div class="popup_user_data__cont">
+										<div class="popup_user_data__name">
+											<a>{{user.uname}}</a>
+										</div>
+									</div>
+									
+								</div>
+								<div class="popup_user_toolbar">
+										<div class="popup_user_toolbar__item">
+											<div class="popup_user_toolbar__tit">
+												<a class="toolbar__tit" href="javascript:void(0)" @click="quite_login">退出登录</a>
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+		<div class="article">
+			<div class="mod_singer">
+				<div class="section_inner"> 
+				<div v-if="this.uid == '' ">
+					<h2 class="singer_tit">
+						万千歌手，尽在眼前
+					</h2>
+					<div class="singer_desc">登录查看你关注的歌手</div>
+					<button class="singer_btn" onclick='location.href=("login.html")'>立即登录
+						<span class="singer_btn_border"></span>
+					</button>
+				</div>
+					<div v-else>
+					<div class="singer_push_tab">
+						<span class="singer_push_tab__item singer_push_tab__item--on">我关注的歌手</span>
+					</div>
+					<div class="mod_slide singer_push_slide" id="content">
+						<a class="slider__prev"></a>
+						<a class="slider__next"></a>
+						<ul class="singer_push_list slide__list" style="left: 0px;" v-for="conSin in conSins">
+							<li class="singer_push_list__item slide__item">
+								<a :title="conSin.sname" class="singer_push_list__link" :href="'singer.html?'+conSin.sid ">
+									<img :src="'../../' + conSin.sphoto" :alt="conSin.sname"class="singer_push_list__pic" >
+								</a>
+							</li>
+						</ul>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="main">
+				<div class="mod_singer_tag">
+					<div class="singer_tag__list">
+						<a class="singer_tag__item singer_tag__item--all " :class="{'singer_tag__item--select' : show == ''}" @Click="change($event)">全部</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'A'}" @Click="change($event)">A</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select': show == 'B'}" @Click="change($event)">B</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'C'}" @Click="change($event)">C</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'D'}" @Click="change($event)">D</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'E'}" @Click="change($event)">E</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'F'}" @Click="change($event)">F</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'G'}" @Click="change($event)">G</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'H'}" @Click="change($event)">H</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'I'}" @Click="change($event)">I</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'J'}" @Click="change($event)">J</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'K'}" @Click="change($event)">K</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'L'}" @Click="change($event)">L</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'M'}" @Click="change($event)">M</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'N'}" @Click="change($event)">N</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'O'}" @Click="change($event)">O</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'P'}" @Click="change($event)">P</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'Q'}" @Click="change($event)">Q</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'R'}" @Click="change($event)">R</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'S'}" @Click="change($event)">S</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'T'}" @Click="change($event)">T</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'U'}" @Click="change($event)">U</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'V'}" @Click="change($event)">V</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'W'}" @Click="change($event)">W</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'X'}" @Click="change($event)">X</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'Y'}" @Click="change($event)">Y</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == 'Z'}" @Click="change($event)">Z</a>
+						<a class="singer_tag__item " :class="{'singer_tag__item--select' : show == '#'}" @Click="change($event)">#</a>
+				</div>
+				</div>
+				<div class="mod_singer_list" >
+					<ul class="singer_list__list" v-for="singer in singers">
+						<li class="singer_list__item">
+							<div class="singer_list__item_box">
+								<a class="singer_list__cover" :title='singer.sname' :href="'singer.html?'+singer.sid">
+									<img class="singer_list__pic" :src="'../../' + singer.sphoto" >
+								</a>
+								<h3 class="singer_list__title" style="min-height: 20px;">
+									<a>{{singer.sname}}</a>
+								</h3>
+							</div>
+						</li>
+				</div>
+				<ul class="singer_list_txt" >
+					<li class="singer_list_txt__item" v-for="singer in singers">
+						<a class="singer_list_txt__item_link" :title="singer.sname" :href="'singer.html?'+singer.sid ">{{singer.sname}}</a>
+					</li>
+					
+					
+				</ul>
+			</div>
+		</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>		
+		<script type="text/javascript" src="../js/history.js"></script>
+		
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/qs.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script type="text/javascript" src="../js/history.js"></script>
+	
+		
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:"#app",
+				data:{
+					singers:[],
+					uid:"",
+					conSins:{},
+					show:"",
+					total:{},
+					singers:{},//歌手
+					sepcials:{},// 专辑
+					musics:{},//单曲
+					MVs:{},//mv
+					uid:"",
+					history:{},
+					x_search:"",
+					//头部
+					head_show:false,
+					head_result:false,
+					hots:{},
+					quit:false,
+					user:{},
+				},
+				mounted(){
+					this.findAllsiger()
+					axios.post("../singer/findHot").then(result=>{
+						this.hots = result.data;
+					})
+					//查询用户信息
+					axios.post("../user/info").then(result=>{
+						if(result.data.code == 500 || result.data.data == null){
+							return;
+						}
+						this.uid = result.data.data.uid;
+						this.user = result.data.data;
+					})
+					if(this.uid != ''){
+						this.findConSin();
+					}
+				},
+				watch:{
+					uid:function(){
+						this.findConSin()
+					},
+					search:function(){
+						this.changeback()
+					},
+					//头部
+					x_search:function(){
+						this.change_back()
+					},
+				},
+				
+				methods:{
+					quite_login(){
+						axios.post("../user/quit",qs.stringify({uid:this.uid})).then(result=>{
+							if(result.data == 200){
+								location.href = "login.html";
+							}
+						})
+					},
+					changes_quit(){
+						console.log(1);
+						let timer = setTimeout(() => {
+						   //需要定时执行的代码
+						   this.quit = false;	
+						}, 3000)
+					},
+					change_quit(){
+						this.quit = true;	
+					},
+					findConSin(){//用户登录后查询关注的歌手信息
+						axios.post("../singer/findConSin",qs.stringify({uid:this.uid})).then(result=>{
+							this.conSins = result.data.data;
+						})
+					},
+					findAllsiger(){
+						axios.post("../singer/findFirst").then(result=>{
+							this.singers = result.data;
+						})
+					},
+					change(e){
+						if(e.target.innerText == "全部"){
+							this.show = "";
+							this.findAllsiger();
+							return;
+						}else{
+							this.show = e.target.innerText;
+						}
+						axios.post("../top/findPin",qs.stringify({code:this.show})).then(result=>{
+							this.singers = result.data.data;
+						})
+					},
+					//头部
+					change_back(){//是否显示
+						//改变搜索结果是否显示
+						if(this.x_search != ""){
+							this.head_result = true;
+							this.head_show = false;
+							this.find_Input();
+						}else{
+							this.head_result = false;
+							this.head_show = true;
+						}
+						this.changer_headerhis()
+					},
+					clearStore(){//清楚历史记录
+						localStorage.removeItem('data');
+						$('#lists').html('');
+					},
+					changer_headerhis(){
+						if(this.x_search != ""){
+							$('#mod_search').css('max-height',0);
+						}else{
+							$('#mod_search').css('max-height',580);
+							changeList();
+						}
+						changeHot();
+					},
+					find_Input(){
+						axios.post("../search/findData",qs.stringify({sname:this.x_search})).then(result=>{
+							this.total = result.data.data;
+							this.musics = this.total[0];
+							this.singers = this.total[1];
+							this.sepcials = this.total[2];
+							this.MVs = this.total[3];
+						})
+					},
+					con(historys){
+						this.x_search = historys;
+					},
+					historyData(){
+						this.history = JSON.parse(localStorage.getItem('data'));
+					},
+				}
+			})
+			function changeList(){
+				var list_on = document.getElementsByClassName("on");
+				for (var j = 0; j < list_on.length; j++) {
+					list_on[j].setAttribute('index',j);
+					list_on[j].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"#31C27C");
+						$('.active').eq(index).css('color',"white");
+					}
+					list_on[j].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.on').eq(index).css('background-color',"white");
+						$('.active').eq(index).css('color',"#333");
+					}
+				}
+			}
+			function changeHot(){
+				var search = document.getElementsByClassName("search_hot__link");
+				var number = document.getElementsByClassName("search_hot__number");
+				var name =  document.getElementsByClassName("search_hot__name");
+				var listen = document.getElementsByClassName("search_hot__listen");
+				for (var i = 0; i < search.length; i++) {
+					search[i].setAttribute('index',i);
+					search[i].onmouseover = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"#31C27C");
+						$('.search_hot__number').eq(index).css('color',"white");
+						$('.search_hot__name').eq(index).css('color',"white");
+						$('.search_hot__listen').eq(index).css('color',"white");
+					}
+					search[i].onmouseout = function(){
+						let index = this.getAttribute("index");
+						$('.search_hot__link').eq(index).css('background-color',"white");
+						$('.search_hot__number').eq(index).css('color',"#ff4222");
+						$('.search_hot__name').eq(index).css('color',"#333");
+						$('.search_hot__listen').eq(index).css('color',"#999");
+					}
+				}
+			}
+		</script>
+		
+	</body>
+</html>

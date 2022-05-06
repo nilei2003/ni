@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MV 首页</title>
+	<link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="less/reset.css">
+    <link rel="stylesheet" href="less/slide.css">
+    <link rel="stylesheet" href="less/index.css">
+	<link rel="stylesheet" href="css/header.css">
+</head>
+<style>
+	*{
+		margin: 0 auto;
+	}
+	.clearfix:after{
+				   content: "";
+				   height: 0;
+				   display: block;
+				   visibility: hidden;
+				   clear: both;
+	}
+	
+	.clearfix{
+				   zoom: 1;
+	}
+	a:hover{
+		color: #31c27c;
+		text-decoration: none;
+	}
+	.article_div03{
+		margin-top: 5px;
+		width: 1200px;
+		overflow: hidden;
+		word-spacing: nowrap;
+	}
+	.article_div04{
+		width: 280px;
+		height: 162px;
+		overflow: hidden;
+	}
+	.article_div03 img{
+		width: 280px;
+		height: 162px;
+	}
+	.ul1{
+		width: 100%;
+		display: inline-block;
+	}
+	.li1{
+		width: 24%;
+		height: 220px;
+		margin-left: 9px;
+		/* margin-right: 1px; */
+		margin-top: 10px;
+		display: inline-block;
+	}
+	#lis{
+		margin-right: 0;
+	}
+	.article_div05{
+		margin-top: 10px;
+		font-size: 14px;
+	}
+	
+	.article_div05 li{
+		margin-top: 5px;
+	}
+	.li2{
+		color: #999999;
+	}
+	.article_div04{
+		position: relative;
+		transition: all 0.25S ease-in;
+	
+		margin: 0 auto;
+	}
+	.article_div04:hover{
+		transform: translateY(-8px);
+	}
+	#i1{
+		display: none;
+		position: absolute;
+		/* pointer-events: none; */
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #000;
+		opacity: 0;
+		transition: opacity 0.5s;
+		
+	}
+	
+			
+	#divs02{
+		position: absolute;
+		transition: all 0.25S ease-in;
+		text-align: center;
+		/* pointer-events: auto; */
+		width: 280px;
+		height: 162px;
+		line-height: 220px;
+		opacity: 0;
+		
+	}
+	
+	#divs02:hover{
+		transition: opacity .5s;
+		opacity: 1;
+	}
+	#divs02 img{
+		width: 70px;
+		height: 70px;
+		margin-top: 50px;
+	}
+	.animate01{
+		position: absolute;
+	
+		
+	}
+	.article_div01{
+		width: 1180px;
+		margin-top: 10px;
+		height: 100px;
+		line-height: 100px;
+		
+	}
+	.article_div02{
+		float: left;
+		margin-left: 5px;
+		font-size: 30px;
+		font-weight: 500;
+	}
+	.article_div020{
+		float: right;
+	}
+	.as1,.as2{
+	    padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 20px;
+		padding-right: 20px;
+		border: 1px solid #C9C9C9;
+		color: #C9C9C9;
+		font-size: 15px;
+		
+	}
+</style>
+<body>
+<div id="app">
+
+<div class="mod_header">
+			<div class="section_inner">
+				<h1 class="qqmusic_title">
+					<a href="#">
+						<img alt="QQ音乐" src="images/logo.png"class="qqmusic_logo"/>
+					</a>
+				</h1>
+				<ul class="mod_top_nav">
+					<li class="top_nav__item">
+						<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+						</a>
+					</li>
+					<li class="top_nav__item">
+						<a class="top_nav__link" title="我的音乐" href="userindex.html">我的音乐</a>
+					</li>
+				</ul>
+				<ul class="mod_top_subnav">
+					<li class="top_subnav__item">
+						<a aria-current="page" class="top_subnav__link " title="首页" href="index.html">首页</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link " title="歌手" href="html/index.html">歌手</a>
+					</li>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" title="排行榜" href="html/toplist.html">排行榜</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="专辑" href="specli.html">专辑</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="分类歌单" href="playlist.html">歌单</a>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link top_subnav__link--current" href="mvindexheade.html">MV</a>
+					</li>
+				</ul>
+				<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+					</div>
+				</div>
+
+
+<header>
+<div style="background-color: #FAFAFA; width: 80%;">
+
+    <div class="banner" >
+        <div id="slide3d" class="slide-carousel slide-3d">
+            <ul  class="item-list clearfix">
+                 <li class="item0">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv1.mvid, 1)">
+		                            <img class="cover-img" :src="'../' + mv1.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item1">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv2.mvid, 2)">
+		                            <img class="cover-img" :src="'../' + mv2.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item2">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv3.mvid, 3)" >
+		                            <img class="cover-img" :src="'../' + mv3.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item3">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv4.mvid, 4)">
+		                            <img class="cover-img" :src="'../' + mv4.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item4">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv5.mvid, 5)">
+		                            <img class="cover-img" :src="'../' + mv5.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item5">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv6.mvid, 6)">
+		                            <img class="cover-img" :src="'../' + mv6.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item6">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="bfmv(mv7.mvid, 7)">
+		                            <img class="cover-img" :src="'../' + mv7.mvphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+            </ul>
+            <!--indicators-->
+            <div class="indicator-list">
+                <a href="javascript:void(0);" data-slide-index="0" class="selected"></a>
+                <a href="javascript:void(0);" data-slide-index="1"></a>
+                <a href="javascript:void(0);" data-slide-index="2"></a>
+                <a href="javascript:void(0);" data-slide-index="3"></a>
+                <a href="javascript:void(0);" data-slide-index="4"></a>
+                <a href="javascript:void(0);" data-slide-index="5"></a>
+                <a href="javascript:void(0);" data-slide-index="6"></a>  
+            </div>
+            <!--controls-->
+            <div class="controls">
+                <a  class="item-prev glyphicon glyphicon-menu-left" href="javascript:void(0);"></a>
+                <a  class="item-next glyphicon glyphicon-menu-right" href="javascript:void(0);"></a>
+            </div>
+        </div>
+    </div>
+	</div>
+
+</header>
+
+<article>
+	<div class="article_div01 clearfix">
+		<div class="article_div02">
+			全部MV
+		</div>
+		
+		<div class="article_div020">
+			<a class="as1" href="#">
+				最新
+			</a>
+			<a class="as2" href="#">
+				最热
+			</a>
+		</div>
+		
+	</div>
+	
+	<div class="article_div03 clearfix">
+		
+		<ul class="ul1">
+			<li class="li1" v-for="(item, index) in musicmv">
+				<div class="article_div04" id="divs01">
+					<a href="#"><img class="animate01" :src="'../' + item.mvphoto" ></a>
+					<div id="i1" class="zz" @click="bfmv(item.mvid, index)">
+						
+					</div>
+					<div id="divs02" @click="bfmv(item.mvid, index)">
+						<a><img src="images/bofang.png"></a>
+					</div>	
+				</div>
+				<div class="article_div05">
+					<ul>
+						<li><a href="#">{{item.mvname}}</a></li>
+						<li class="li2">播放量：{{item.playvolume}}</li>
+					</ul>
+				</div>
+				
+			</li>
+		
+		</ul>
+		</div>
+	</div>
+	
+</article>
+
+
+</div>	
+<footer style="width: 100%; margin-top: 140px;">
+			<div style="width: 100%;">
+				<img style="width: 100%;" src="images/2022-03-21_160301.png">
+			</div>
+</footer>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/slide.min.js"></script>
+<script>
+    $(function(){
+        //3d
+        $('#slide3d').slideCarsousel({slideType:'3d',indicatorEvent:'mouseover'});
+        //2d
+        var  sliderDescArr=[],i=0,len=10;
+        for(;i<len;i++){
+            sliderDescArr.push(new Array(10).join(''+i));
+        }
+        $('#sliderDesc').text(sliderDescArr[0]);
+        $('#slide2d').slideCarsousel({callbackFunc:function(index){
+            $('#sliderDesc1').text(sliderDescArr[index]);
+        }});
+    });
+</script>
+
+
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/axios.js"></script>
+<script type="text/javascript" src="js/qs.js"></script>
+
+<script type="text/javascript" src="js/history.js"></script>
+<script type="text/javascript">
+   let page = 1;
+   let rows = 10;
+   let app = new Vue({
+	   el: "#app",
+	   data:{
+		   musicmv: [],
+		   mv1: [],
+		   mv2: [],
+		   mv3: [],
+		   mv4: [],
+		   mv5: [],
+		   mv6: [],
+		   mv7: [],
+		   username: "",
+		   isArray: false,
+		   goodstwo:[],
+		   total:{},
+		   singers:{},//歌手
+			sepcials:{},// 专辑
+			musics:{},//单曲
+			MVs:{},//mv
+			uid:"",
+			history:{},
+			x_search:"",
+			//头部
+			head_show:false,
+			head_result:false,
+			hots:{},
+			
+
+	   },
+	   mounted(){
+		   axios.post("MusicMVServletShow/showList", qs.stringify({page, rows})).then(result=>{
+			   console.log(result);
+			   this.musicmv = result.data.data;
+			   
+				this.mv1 = this.musicmv[0]; 
+				this.mv2 = this.musicmv[1]; 
+				this.mv3 = this.musicmv[2]; 
+				this.mv4 = this.musicmv[3]; 
+				this.mv5 = this.musicmv[4]; 
+				this.mv6 = this.musicmv[5]; 
+				this.mv7 = this.musicmv[6]; 
+		   })
+		   //头部
+			axios.post("singer/findHot").then(result=>{
+				this.hots = result.data;
+			})
+			this.user()
+			this.historyData()
+	   },
+	   watch:{
+			search:function(){
+				this.changeback()
+			},
+			//头部
+			x_search:function(){
+				this.change_back()
+			}
+		},
+	   methods:{
+		   quite_login(){
+				axios.post("../user/quit",qs.stringify({uid:this.uid})).then(result=>{
+					if(result.data == 200){
+						location.href = "login.html";
+					}
+				})
+			},
+		   bfmv(mvid, index){
+			   localStorage.removeItem("mvid");//先从本地存储中移除这个属性
+			   localStorage.setItem("mvid", mvid);//
+			   location.href = 'html/mvplay.html';
+		   },
+		   user(){
+			   axios.post("user/info").then(result=>{
+					console.log(result);
+					if(result.data.code == 200 && result.status == 200){
+						this.user = result.data.data;
+						this.goodstwo = result.data.data;
+						this.username =  result.data.data.uname;
+						this.uid = result.data.data.uid;
+						this.isArray = true;
+						return;
+				    }
+					this.isArray = false;
+				})
+		   },
+		 //头部
+			change_back(){//是否显示
+				//改变搜索结果是否显示
+				if(this.x_search != ""){
+					this.head_result = true;
+					this.head_show = false;
+					this.find_Input();
+				}else{
+					this.head_result = false;
+					this.head_show = true;
+				}
+				this.changer_headerhis()
+			},
+			clearStore(){//清楚历史记录
+				localStorage.removeItem('data');
+				$('#lists').html('');
+			},
+			changer_headerhis(){
+				if(this.x_search != ""){
+					$('#mod_search').css('max-height',0);
+				}else{
+					$('#mod_search').css('max-height',580);
+					changeList();
+				}
+				changeHot();
+			},
+			find_Input(){
+				axios.post("search/findData",qs.stringify({sname:this.x_search})).then(result=>{
+					this.total = result.data.data;
+					this.musics = this.total[0];
+					this.singers = this.total[1];
+					this.sepcials = this.total[2];
+					this.MVs = this.total[3];
+				})
+			},
+			con(historys){
+				this.x_search = historys;
+			},
+			historyData(){
+				this.history = JSON.parse(localStorage.getItem('data'));
+			},
+			
+	   }
+	   
+   })
+   function changeList(){
+		var list_on = document.getElementsByClassName("on");
+		for (var j = 0; j < list_on.length; j++) {
+			list_on[j].setAttribute('index',j);
+			list_on[j].onmouseover = function(){
+				let index = this.getAttribute("index");
+				$('.on').eq(index).css('background-color',"#31C27C");
+				$('.active').eq(index).css('color',"white");
+			}
+			list_on[j].onmouseout = function(){
+				let index = this.getAttribute("index");
+				$('.on').eq(index).css('background-color',"white");
+				$('.active').eq(index).css('color',"#333");
+			}
+		}
+	}
+	function changeHot(){
+		var search = document.getElementsByClassName("search_hot__link");
+		var number = document.getElementsByClassName("search_hot__number");
+		var name =  document.getElementsByClassName("search_hot__name");
+		var listen = document.getElementsByClassName("search_hot__listen");
+		for (var i = 0; i < search.length; i++) {
+			search[i].setAttribute('index',i);
+			search[i].onmouseover = function(){
+				let index = this.getAttribute("index");
+				$('.search_hot__link').eq(index).css('background-color',"#31C27C");
+				$('.search_hot__number').eq(index).css('color',"white");
+				$('.search_hot__name').eq(index).css('color',"white");
+				$('.search_hot__listen').eq(index).css('color',"white");
+			}
+			search[i].onmouseout = function(){
+				let index = this.getAttribute("index");
+				$('.search_hot__link').eq(index).css('background-color',"white");
+				$('.search_hot__number').eq(index).css('color',"#ff4222");
+				$('.search_hot__name').eq(index).css('color',"#333");
+				$('.search_hot__listen').eq(index).css('color',"#999");
+			}
+		}
+	}
+</script>
+
+</body>
+</html>

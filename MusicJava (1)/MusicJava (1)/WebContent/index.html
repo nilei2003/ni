@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>南华音源网</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="less/indexcss.css" />
+<link href="css/header.css" type="text/css" rel="stylesheet"/>
+
+<style type="text/css">
+#zhezhao {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}
+
+.divss_03 {
+	display: none;
+	width: 400px;
+	height: 150px;
+	position: fixed;
+	left: 550px;
+	top: 300px;
+	border: #909090 solid 1px;
+	background-color: #FFF;
+	z-index: 11;
+}
+
+#articles_div1 {
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	background-color: #FAF7F8;
+	border-bottom: #EDE9EA solid 1px;
+	background-color: #FAF7F8;
+}
+
+#articles_div1_1 {
+	width: 130px;
+	margin-left: 130px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	color: red;
+	float: left;
+	height: 20px;
+}
+
+#articles_div1_2 {
+	float: right;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+#articles_div1_2 a {
+	text-decoration: none;
+}
+
+.goumai_02_02 {
+	width: 150px;
+	height: 30px;
+	margin-top: 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 30px;
+	text-align: center;
+	background-color: #E1E6F6;
+	color: #FFF;
+}
+
+  .divss_01{
+	display: none;
+	width: 700px;
+	height: 450px;
+
+	position: fixed;
+	left: 400px;
+	top: 150px;
+	border: #909090 solid 1px;
+	background-color: #F9F9F9;;
+	z-index: 11;
+	}
+
+    #articles_div1s{
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		background-color: #FAF7F8;
+		border-bottom: #EDE9EA solid 1px;
+	}
+	#articles_div1s_1{
+		width: 130px;
+		height: 50px;
+		position: absolute;
+		left: 40%;
+		line-height: 50px;
+		text-align: center;
+		font-size: 20px;
+		font-weight: 500;
+		color: red;
+		float: left;
+	}
+	#articles_div1s_2{
+		margin-top: 15px;
+		margin-right: 15px;
+		float: right;
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		text-align: center;
+		font-size: 20px;
+		font-weight: 500;
+	}
+	#articles_div1s_2 a{
+		text-decoration: none;
+	}
+	.goumai_01{
+		position: absolute;
+		left: 10%;
+		width: 80%;
+		height: 170px;
+		background-color: #F9F9F9;
+		
+	}
+	.goumai_01_01{
+		font-size: 14px;
+		width: 100%;
+		height: 60px;
+		line-height: 60px;
+	}
+	.goumai_01_02{
+		width: 100%;
+		height: 110px;
+		
+	}
+	
+	.goumai_01_02_01, .goumai_01_02_01 img{
+		height: 110px;
+		width: 110px;
+	}
+	.goumai_01_02_02{
+		position: absolute;
+		top: 60px;
+		width: 300px;
+		height: 14px;
+		margin-left: 10px;
+		line-height: 14px;
+		font-size: 14px;
+	}
+	.goumai_01_02_03{
+	
+		font-size: 20px;
+		font-weight: 600;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+	.goumai_02{
+		position: absolute;
+		top: 240px;
+		
+		width: 100%;
+		height: 200px;
+	}
+	.goumai_02_01{
+		width: 80%;
+		height: 200px;
+		position: absolute;
+		left: 10%;
+		font-size: 15px;
+	}
+	.goumai_02_02s{
+		
+		width: 170px;
+		height: 50px;
+		margin-top: 30px;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 50px;
+		text-align: center;
+		background-color: #3387ef;
+		color: #FFF;
+		
+	}
+	
+</style>
+</head>
+
+<body>
+	<div id="app">
+		<div class="mod_header" id="ass">
+			<div class="section_inner">
+				<h1 class="qqmusic_title">
+					<a href="#">
+						<img alt="QQ音乐" src="images/logo.png"class="qqmusic_logo"/>
+					</a>
+				</h1>
+				<ul class="mod_top_nav">
+					<li class="top_nav__item">
+						<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+						</a>
+					</li>
+					<li class="top_nav__item">
+						<a class="top_nav__link" title="我的音乐" href="userindex.html">我的音乐</a>
+					</li>
+				</ul>
+				<ul class="mod_top_subnav">
+					<li class="top_subnav__item">
+						<a aria-current="page"  class="top_subnav__link top_subnav__link--current" title="首页" href="index.html">首页</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link " title="歌手" href="html/index.html">歌手</a>
+					</li>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" title="排行榜" href="html/toplist.html">排行榜</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="专辑" href="specli.html">专辑</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="分类歌单" href="playlist.html">歌单</a>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" href="mvindexheade.html">MV</a>
+					</li>
+				</ul>
+				<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'html/search.html?' +x_search" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'html/singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="(sepcial, index) in sepcials">
+								<li>
+									<a class="search_result__link" href="javascript:void(0)" @click="speclishow(null, sepcial.eid, index)">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="(mv, index) in MVs">
+								<li>
+									<a class="search_result__link" href="javascript:void(0)" @click="bfmv(mv.mvid, index)">
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+						<div class="header__opt">
+							<span class="mod_top_login">
+								<a class="top_login__link" @mouseover="change_quit" @mouseout="changes_quit" v-if="user.uphoto == null">
+									<img src="images/300.png" class="top_login__cover" >
+									<img src="images/login_qq.png" class="top_login__icon">
+								</a>
+								<a v-else class="top_login__link" @mouseover="change_quit" @mouseout="changes_quit">
+									<img :src="'../' + user.uphoto" class="top_login__cover" >
+									<img src="images/login_qq.png" class="top_login__icon">
+								</a>
+							</span>
+							<div class="popup_user" :class="{'drop':quit}">
+								<div class="popup_user_data">
+									<a class="popup_user_data__cover_link">
+										<img class="popup_user_data__cover" :src="'../' + user.uphoto">
+										<img src="images/login_qq.png" class="popup_user_data__icon">
+									</a>
+									<div class="popup_user_data__cont">
+										<div class="popup_user_data__name">
+											<a>{{user.uname}}</a>
+										</div>
+									</div>
+									
+								</div>
+								<div class="popup_user_toolbar">
+										<div class="popup_user_toolbar__item">
+											<div class="popup_user_toolbar__tit">
+												<a class="toolbar__tit" href="javascript:void(0)" @click="quite_login">退出登录</a>
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		<article id="article">
+			<div class="article_div01">歌 &nbsp;单 &nbsp;推 &nbsp;荐</div>
+	
+			<div class="article_div06" id="zuo01">
+				<img src="images/左.png" />
+			</div>
+			<div class="article_div07" id="you01">
+				<img src="images/右.png" />
+			</div>
+			<div class="article_div03 clearfix">
+				<div id="divph01"
+					style="width: 1250%; height: 400px; transition: all 0.5S ease-in; position: relative; left: 0%; margin-top: 20px;">
+					<ul class="ul1">
+						<li class="li1" v-for="(item, index) in playlists1">
+							<div class="article_div04" id="divs01">
+								<a href="javascript:void(0)"><img class="animate01"
+									:src="'../' + item.pphoto"></a>
+								<div id="i1" class="zz"></div>
+								<div id="divs02" @click="playlistshow(item.pid)">
+									<a href="javascript:void(0)"  @click="pallall1(item.pid)"><img src="images/bofang.png"></a>
+								</div>
+							</div>
+							<div class="article_div05">
+								<ul>
+									<li><a href="javascript:void(0)" @click="playlistshow(item.pid)">{{item.pname}}</a></li>
+									<li class="li2">点击量：{{item.display}}</li>
+								</ul>
+							</div>
+
+						</li>
+						
+					</ul>
+					
+
+					<ul class="ul1">
+						<li class="li1" v-for="(item, index) in playlists2">
+							<div class="article_div04" id="divs01">
+								<a href="javascript:void(0)"><img class="animate01"
+									:src="'../' + item.pphoto"></a>
+								<div id="i1" class="zz"></div>
+								<div id="divs02"  @click="playlistshow(item.pid)">
+									<a><img src="images/bofang.png"></a>
+								</div>
+							</div>
+							<div class="article_div05">
+								<ul>
+									<li><a href="#">{{item.pname}}</a></li>
+									<li class="li2">播放量：{{item.display}}</li>
+								</ul>
+							</div>
+
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div class="article_div08">
+				<ul>
+					<li><img src="images/点(1).png"></li>
+					<li><img src="images/点.png"></li>
+					<li><img src="images/点.png"></li>
+					<li><img src="images/点.png"></li>
+				</ul>
+			</div>
+
+			<div class="article_div09">
+				<div class="article_div01">新 &nbsp;歌 &nbsp;首 &nbsp;发</div>
+				<div class="article_div02 clearfix">
+					<div class="article_div14">
+						<button>
+							<a href="javascript:void(0)" @click="pallall()"><img
+								src="images/右.png">播放全部</a>
+						</button>
+					</div>
+					<ul>
+						
+					</ul>
+				</div>
+
+				<div class="article_div06" id="zuo02" style="top: 80px">
+					<img src="images/左.png" />
+				</div>
+				<div class="article_div07" id="you02" style="top: 80px">
+					<img src="images/右.png" />
+				</div>
+
+				<div class="article_div15">
+					<div id="divph02"
+						style="width: 1250%; height: 400px; transition: all 0.5S ease-in; position: relative; left: 0%;">
+						<ul style="display: inline-block;">
+
+							<li class="clearfix" v-for="(item, index) in musics1">
+								<div class="article_div21">
+									<div class="article_div22">
+										<img class="animate" :src="'../' + item.mphoto"
+											@click="musicshow(item.mid, index, item.yesnopay, item.sname, item.eid)">
+									</div>
+									<div id="i1" class="zz" onclick="ssss()"></div>
+									<a href="javascript:void(0)">
+										<div class="article_div23">
+											<img src="images/bofang.png">
+										</div>
+									</a>
+
+								</div>
+								<div class="article_div24">
+									<p>
+										<a href="javascript:void(0)" @click="musicshow(item.mid, index, item.yesnopay, item.sname, item.eid)">{{item.mname}}</a>
+									</p>
+									<p>
+										<a href="javascript:void(0)" style="color: #9999B2;">{{item.sname}}</a>
+									</p>
+								</div>
+								<div class="article_div25">{{item.mdate}}</div>
+							</li>
+
+						</ul>
+						<ul style="display: inline-block;">
+							<li class="clearfix" v-for="(item, index) in musics2">
+								<div class="article_div21">
+									<div class="article_div22">
+										<img class="animate" :src="'../' + item.mphoto"
+											@click="musicshow(item.mid, index, item.yesnopay, item.sname, item.eid)">
+									</div>
+									<div id="i1" class="zz" onclick="ssss()"></div>
+									<a href="javascript:void(0)">
+										<div class="article_div23">
+											<img src="images/bofang.png">
+										</div>
+									</a>
+
+								</div>
+								<div class="article_div24">
+									<p>
+										<a href="javascript:void(0)" @click="musicshow(item.mid, index, item.yesnopay, item.sname, item.eid)">{{item.mname}}</a>
+									</p>
+									<p>
+										<a href="javascript:void(0)" style="color: #9999B2;">{{item.sname}}</a>
+									</p>
+								</div>
+								<div class="article_div25">{{item.mdate}}</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<div class="article_div08">
+					<ul>
+						<li><img src="images/点(1).png"></li>
+						<li><img src="images/点.png"></li>
+						<li><img src="images/点.png"></li>
+						<li><img src="images/点.png"></li>
+					</ul>
+				</div>
+			</div>
+			<div class="article_div10">
+				<div class="article_div01">精 &nbsp;彩 &nbsp;推 &nbsp;荐</div>
+				<div style="width: 100%; height: 250px;">
+					<div class="article_div16">
+						<ul id="divph03" style="transition: all 0.5S ease-in;">
+							<li>
+								<div class="article_div26">
+									<a href="javascript:void(0)" @click="speclishow('1017', '164968384262126')"><img src="images/IU.webp"></a>
+								</div>
+							</li>
+							<li>
+								<div class="article_div26">
+									<a href="javascript:void(0)" @click="speclishow('1022', '1649827199735374')"><img src="images/ellie.webp"></a>
+								</div>
+							</li>
+							<li>
+								<div class="article_div26">
+									<a href="#"><img src="images/背景03.webp"></a>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+					<div class="article_div06" id="zuo03" style="top: -160px;">
+						<img src="images/左.png" />
+					</div>
+					<div class="article_div07" id="you03" style="top: -160px;">
+						<img src="images/右.png" />
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="article_div13">
+				<div class="article_div01">最 &nbsp;新 &nbsp;M &nbsp;V</div>
+				
+				<div style="width: 100%; height: 500px;">
+				
+					<div class="article_div0018">
+						<div class="article_div0017" id="divph04"
+							style="transition: all 0.5S ease-in;">
+							<ul class="ul002" id="ul">
+								<li v-for="(item, index) in musicmv1">
+
+									<div class="article_div33" @click="bfmv(item.mvid, index)">
+										<div class="article_div34" @click="bfmv(item.mvid, index)">
+											<img class="animate" :src="'../' + item.mvphoto" >
+										</div>
+										<div id="i1" class="zz" @click="bfmv(item.mvid, index)"></div>
+										<a href="javascript:void(0)" @click="bfmv(item.mvid, index)">
+											<div class="article_div35" >
+												<img src="images/bofang.png">
+											</div>
+										</a>
+
+									</div>
+
+									<div class="article_div36">
+
+										<a href="javascript:void(0)" style="color: black;" @click="bfmv(item.mvid, index)">《{{item.mvname}}》</a><br /> <a
+											href="javascript:void(0)"></a><br /> <span>播放量:{{item.playvolume}}</span>
+
+									</div>
+								</li>
+								
+							</ul>
+						
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="divss_03" id="divss_01_3">
+				<div id="articles_div1">
+					<div id="articles_div1_1">温馨提示</div>
+					<div id="articles_div1_2" onclick="block2()">
+						<a href="javascript:void(0)">×</a>
+					</div>
+				</div>
+				<h4 style="margin-top: 20px">您点击的音乐为付费音乐哦，您需要购买专辑或会员才可享用哦！！！</h4>
+				<div class="goumai_02_02">
+					<a href="javascript:void(0)" @click="immediatepurchase()">立即购买</a>
+				</div>
+			</div>
+
+			<div class="divss_01" id="divss_01_1">
+				<div id="articles_div1s">
+					<div id="articles_div1s_1">购买数字专辑</div>
+					<div id="articles_div1s_2" onclick="block1()">
+						<a href="javascript:void(0)">×</a>
+					</div>
+				</div>
+				<div class="goumai_01">
+					<div class="goumai_01_01">
+						用户昵称: <span>夏文龙</span>
+					</div>
+					<div class="goumai_01_02">
+						<div class="goumai_01_02_01" style="display: inline-block;">
+							<img :src="'../' + sepcial.ephoto">
+						</div>
+						<div class="goumai_01_02_02" style="display: inline-block;">
+							{{sname}} 《{{sepcial.ename}}》</div>
+						<div class="goumai_01_02_03" style="display: inline-block;">
+							{{sepcial.emoney}}元</div>
+					</div>
+				</div>
+				<div class="goumai_02">
+					<br>
+					<hr>
+					<div class="goumai_02_01">
+						<h3 style="margin-top: 20px;">
+							<span>支付方式</span>
+						</h3>
+						<div class="goumai_02_02s" ><a href="javascript:void(0)" @click="moneySepcial(sepcial.eid, sepcial.emoney)">支付宝支付</a></div>
+					</div>
+
+
+
+				</div>
+
+			</div>
+
+		</article>
+		<footer style="width: 100%; margin-top: 140px;">
+			<div style="width: 100%;">
+				<img style="width: 100%;" src="images/2022-03-21_160301.png">
+			</div>
+		</footer>
+		<div id="zhezhao"></div>
+
+	</div>
+
+
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+	<script type="text/javascript" src="js/qs.js"></script>
+
+	<script src="js/index01vue.js"></script>
+	<script src="js/index01.js"></script>
+	<script type="text/javascript" src="js/history.js"></script>
+	
+	<script type="text/javascript" src="js/header_vue.js"></script>
+</body>
+</html>

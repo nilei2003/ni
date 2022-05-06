@@ -1,0 +1,267 @@
+*{
+	padding: 0;
+    margin: 0 auto;
+}
+a{
+	text-decoration: none;/*取消下划线*/
+	color: #999;
+}
+a:hover{
+	color: #F30;
+}
+ul li{
+	list-style: none;/*取消小圆点*/
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+body{
+    font-family: 微软雅黑;
+	font-size: 12px;
+	min-width: 1000px;
+	background-color: #FAFAFA;
+	/* 设置元素的最小宽度 */
+}
+	/* 清楚浮动后的影响 */
+.clearfix:after {
+	content: "";
+	height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+			
+.clearfix {
+	zoom: 1;
+}
+.article{
+	text-align: center;
+}
+.mod_singer{
+	position: relative;
+	width: 100%;
+	height: 376px;
+	background: url(../images/background.jpg)  no-repeat;
+	overflow: hidden;
+}
+.section_inner,.main{
+	position: relative;
+	max-width: 1200px;
+}
+.singer_tit{
+	width: 494px;
+	height: 60px;
+	margin-top: 103px;
+	background-position:0 0;
+	font-size: 53px;
+	color: white;
+	font-family: "宋体";
+}
+.singer_desc{
+	width: 260px;
+	height: 26px;
+	margin-top: 20px;
+	color: white;
+	font-family: "宋体";
+	font-size: 25px;
+}
+.singer_btn{
+	position: relative;
+	display: block;
+	margin: 20px auto 0;
+	font-size: 18px;
+	text-align: center;
+	color: #fff;
+	line-height: 48px;
+	width: 174px;
+	background-color: transparent;
+	border: 0;
+}
+.singer_btn_border{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 2px;
+	border: 1px solid #fff;
+	opacity: .2;
+
+}
+.singer_btn_border:hover{
+	opacity: 1.0;	
+}
+.main{
+	z-index: 2;
+}
+.mod_singer_tag{
+	background-color: #fbfbfd;
+	padding: 34px 0 17px 40px;
+	margin: 30px 0 20px;
+}
+.singer_tag__list{
+	padding-bottom: 3px;
+	height: auto;
+	zoom: 1;
+	clear: both;
+	overflow: hidden;
+}
+.singer_tag__item--select,.singer_tag__item--select:hover{
+	background-color: #31c27c;
+	color: #fff;
+}
+
+.singer_tag__item--all{
+	margin-right: 28px;
+}
+.singer_tag__item{
+	height: 26px;
+	line-height: 27px;
+	overflow: hidden;
+}
+.singer_tag__item{
+	float: left;
+	padding: 0 8px;
+	margin: 0 12px 14px 0;
+}
+a{
+	color: #000;
+	cursor: pointer;
+}
+a:hover{
+	color: #31c27c;
+}
+.mod_singer_list{
+	overflow: hidden;
+	text-align: center;
+}
+.singer_list__list{
+	margin-bottom: 4px;
+	margin-right: -20px;
+	zoom: 1;
+}
+.singer_list__item{
+	float: left;
+	width: 20%;
+	margin-bottom: 20px;
+}
+.singer_list__item_box{
+	position: relative;
+	margin-right: 20px;
+	background-color: #fbfbfd;
+	min-height: 195px;
+	padding: 25px 0;
+}
+.singer_list__cover{
+	margin-left: auto;
+	margin-right: auto;
+}
+.singer_list__cover,.singer_list__pic{
+	display: block;
+	width: 140px;
+	height: 140px;
+	border-radius: 126px;
+}
+.singer_list__title{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 16px;
+	font-weight: 400;
+	zoom: 1;
+	*width: 100%;
+	margin: 20px 30px 4px;
+}
+.singer_list_txt{
+	margin-right: -20px;
+	overflow: hidden;
+	margin-bottom: 60px;
+}
+.singer_list_txt__item{
+	float: left;
+	width: 20%;
+}
+.singer_list_txt__item_link{
+	float: left;
+	max-width: 90%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 14px;
+	line-height: 36px;
+}
+.singer_list__pic:hover{
+	transform: scale(1.1);
+}
+/* 登录之后进行显示的头部页面 */
+.singer_push_tab {
+    text-align: center;
+    padding: 60px 0 44px;
+    line-height: 22px;
+}
+.singer_push_tab__item--on {
+    color: #fff;
+}
+.singer_push_tab__item {
+    margin: 0 32px;
+    font-size: 18px;
+}
+.mod_slide {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.singer_push_slide {
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slider__prev {
+    left: 50%;
+    margin-left: -462px;
+    background-position: 0 0;
+}
+.slider__next {
+    right: 50%;
+    margin-right: -462px;
+    background-position: -26px 0;
+}
+.slider__next, .slider__prev {
+    position: absolute;
+    top: 176px;
+    width: 26px;
+    height: 52px;
+    background-image: url(../images/slider.jpg);
+}
+.slider__next:hover{
+	background-position: -25px -52px;
+}
+.slider__prev:hover{
+	background-position: 0 -52px;
+}
+.slider__next:active{
+	left: 0%;
+}
+.slide__list {
+    position: relative;
+    font-size: 0;
+    width: 1250%;
+    transition: .5s;
+}
+.singer_push_list__item {
+    height: 150px;
+    width: 1.6%;
+    float: left;
+}
+.singer_push_list__link {
+    display: block;
+    position: relative;
+    background-color: #000;
+}
+.singer_push_list__pic {
+    width: 100%;
+    height: 150px;
+    opacity: .8;
+    filter: alpha(opacity=70);
+}

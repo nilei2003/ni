@@ -1,0 +1,739 @@
+*{
+	padding: 0;
+    margin: 0 auto;
+}
+a{
+	text-decoration: none;/*取消下划线*/
+	color: #000;
+	cursor: pointer;
+}
+a:hover{
+	cursor: pointer;
+	color: #31C27C;
+	
+}
+
+ul li{
+	list-style: none;/*取消小圆点*/
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+body{
+    font-family: 微软雅黑;
+	font-size: 12px;
+	min-width: 1000px;
+	background-color: #FAFAFA;
+	/* 设置元素的最小宽度 */
+}
+.wrap{
+	max-width: 1200px;
+}
+	/* 清楚浮动后的影响 */
+.clearfix:after {
+	content: "";
+	height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+			
+.clearfix {
+	zoom: 1;
+}
+
+.main{
+	padding-top: 60px;
+}
+.main{
+	z-index: 2;
+}
+
+.main{
+	max-width: 1200px;
+	position: relative;
+}
+.toplist_nav{
+	width: 150px;
+}
+.toplist_nav{
+	float: left;
+	border: 1px solid hsla(0,0%,60%,.2);
+}
+.toplist_nav_list{
+	margin-bottom: 20px;
+}
+.toplist_nav_tit{
+	font-size: 16px;
+}
+.toplist_nav_tit{
+	line-height: 60px;
+	font-weight: 400;
+	border-bottom: 1px solid #ebebeb;
+	margin: 0 17px 10px;
+}
+.toplist_nav__link{
+	font-size: 14px;
+	display: block;
+	line-height: 22px;
+	padding: 8px 17px;
+}
+
+/* 头部设置 */
+.toplist_exclusive .mod_toplist {
+    position: relative;
+    margin-left: 210px;
+}
+.toplist_exclusive .toplist__hd {
+    line-height: 64px;
+    height: 64px;
+    margin-bottom: 10px;
+}
+.toplist_exclusive .toplist__tit {
+    float: left;
+    font-weight: 400;
+    font-size: 24px;
+    margin-right: 15px;
+}
+.toplist_exclusive .toplist_switch {
+    margin-right: 15px;
+    font-size: 0;
+}
+.toplist_exclusive .toplist_switch__data {
+    font-size: 14px;
+}
+/* 功能区域 */
+.mod_songlist_toolbar {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 0;
+}
+.mod_btn_green {
+    border: 1px solid #31c27c;
+    background-color: #31c27c;
+    color: #fff;
+}
+.mod_btn, .mod_btn_green {
+    border-radius: 2px;
+    font-size: 14px;
+    margin-right: 6px;
+    padding: 0 23px;
+    height: 38px;
+    line-height: 38px;
+    display: inline-block;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.mod_btn__icon_add, .mod_btn__icon_batch, .mod_btn__icon_comment, .mod_btn__icon_copy, .mod_btn__icon_delete, .mod_btn__icon_down, .mod_btn__icon_edit, .mod_btn__icon_input, .mod_btn__icon_less, .mod_btn__icon_like, .mod_btn__icon_manage, .mod_btn__icon_menu, .mod_btn__icon_more, .mod_btn__icon_new, .mod_btn__icon_no, .mod_btn__icon_play, .mod_btn__icon_qr, .mod_btn__icon_recovery, .mod_btn__icon_upload, .mod_btn__icon_yes, .mod_btn_green__icon_add, .mod_btn_green__icon_clear, .mod_btn_green__icon_delete, .mod_btn_green__icon_down, .mod_btn_green__icon_like, .mod_btn_green__icon_more, .mod_btn_green__icon_play, .mod_btn_green__icon_radio {
+    display: inline-block;
+    margin-right: 6px;
+    background-image: url(../images/icon_sprite.png);
+    background-repeat: no-repeat;
+    vertical-align: -3px;
+}
+.mod_btn_green__icon_play {
+    width: 13px;
+    height: 16px;
+    background-position: -80px -220px;
+    vertical-align: -3px;
+}
+.mod_songlist_toolbar .mod_btn {
+    min-width: 122px;
+    text-align: center;
+}
+.list_menu__icon_down{
+	background-position: 0 -120px;
+}
+.mod_btn__icon_add {
+    width: 16px;
+    height: 16px;
+    background-position: -20px 0;
+}
+.mod_btn {
+    border: 1px solid #c9c9c9;
+    color: #000;
+}
+.mod_btn__icon_down {
+    width: 16px;
+    height: 16px;
+    background-position: -40px -220px;
+}
+.mod_btn__icon_batch {
+    width: 16px;
+    height: 16px;
+    background-position: -120px 0;
+}
+.mod_btn__icon_comment {
+    width: 16px;
+    height: 16px;
+    background-position: -140px -120px;
+    vertical-align: -3px;
+}
+/* 歌曲 */
+
+.topList_mod_songlist {
+    margin-bottom: 60px;
+    font-size: 14px;
+    overflow: hidden;
+}
+.topList_mod_songlist .songlist__header, .topList_mod_songlist .songlist__item {
+    padding-left: 122px;
+}
+.songlist__header {
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(0,0,0,.01);
+    color: #999;
+}
+.songlist__header, .songlist__item {
+    position: relative;
+    padding-left: 46px;
+    padding-right: 95px;
+}
+.topList_mod_songlist .songlist__header_name, .topList_mod_songlist .songlist__songname {
+    width: 72%;
+}
+.songlist__header_name, .songlist__songname {
+    float: left;
+    width: 47.685185%;
+    position: relative;
+    white-space: normal;
+}
+.songlist__album, .songlist__artist, .songlist__header_album, .songlist__header_author {
+    float: left;
+    padding-left: 15px;
+    width: 25.5%;
+    box-sizing: border-box;
+}
+.songlist__header_time, .songlist__time {
+    position: absolute;
+    top: 0;
+    right: 38px;
+    width: 50px;
+}
+
+/* 歌曲列表 */
+
+.songlist__list {
+    overflow: hidden;
+    clear: both;
+}
+.topList_mod_songlist .songlist__item {
+    height: 80px;
+}
+.topList_mod_songlist .songlist__header, .topList_mod_songlist .songlist__item {
+    padding-left: 122px;
+}
+.songlist__item--even {
+    background-color: rgba(0,0,0,.01);
+}
+.songlist__item {
+    clear: both;
+    font-size: 0;
+    overflow: hidden;
+}
+.topList_mod_songlist .songlist__number--top {
+    color: #ff4222;
+}
+.topList_mod_songlist .songlist__number {
+    width: 40px;
+    top: 2px;
+    left: 30px;
+    text-align: right;
+    font-size: 24px;
+    color: #333;
+}
+.topList_mod_songlist .songlist__album, .topList_mod_songlist .songlist__artist, .topList_mod_songlist .songlist__number, .topList_mod_songlist .songlist__other, .topList_mod_songlist .songlist__rank, .topList_mod_songlist .songlist__songname, .topList_mod_songlist .songlist__time {
+    line-height: 80px;
+    height: 80px;
+}
+.songlist__number {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: #999;
+    width: 36px;
+}
+.songlist__album, .songlist__artist, .songlist__number, .songlist__other, .songlist__songname, .songlist__time {
+    line-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.topList_mod_songlist .songlist__rank {
+    position: absolute;
+    top: 0;
+    left: 48px;
+    width: 72px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #999;
+}
+.icon_rank_popular {
+    width: 15px;
+    height: 15px;
+    margin-top: 27px;
+    background-position: 0 -60px;
+}
+.icon_rank_down, .icon_rank_keep, .icon_rank_new, .icon_rank_popular, .icon_rank_re, .icon_rank_up {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../images/icon_rank.png);
+}
+.songlist__header_name, .songlist__songname {
+    float: left;
+    width: 47.685185%;
+    position: relative;
+    white-space: normal;
+}
+.songlist__icon_mv {
+    display: inline-block;
+    width: 33px;
+    height: 16px;
+    background-position: -40px -280px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+.sprite, .sprite_before:before {
+    background-image: url(../images/icon_sprite.png);
+}
+.songlist__item .songlist__icon:nth-child(2)+.songlist__songname_txt {
+    max-width: 62%;
+    box-sizing: border-box;
+}
+.songlist__songname_txt {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 56%;
+    margin-right: 8px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.topList_mod_songlist .songlist__cover {
+    margin-right: 5px;
+    margin-top: 20px;
+}
+.topList_mod_songlist .songlist__cover, .topList_mod_songlist .songlist__pic {
+    width: 40px;
+    height: 40px;
+}
+.topList_mod_songlist .songlist__cover {
+    float: left;
+    margin-right: 20px;
+    margin-top: 24px;
+}
+.songlist__song_txt, .songlist__time {
+    color: #999;
+}
+.songlist__song_txt {
+    margin-left: 10px;
+}
+.songlist__item .mod_list_menu {
+    position: absolute;
+    right: 22px;
+    top: 30%;
+    overflow: hidden;
+}
+.mod_list_menu {
+    font-size: 0;
+    height: 36px;
+}
+.list_menu__item {
+    margin-right: 5px;
+}
+.list_menu__item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+.list_menu__icon_add, .list_menu__icon_delete, .list_menu__icon_down, .list_menu__icon_down_vip, .list_menu__icon_edit, .list_menu__icon_pause, .list_menu__icon_play, .list_menu__icon_share {
+    display: none;
+    width: 36px;
+    height: 36px;
+    background-image: url(../images/icon_list_menu.png);
+    background-repeat: no-repeat;
+}
+.icon_txt {
+    font: 0/0 a;
+}
+.list_menu__icon_down{
+	background-position: 0 -120px;
+}
+
+.list_menu__icon_down:hover{
+	background-position: -40px -120px;
+}
+.list_menu__icon_add {
+    background-position: 0 -80px;
+}
+.list_menu__icon_add:hover{
+    background-position: -40px -80px;
+}
+.list_menu__icon_play {
+    background-position: 0 0;
+}
+.list_menu__icon_play:hover{
+   background-position: -40px 0;
+}
+
+
+.songlist__album, .songlist__artist, .songlist__number, .songlist__other, .songlist__time {
+    font-size: 14px;
+}
+.songlist__header_time, .songlist__time {
+    position: absolute;
+    top: 0;
+    right: 38px;
+    width: 50px;
+}
+
+/* 评论 */
+.comment__input {
+    position: relative;
+    padding-bottom: 60px;
+}
+.comment__textarea {
+    position: relative;
+    overflow: hidden;
+    min-height: 102px;
+    border: 1px solid #ececec;
+    background-color: #f5f5f5;
+}
+.comment__textarea_inner {
+    margin: 10px 14px 25px;
+}
+.comment__textarea_default, .comment__textarea_input ,.comment__textarea_default1, .comment__textarea_input1 ,.comment__textarea_default2, .comment__textarea_input2{
+    width: 100%;
+    border: none;
+    min-height: 66px;
+    resize: none;
+    outline: none;
+    background: transparent;
+}
+.comment__tips {
+    position: absolute;
+    bottom: 3px;
+    right: 14px;
+    text-align: right;
+}
+.part__tit_desc {
+    font-size: 14px;
+    margin-left: 12px;
+}
+.c_tx_thin {
+    color: #999;
+}
+.c_tx_current, .c_tx_highlight {
+    color: #31c27c;
+}
+.comment__tips {
+    position: absolute;
+    bottom: 3px;
+    right: 14px;
+    text-align: right;
+}
+.comment__face {
+    position: absolute;
+    right: 90px;
+    bottom: 14px;
+}
+
+.icon_comment_face {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-position: 0 0;
+    vertical-align: -1px;
+}
+.icon_comment {
+    background-image: url(../images/comment.png);
+    background-repeat: no-repeat;
+}
+.comment__tool {
+    position: absolute;
+    bottom: 10px;
+    right: -5px;
+}
+.comment__tool a {
+    margin-right: 5px;
+}
+.comment__tool_btn {
+    width: 80px;
+    line-height: 27px;
+    height: 30px;
+    text-align: center;
+    padding: 0;
+}
+
+.mod_btn_green {
+    border: 1px solid #31c27c;
+    background-color: #31c27c;
+    color: #fff;
+}
+.comment__tool_btn:hover{
+	color: #fff;
+	background-color: #2CAF6F;
+	
+}
+/* 评论详情 */
+
+.mod_hot_comment {
+    margin-bottom: 16px;
+}
+.comment_type__title {
+    position: relative;
+    height: 34px;
+    line-height: 34px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    border-color: #ededed;
+}
+.comment_type__title h2 {
+    font-weight: 400;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.comment__list {
+    padding-bottom: 14px;
+}
+.comment__list_item {
+    position: relative;
+    padding: 15px 0 15px 56px;
+    zoom: 1;
+    border-bottom: 1px solid;
+    border-color: #ededed;
+}
+.comment__avatar {
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 38px;
+    height: 38px;
+}
+.comment__avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+}
+.comment__title {
+    font-weight: 400;
+    overflow: hidden;
+    height: 26px;
+    line-height: 26px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.comment__title a, .comment__title span {
+    float: left;
+}
+.c_tx_thin {
+    color: #999;
+}
+.comment__date {
+    margin-bottom: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+.comment__text {
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
+    line-height: 24px;
+    text-align: justify;
+}
+.comment__opt {
+    line-height: 24px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+.comment__opt a {
+    margin-right: 20px;
+}
+.comment__zan {
+    vertical-align: -1px;
+}
+.icon_comment_like, .icon_comment_liked {
+    display: inline-block;
+    margin-right: 5px;
+    width: 17px;
+    height: 17px;
+    overflow: hidden;
+    vertical-align: -3px;
+}
+.icon_comment_like {
+    background-position: -25px -25px;
+}
+.icon_comment {
+    background-image: url(../images/comment.png);
+    background-repeat: no-repeat;
+}
+.comment__opt a {
+    margin-right: 20px;
+}
+.comment__reply_hd {
+    position: relative;
+}
+.comment__icon_arrow_up {
+    background-position: -120px -270px;
+}
+.comment__icon_arrow_down, .comment__icon_arrow_up {
+    display: inline-block;
+    width: 10px;
+    height: 6px;
+    vertical-align: middle;
+    margin-left: 8px;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+.sprite,{
+    background-image: url(../images/icon_sprite.png);
+}
+.comment__sort {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: 400;
+}
+.comment__sort_line {
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background-color: currentColor;
+    margin: 0 14px;
+    opacity: .2;
+}
+
+.comment__reply_bd {
+	display: none;
+    padding: 10px 20px 0;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: rgba(0,0,0,.03);
+}
+.comment__list {
+	
+    padding-bottom: 14px;
+}
+.comment__sub_list_item {
+    position: relative;
+    
+}
+.comment__text.item {
+    margin-top: 6px;
+    padding-right: 70px;
+}
+.comment__text {
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
+    line-height: 24px;
+    text-align: justify;
+}
+.c_tx_current, .c_tx_highlight {
+    color: #31c27c;
+}
+.comment__sub_opt {
+    position: absolute;
+    top: 0;
+    right: -36px;
+    width: 90px;
+}
+.comment__delete, .comment__good, .comment__link, .comment__report, .comment__zan {
+    margin-right: 22px;
+}
+#zhezhao{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.comment__avatar {
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 38px;
+    height: 38px;
+}
+.comment__avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+}
+.comment__title {
+    font-weight: 400;
+    overflow: hidden;
+    height: 26px;
+    line-height: 26px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.comment__date {
+    margin-bottom: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+.comment__title a, .comment__title span {
+    float: left;
+}
+.comment__list_item {
+    position: relative;
+    padding: 15px 0 15px 56px;
+    zoom: 1;
+    border-bottom: 1px solid;
+    border-color: #ededed;
+}
+/*回复评论*/
+.comment_repeat {
+	display: none;
+    padding-top: 16px;
+}
+.comment_repeat .comment__face {
+    right: 180px;
+}
+.c_bg_normaoll{
+	display: block;
+}
+.comment__show_all_link:hover .comment__icon_arrow_down, .comment__show_all_reply:hover .comment__icon_arrow_down {
+    background-position: -140px -260px;
+    opacity: 1;
+    filter: none;
+}
+.comment__icon_arrow_down {
+    background-position: -120px -260px;
+}
+.comment__icon_arrow_up {
+    background-position: -120px -270px;
+}
+.comment__show_all_reply:hover .comment__icon_arrow_up {
+    background-position: -140px -270px;
+    opacity: 1;
+    filter: none;
+}
+.comment__reply_hd{
+	display: block;
+}
+.close{
+	display:none;
+}
+.c_bg_normal_re{
+	display: block;
+}

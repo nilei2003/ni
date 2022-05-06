@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>音乐歌单</title>
+		<link href="css/playlist.css" type="text/css" rel="stylesheet"/>
+		<link href="css/reset.css" type="text/css" rel="stylesheet"/>
+		<link href="css/slide.css" type="text/css" rel="stylesheet"/>
+		<link href="css/header.css" type="text/css" rel="stylesheet"/>
+	</head>
+	<body>
+	<div class="mod_header">
+			<div class="section_inner">
+				<h1 class="qqmusic_title">
+					<a href="#">
+						<img alt="QQ音乐" src="images/logo.png"class="qqmusic_logo"/>
+					</a>
+				</h1>
+				<ul class="mod_top_nav">
+					<li class="top_nav__item">
+						<a aria-current="page" class="top_nav__link top_nav__link--current" title="音乐馆" href="#">音乐馆
+						</a>
+					</li>
+					<li class="top_nav__item">
+						<a class="top_nav__link" title="我的音乐" href="userindex.html">我的音乐</a>
+					</li>
+				</ul>
+				<ul class="mod_top_subnav">
+					<li class="top_subnav__item">
+						<a aria-current="page" style="color: #000" class="top_subnav__link top_subnav__link--current" title="首页" href="index.html">首页</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link " style="color: #000" title="歌手" href="html/index.html">歌手</a>
+					</li>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" style="color: #000" title="排行榜" href="html/toplist.html">排行榜</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="专辑" style="color: #000" href="specli.html">专辑</a>
+					</li>
+					<li class="top_subnav__item">
+						<a class="top_subnav__link" title="分类歌单" style="color: #31c27c;" href="html/playlist.html">歌单</a>
+					</li>
+					<li class="top_subnav__item"><a class="top_subnav__link" style="color: #000" href="mvindexheade.html">MV</a>
+					</li>
+				</ul>
+				<div class="mod_top_search">
+					<div class="mod_search_input">
+						<input type="text" class="search_input__input" placeholder="搜索音乐、MV、歌单、用户" id="inpt" v-model="x_search">
+						<button class="search_input__btn" id="btn">
+							<i class="icon_search sprite"></i>
+							<span class="icon_txt" >搜索</span>
+						</button>
+					</div>
+					<!-- 搜索结果 -->
+					<div class="mod_search_result" id="results" :class="{'drop': head_result}">
+						<div class="search_result__sort" >
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_song"></i>单曲
+							</h4>
+							<ul v-for="music in musics">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{music.mname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_singer"></i>歌手
+							</h4>
+							<ul v-for="singer in singers">
+								<li>
+									<a class="search_result__link" target="_blank" :href="'singer.html?'+singer.sid">
+										<span class="search_result__name">{{singer.sname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_album"></i>专辑
+							</h4>
+							<ul v-for="sepcial in sepcials">
+								<li>
+									<a class="search_result__link" target="_blank">
+										<span class="search_result__name">{{sepcial.ename}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="search_result__sort">
+							<h4 class="search_result__tit">
+								<i class="search_result__icon_mv"></i>MV
+							</h4>
+							<ul v-for="mv in MVs">
+								<li>
+									<a class="search_result__link" target="_blank" >
+										<span class="search_result__name">{{mv.mvname}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mod_search_other mod_search_this" id="mod_search" :class="{'drop':head_show}">
+						<div class="search_hot" v-for="hot in hots">
+							<dl class="search_hot__list">
+								<dd>
+									<a class="search_hot__link" id="search_hot__link">
+										<span class="search_hot__number">{{hot.num}}</span>
+										<span class="search_hot__name">{{hot.mname}}</span>
+										<span class="search_hot__listen">{{hot.playvolume}}</span>
+									</a>
+								</dd>
+							</dl>
+						</div>
+						<div class="search_history" id="search_history" >
+							<div class="search_history__list">
+								<dt class="search_history__tit">历史搜索
+									<a class="search_history__clear" @click="clearStore()">
+										<i class="icon_history_clear" ></i>
+									</a>
+								</dt>
+								<ul v-for="(historys,item) in history">
+									<li class='on'>
+										<a class='active' @click="con(historys)">{{historys}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+					</div>
+				</div>
+<div id="app">
+		<!--轮播图  -->
+		<header style="height: 350px;">
+		<div class="banner" >
+		        <div id="slide3d" class="slide-carousel slide-3d">
+		            <ul  class="item-list clearfix">
+		                <li class="item0">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist1.pid)">
+		                            <img class="cover-img" :src="'../' + playlist1.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item1">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist2.pid)">
+		                            <img class="cover-img" :src="'../' + playlist2.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item2">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist3.pid)">
+		                            <img class="cover-img" :src="'../' + playlist3.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item3">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist4.pid)">
+		                            <img class="cover-img" :src="'../' + playlist4.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item4">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist5.pid)">
+		                            <img class="cover-img" :src="'../' + playlist5.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item5">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist6.pid)">
+		                            <img class="cover-img" :src="'../' + playlist6.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		                <li class="item6">
+		                    <div class="item-content">
+		                        <a href="javascript:void(0);" @click="playlistshow(playlist7.pid)">
+		                            <img class="cover-img" :src="'../' + playlist7.pphoto" alt="">
+		                        </a>
+		                    </div>
+		                </li>
+		               
+		            </ul>
+		            <!--indicators-->
+		            <div class="indicator-list">
+		                <a href="javascript:void(0);" data-slide-index="0" class="selected"></a>
+		                <a href="javascript:void(0);" data-slide-index="1"></a>
+		                <a href="javascript:void(0);" data-slide-index="2"></a>
+		                <a href="javascript:void(0);" data-slide-index="3"></a>
+		                <a href="javascript:void(0);" data-slide-index="4"></a>
+		                <a href="javascript:void(0);" data-slide-index="5"></a>
+		                <a href="javascript:void(0);" data-slide-index="6"></a>  
+		            </div>
+		            <!--controls-->
+		            <div class="controls">
+		                <a  class="item-prev glyphicon glyphicon-menu-left" href="javascript:void(0);"></a>
+		                <a  class="item-next glyphicon glyphicon-menu-right" href="javascript:void(0);"></a>
+		            </div>
+		        </div>
+		    </div>
+</header>
+		
+		<div class="main">
+			<div class="mod_part_detail">
+				<div class="part_detail__hd">
+					<h2 class="part_detail__tit">推荐歌单</h2>
+				</div>
+				<div class="mod_playlist mod_playlist--all">
+					<ul class="playlist__list">
+						<li class="playlist__item slide__item" v-for="(item, index) in playlist">
+							<div class="playlist__cover mod_cover">
+								<a href="javascript:void(0)"  @click="playlistshow(item.pid)">
+									<img class="playlist__pic play_pic" :src="'../' + item.pphoto"  @click="playlistshow(item.pid)">
+									<i class="mod_cover__mask" @mouseenter="enter(index)" @mouseleave="leave(index)">
+										<i class="mod_cover__icon_play js_play"></i>
+									</i>
+									
+								</a>
+							</div>
+							<h4 class="playlist__title">
+								<span class="playlist__title_txt">
+									<a href="javascript:void(0)" @click="playlistshow(item.pid)">{{item.pname}}</a>
+								</span>
+							</h4>
+							<div class="playlist__author">
+							
+							</div>
+							<div class="playlist__other">
+								点击量：{{item.display}}
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</div>
+	<footer style="width: 100%; margin-top: 140px;">
+			<div style="width: 100%;">
+				<img style="width: 100%;" src="images/2022-03-21_160301.png">
+			</div>
+		</footer>
+		<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+	    <script type="text/javascript" src="js/axios.js"></script>
+	    <script type="text/javascript" src="js/qs.js"></script>
+		<script type="text/javascript" src="js/playlistvue.js"></script>
+		<script type="text/javascript" src="js/header.js"></script>
+		<script type="text/javascript" src="js/playlist.js"></script>
+		<script type="text/javascript" src="js/slide.min.js"></script>
+		<script type="text/javascript" src="js/history.js"></script>
+	
+		<script type="text/javascript" src="js/header_vue.js"></script>
+		<script>
+		    $(function(){
+		        //3d
+		        $('#slide3d').slideCarsousel({slideType:'3d',indicatorEvent:'mouseover'});
+		        //2d
+		        var  sliderDescArr=[],i=0,len=10;
+		        for(;i<len;i++){
+		            sliderDescArr.push(new Array(10).join(''+i));
+		        }
+		        $('#sliderDesc').text(sliderDescArr[0]);
+		        $('#slide2d').slideCarsousel({callbackFunc:function(index){
+		            $('#sliderDesc1').text(sliderDescArr[index]);
+		        }});
+		    });
+		</script>
+	</body>
+</html>

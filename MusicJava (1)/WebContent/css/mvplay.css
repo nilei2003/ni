@@ -1,0 +1,119 @@
+*{
+	padding: 0;
+    margin: 0 auto;
+}
+a{
+	text-decoration: none;/*取消下划线*/
+	color: #000;
+}
+a:hover{
+	color: #F30;
+}
+ul,li{
+	list-style: none;/*取消小圆点*/
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+body{
+    font-family: 微软雅黑;
+	font-size: 12px;
+	background-color: #FAFAFA;
+	/* 设置元素的最小宽度 */
+}
+	/* 清楚浮动后的影响 */
+.clearfix:after {
+	content: "";
+	height: 0;
+	
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+			
+.clearfix {
+	zoom: 1;
+}
+.main{
+	max-width: 1200px;
+	position: relative;
+}
+.video-outer{
+	width: 1000px;
+	border: 1px solid #000;
+	position: relative;
+}
+.video-outer video , .video-outer canvas{
+	width: 100%;
+	position: absolute; 
+	top: 0;
+	left: 0;
+}
+.video-outer video{
+	z-index: 1;
+}
+.video-outer canvas{
+	z-index: 2;
+}
+.caption-input{
+	position: absolute;
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	background-color: #333333;
+	text-align: center;
+	margin-top: 562px;
+}
+.input{
+	position: absolute;
+	left: 80%;
+	top: 50%;
+	margin: -20px -350px;
+	font-size: 0;
+}
+.caption-input-text{
+	float: left;
+	width: 400px;
+	height: 40px;
+	border: none;
+	border-radius: 8px 0 0 8px;
+}
+.caption-sendButton{
+	float: left;
+	width: 100px;
+	background-color: black;
+	line-height: 40px;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 0 8px 8px 0;
+}
+.checkrun{
+	position: absolute;
+	left: 35%;
+	
+}
+.caption-title{
+	position: absolute;
+	left: 2%;
+	width: 250px;
+	height: 100%;
+	overflow: hidden;
+	text-align: left;
+	max-width: 80%;
+}
+.caption-title h1{
+	font-weight: normal;
+	color: white;
+}
+.ismoveTitle{
+	color: white;
+}
+.caption-plays{
+	position: absolute;
+	left: 27%;
+	color: #737373;
+}

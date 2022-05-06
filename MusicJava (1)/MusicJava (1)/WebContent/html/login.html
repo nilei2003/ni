@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="shortcut icon" href="../images/favicon.ico"/>
+		<link href="../css/login.css" type="text/css"  rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="container" id="container">
+			<div class="form-container sign-up-container">
+				<form action="#">
+					<h1>注册</h1>
+					<div class="social-container">
+
+					</div>
+
+					<input type="text" placeholder="Name" v-model="account1" @blur="checkInfo(1)" @focus="clearMsg"/>
+					<input type="text" placeholder="email" v-model="email" @blur="checkInfo(2)" @focus="clearMsg"/>
+					<input type="password" placeholder="Password" v-model="pwd1" @focus="clearMsg"/>
+					<button type="button" @click="add">注册</button>
+					<span style="font-weight: blod; color: red;top:35px;position: relative;">{{info1}}</span>
+				</form>
+			</div>
+			<div class="form-container sign-in-container">
+				<form action="#">
+					<h1>登录</h1>
+					<div class="social-container">
+
+					</div>
+					<span></span>
+					<input type="text" placeholder="account" v-model="account2"/>
+					<input type="password" placeholder="Password" v-model="pwd2"/>
+					<a href="#">忘记密码了吗?</a> 
+					<button type="button" @click="login">登入</button>
+					<span style="font-weight: blod; color: red;top:35px;position: relative;">{{info2}}</span>
+				</form>
+			</div>
+			<div class="overlay-container">
+				<div class="overlay">
+					<div class="overlay-panel overlay-left">
+						<h1>Welcome Back!</h1>
+						<p>To keep connected with us please login with your personal info</p>
+						<button class="ghost" id="signIn">Sign In</button>
+					</div>
+					<div class="overlay-panel overlay-right">
+						<h1>Hello, Friend!</h1>
+						<p>Enter your personal details and start journey with us</p>
+						<button class="ghost" id="signUp">Sign Up</button>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/qs.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script type="text/javascript" src="../js/base.js"></script>
+		
+		
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:"#container",
+				data:{
+					info1:"",
+					info2:"",
+					email:"",
+					pwd1:"",
+					pwd2:"",
+					account1:"",
+					account2:"",
+					status:[false,false],
+				},
+				methods:{
+					checkInfo(flag){
+						switch (flag) {
+						case 1:
+							let reg0 = /^[\u4e00-\u9fff\w]{3,12}$/;//匹配所有中日韩非符号字符 
+							if(!(reg0.test(this.nickname))){
+								 this.info1 = "账号格式错误，请重新输入";
+								 correct = false;
+							 }else{
+								 correct = true;
+							 }
+							this.status[0] = correct;
+							break;
+						case 2:
+							 let reg3 = /^\w+((-\w+)|(.\w+))\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/;
+								if(!(reg3.test(this.email))){
+									 this.info1 = "邮箱格式错误，请重新输入";
+									 correct = false;
+								 }else{
+									 correct = true;
+								 }
+								this.status[1] = correct;
+							break;
+						}
+					},
+					clearMsg(){
+						console.log(1);
+						this.info1 = "";
+					},
+					add(){
+						if($.inArray(false, this.status) > 0){
+							 alert("请正确输入您的信息");
+							 return;
+						}
+						axios.post("../user/add",qs.stringify({account:this.account1,pwd:this.pwd1,email:this.email})).then(result=>{
+							if( result.data == 500){
+								this.info1 = "您输入的信息有误";
+							}
+							if(result.status == 200 && result.data == 200){
+								alert("注册成功，请进行登录");
+							}
+						})
+						
+					},
+					login(){
+						if(this.account2 == "" || this.pwd2 == ""){
+							 alert("请输入正确的信息")
+							return;
+						}
+						
+						axios.post("../user/login",qs.stringify({account:this.account2,pwd:this.pwd2})).then(result=>{
+							console.log(result);
+							if(result.status == 200 && result.data.code == 200){
+								console.log("登录成功")
+								location.href="../index.html";
+							}
+						})
+					}
+				}
+				
+			})
+			
+		
+		</script>
+		
+		
+		<script type="text/javascript">
+			const signUpButton = document.getElementById('signUp');
+			const signInButton = document.getElementById('signIn');
+			const container = document.getElementById('container');
+
+			signUpButton.addEventListener('click', () => {
+				container.classList.add("right-panel-active");
+			});
+
+			signInButton.addEventListener('click', () => {
+				container.classList.remove("right-panel-active");
+			});
+			
+		</script>
+	</body>
+</html>
